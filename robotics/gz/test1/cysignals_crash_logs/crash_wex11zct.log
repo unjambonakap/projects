@@ -1,0 +1,614 @@
+GNU gdb (GDB) 13.1
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Warning: 'set logging on', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled on'.
+
+Warning: 'set logging off', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled off'.
+
+[New LWP 1976396]
+[New LWP 1976397]
+[New LWP 1976398]
+[New LWP 1976399]
+[New LWP 1976400]
+[New LWP 1976401]
+[New LWP 1976402]
+[New LWP 1976403]
+[New LWP 1976404]
+[New LWP 1976405]
+[New LWP 1976406]
+[New LWP 1976441]
+[New LWP 1976442]
+[New LWP 1976443]
+[New LWP 1976444]
+[New LWP 1976445]
+[New LWP 1976446]
+[New LWP 1976450]
+[New LWP 1976451]
+[New LWP 1976452]
+[New LWP 1976453]
+[New LWP 1976454]
+[New LWP 1976455]
+[New LWP 1976456]
+[New LWP 1976457]
+[New LWP 1976458]
+[New LWP 1976459]
+[New LWP 1976513]
+[New LWP 1976514]
+[New LWP 1976515]
+[New LWP 1976516]
+[New LWP 1976517]
+[New LWP 1976518]
+[New LWP 1976519]
+[New LWP 1976520]
+[New LWP 1976521]
+[New LWP 1976522]
+[New LWP 1976523]
+[New LWP 1976524]
+[New LWP 1976525]
+[New LWP 1976526]
+[New LWP 1976527]
+[New LWP 1977343]
+[New LWP 1977344]
+[New LWP 1977345]
+[New LWP 1977346]
+[New LWP 1977347]
+[New LWP 1977348]
+[New LWP 1977349]
+[New LWP 1977350]
+[New LWP 1977351]
+[New LWP 1977352]
+[New LWP 1977353]
+[New LWP 1977354]
+[New LWP 1977355]
+[New LWP 1977356]
+[New LWP 1977357]
+[New LWP 1977358]
+[New LWP 1977359]
+[New LWP 1977360]
+[New LWP 1977361]
+[New LWP 1977362]
+[New LWP 1977363]
+[New LWP 1977364]
+[New LWP 1977365]
+[New LWP 1977366]
+[New LWP 1977367]
+[New LWP 1977368]
+[New LWP 1977369]
+[New LWP 1977370]
+[New LWP 1977371]
+[New LWP 1977372]
+[New LWP 1977373]
+[New LWP 1977374]
+[New LWP 1977375]
+[New LWP 1977376]
+[New LWP 1977377]
+[New LWP 1977378]
+[New LWP 1977379]
+[New LWP 1977380]
+[New LWP 1977381]
+[New LWP 1977382]
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.archlinux.org>
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+[34m-----------------------------------------------------------------------------------------------------------------------[34m[1m[regs]
+[0m  [32mR0:0x00007efc5c6ea747 in wait4 () from /usr/lib/libc.so.6
+
+Stack backtrace
+---------------
+#1  0x00007efbcb686157 in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#2  0x00007efbcb6862ea in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#3  0x00007efbcb688eea in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#4  0x00007efc5c651f50 in <signal handler called> () at /usr/lib/libc.so.6
+#5  0x00007efc5c6a08ec in  () at /usr/lib/libc.so.6
+#6  0x00007efc5c651ea8 in raise () at /usr/lib/libc.so.6
+#7  0x00007efc5c63b53d in abort () at /usr/lib/libc.so.6
+#8  0x00007efc5c63b45c in  () at /usr/lib/libc.so.6
+#9  0x00007efc5c64a9f6 in  () at /usr/lib/libc.so.6
+#10 0x00007efb3b95d02b in dart::dynamics::GenericJoint<dart::math::SE3Space>::setPartialAccelerationTo(Eigen::Matrix<double, 6, 1, 0, 6, 1>&, Eigen::Matrix<double, 6, 1, 0, 6, 1> const&) (this=0x55b34016b660, partialAcceleration=..., childVelocity=...) at /home/benoit/repos/dart/dart/dynamics/detail/GenericJoint.hpp:1699
+        __PRETTY_FUNCTION__ = "void dart::dynamics::GenericJoint<ConfigSpaceT>::setPartialAccelerationTo(Eigen::Vector6d&, const Eigen::Vector6d&) [with ConfigSpaceT = dart::math::SE3Space; Eigen::Vector6d = Eigen::Matrix<double, 6"...
+#11 0x00007efb3b859c67 in dart::dynamics::BodyNode::updatePartialAcceleration() const (this=0x55b3401c1be0) at /home/benoit/repos/dart/dart/dynamics/BodyNode.cpp:1657
+#12 0x00007efb3b855f16 in dart::dynamics::BodyNode::getPartialAcceleration() const (this=0x55b3401c1be0) at /home/benoit/repos/dart/dart/dynamics/BodyNode.cpp:1144
+#13 0x00007efb3b91b7db in dart::dynamics::Frame::getSpatialAcceleration() const (this=0x55b3401c2780) at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:259
+#14 0x00007efb3b91b82c in dart::dynamics::Frame::getSpatialAcceleration() const (this=0x55b3401c5b20) at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:255
+#15 0x00007efb3b91b9b2 in dart::dynamics::Frame::getSpatialAcceleration(dart::dynamics::Frame const*, dart::dynamics::Frame const*) const (this=0x55b3401c5b20, _relativeTo=0x7efb3c68b960 <dart::dynamics::Frame::World()::world>, _inCoordinatesOf=0x55b3401c5b20) at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:284
+        result = <error reading variable: Cannot access memory at address 0x4>
+#16 0x00007efb3b91c235 in dart::dynamics::Frame::getLinearAcceleration(dart::dynamics::Frame const*, dart::dynamics::Frame const*) const (this=0x55b3401c5b20, _relativeTo=0x7efb3c68b960 <dart::dynamics::Frame::World()::world>, _inCoordinatesOf=0x7efb3c68b960 <dart::dynamics::Frame::World()::world>) at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:368
+        v_rel = @0x7ffcfe439cc0: {<Eigen::PlainObjectBase<Eigen::Matrix<double, 6, 1, 0, 6, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 6, 1, 0, 6, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 6, 1, 0, 6, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 6, 1, 0, 6, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 6, 1, 0, 6, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 6, 1, 0, 6, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 6, 1, 0, 6, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {-2.7459190640522439e+155, -1.0983676256208976e+156, 0, 7.9089971288805636e+164, -1.9772492822201409e+164, -9.3319798815293171e+164}}}}, <No data fields>}
+        a = @0x7ffcfe439b90: {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {4.6554997075074827e-310, 6.9527177702236151e-310, 6.952717770210967e-310}}}}, <No data fields>}
+#17 0x00007efb3e7bbc7a in gz::physics::dartsim::KinematicsFeatures::FrameDataRelativeToWorld(gz::physics::FrameID const&) const (this=0x55b340133130, _id=...) at /home/benoit/repos/gz-physics/dartsim/src/KinematicsFeatures.cc:57
+        data = {pose = {m_matrix = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 4, 4, 0, 4, 4> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 4, 4, 0, 4, 4> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 4, 4, 0, 4, 4> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 4, 0, 4, 4>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 4, 0, 4, 4>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 4, 0, 4, 4>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 4, 4, 0, 4, 4> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {0.3627581541626822, -0.8001019245487162, 0.47774829347881964, 0, 0.92084178019508167, 0.38645449354875527, -0.051993655989247017, 0, -0.14302775057881892, 0.45879171172702726, 0.87695679928657122, 0, 1.7888343651121655e+162, -8.3228097396372169e+162, -3.8231868150624978e+162, 1}}}}, <No data fields>}}, linearVelocity = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {2.3830515417235558e+164, -1.1373555717696651e+165, -4.3024289074763128e+164}}}}, <No data fields>}, angularVelocity = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {-1.1110332528009635e+156, -2.0476759170935186e+155, -7.4077666211932722e+154}}}}, <No data fields>}, linearAcceleration = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {0, 0, 0}}}}, <No data fields>}, angularAcceleration = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {0, 0, 0}}}}, <No data fields>}}
+        __PRETTY_FUNCTION__ = "virtual gz::physics::FrameData3d gz::physics::dartsim::KinematicsFeatures::FrameDataRelativeToWorld(const gz::physics::FrameID&) const"
+        frame = 0x55b3401c5b20
+#18 0x00007efb3fb9af39 in gz::physics::FrameSemantics::Frame<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::FrameDataRelativeToWorld() const (this=0x7ffcfe439ee8) at /usr/include/gz/physics6/gz/physics/detail/FrameSemantics.hh:171
+#19 0x00007efb3fb56c9d in gz::sim::v7::systems::PhysicsPrivate::ChangedLinks(gz::sim::v7::EntityComponentManager&, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > const&) (this=0x55b340119070, _ecm=..., _updatedLinks=...) at /home/benoit/repos/gz-sim/src/systems/physics/Physics.cc:2947
+        linkPhys = {entity = std::optional<class gz::physics::Link<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {[contained value] = {<gz::physics::detail::ExtractAPI<gz::physics::detail::SelectLink, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Impl<std::integer_sequence<unsigned long, 0, 1, 2, 3, 4> >::type<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<gz::physics::FindFreeGroupFeature::Link<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<gz::physics::Feature::Link<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<gz::physics::Entity<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {_vptr.Entity = 0x7efb3fe21ed8 <vtable for gz::physics::Link<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>+112>, pimpl = std::shared_ptr<class gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>> (use count 17, weak count 0) = {get() = 0x55b34012abc0}, identity = {id = 0x5, ref = std::shared_ptr<void> (use count 8, weak count 0) = {get() = 0x55b34016aef0}}}, _vptr.Link = 0x7efb3fe21eb0 <vtable for gz::physics::Link<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>+72>}, <No data fields>}, <gz::physics::FrameSemantics::Frame<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {_vptr.Frame = 0x7efb3fe21f08 <vtable for gz::physics::Link<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>+160>}, <gz::physics::GetLinkFromModel::Link<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<No data fields>}, <gz::physics::GetShapeFromLink::Link<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<No data fields>}, <No data fields>}, <No data fields>}}}
+        entity = 0x7
+        frameData = {pose = {m_matrix = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 4, 4, 0, 4, 4> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 4, 4, 0, 4, 4> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 4, 4, 0, 4, 4> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 4, 0, 4, 4>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 4, 0, 4, 4>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 4, 4, 0, 4, 4>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 4, 4, 0, 4, 4> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {0.3627581541626822, -0.8001019245487162, 0.47774829347881964, 0, 0.92084178019508167, 0.38645449354875527, -0.051993655989247017, 0, -0.14302775057881892, 0.45879171172702726, 0.87695679928657122, 0, 1.7888343651121655e+162, -8.3228097396372169e+162, -3.8231868150624978e+162, 1}}}}, <No data fields>}}, linearVelocity = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {2.3830515417235558e+164, -1.1373555717696651e+165, -4.3024289074763128e+164}}}}, <No data fields>}, angularVelocity = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {-1.1110332528009635e+156, -2.0476759170935186e+155, -7.4077666211932722e+154}}}}, <No data fields>}, linearAcceleration = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {0, 0, 0}}}}, <No data fields>}, angularAcceleration = {<Eigen::PlainObjectBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::MatrixBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 3>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 1>> = {<Eigen::DenseCoeffsBase<Eigen::Matrix<double, 3, 1, 0, 3, 1>, 0>> = {<Eigen::EigenBase<Eigen::Matrix<double, 3, 1, 0, 3, 1> >> = {<No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, m_storage = {m_data = {array = {0, 0, 0}}}}, <No data fields>}}
+        link = @0x55b3405dfe90: {pose = {p = {data = {1.7888343651121655e+162, -8.3228097396372169e+162, -3.8231868150624978e+162}}, q = {qw = 0.81027301679711772, qx = -0.15759668566260815, qy = -0.19153298678002045, qz = -0.53097649467164132}}, body = 0x5}
+        __for_range = std::vector of length 2, capacity 2 = {{pose = {p = {data = {1.7888343651121655e+162, -8.3228097396372169e+162, -3.8231868150624978e+162}}, q = {qw = 0.81027301679711772, qx = -0.15759668566260815, qy = -0.19153298678002045, qz = -0.53097649467164132}}, body = 0x5}, {pose = {p = {data = {1.7888343651121655e+162, -8.3228097396372169e+162, -3.8231868150624978e+162}}, q = {qw = 0.81027301679711772, qx = -0.15759668566260815, qy = -0.19153298678002045, qz = -0.53097649467164132}}, body = 0x3}}
+        __for_begin = {pose = {p = {data = {1.7888343651121655e+162, -8.3228097396372169e+162, -3.8231868150624978e+162}}, q = {qw = 0.81027301679711772, qx = -0.15759668566260815, qy = -0.19153298678002045, qz = -0.53097649467164132}}, body = 0x5}
+        __for_end = {pose = {p = {data = {6.8982598311180435e-310, 2.0162819006781271e-320, 6.8982605880495375e-310}}, q = {qw = 4.6554997708253548e-310, qx = 0, qy = 0, qz = 1.4685291376583216e+224}}, body = 0x65642f7363696d61}
+        linkFrameData = std::map with 0 elements
+#20 0x00007efb3fb49565 in gz::sim::v7::systems::Physics::Update(gz::sim::v7::UpdateInfo const&, gz::sim::v7::EntityComponentManager&) (this=0x55b340117fc0, _info=..., _ecm=...) at /home/benoit/repos/gz-sim/src/systems/physics/Physics.cc:949
+        stepOutput = {<gz::physics::RequireData<gz::physics::WorldPoses>> = {<gz::physics::ExpectData<gz::physics::WorldPoses>> = {<gz::physics::CompositeData> = {_vptr.CompositeData = 0x7efb3fe23c98 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+248>, dataMap = std::map with 4 elements, numEntries = 0xfffffffffffffffa, numQueries = 0x1}, _vptr.ExpectData = 0x7efb3fe23c70 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+208>, privateExpectData = {expectedIterator = {_M_node = 0x55b3401eca20}}}, _vptr.RequireData = 0x7efb3fe23c40 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+160>, privateRequireData = {<No data fields>}}, <gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions>> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::ChangedWorldPoses>, gz::physics::ExpectData<gz::physics::Contacts, gz::physics::JointPositions> >> = {<gz::physics::ExpectData<gz::physics::ChangedWorldPoses>> = {_vptr.ExpectData = 0x7efb3fe23cc8 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+296>, privateExpectData = {expectedIterator = {_M_node = 0x55b3405dd9e0}}}, <gz::physics::ExpectData<gz::physics::Contacts, gz::physics::JointPositions>> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::Contacts>, gz::physics::ExpectData<gz::physics::JointPositions> >> = {<gz::physics::ExpectData<gz::physics::Contacts>> = {_vptr.ExpectData = 0x7efb3fe23cf8 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+344>, privateExpectData = {expectedIterator = {_M_node = 0x55b3402534f0}}}, <gz::physics::ExpectData<gz::physics::JointPositions>> = {_vptr.ExpectData = 0x7efb3fe23d28 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+392>, privateExpectData = {expectedIterator = {_M_node = 0x55b3401beee0}}}, _vptr.SpecifyData = 0x7efb3fe23c08 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+104>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}
+        changedLinks = std::map with 0 elements
+#21 0x00007efb73ff71f4 in gz::sim::v7::SimulationRunner::UpdateSystems() (this=0x55b33d87cfc0) at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:573
+        system = @0x55b34016e5b0: 0x55b340117fd8
+        __for_range = std::vector of length 2, capacity 2 = {0x55b340117fd8, 0x55b33edd2df8}
+        __for_begin = 0x55b340117fd8
+        __for_end = 0x737461
+#22 0x00007efb73ff89ff in gz::sim::v7::SimulationRunner::Step(gz::sim::v7::UpdateInfo const&) (this=0x55b33d87cfc0, _info=...) at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:850
+#23 0x00007efb73ff8516 in gz::sim::v7::SimulationRunner::Run(unsigned long) (this=0x55b33d87cfc0, _iterations=0xc80) at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:800
+        startTime = {__d = {__r = 0x0}}
+        sleepTime = {__r = 0x0}
+        actualSleep = {__r = 0x0}
+        processedIterations = 0xa5c
+#24 0x00007efb73fe3366 in gz::sim::v7::ServerPrivate::Run(unsigned long, std::optional<std::condition_variable*>) (this=0x55b33ee257e0, _iterations=0xc80, _cond=std::optional<std::condition_variable *> [no contained value]) at /home/benoit/repos/gz-sim/src/ServerPrivate.cc:172
+        result = 0x1
+#25 0x00007efb73fd39f1 in gz::sim::v7::Server::Run(bool, unsigned long, bool) (this=0x55b33ece84a0, _blocking=0x1, _iterations=0xc80, _paused=0x0) at /home/benoit/repos/gz-sim/src/Server.cc:211
+        lock = {_M_device = 0x55b3401580e8, _M_owns = 0x10}
+#26 0x00007efb745b0f56 in pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}::operator()(gz::sim::v7::Server*, bool, unsigned long, bool) const (__closure=0x55b33a8e8268, c=0x55b33ece84a0, args#0=0x1, args#1=0xc80, args#2=0x0) at /usr/include/pybind11/pybind11.h:110
+        f = (bool (gz::sim::v7::Server::*)(class gz::sim::v7::Server * const, bool, unsigned long, bool)) 0x7efb73fd375e <gz::sim::v7::Server::Run(bool, unsigned long, bool)>
+#27 0x00007efb745b416d in pybind11::detail::argument_loader<gz::sim::v7::Server*, bool, unsigned long, bool>::call_impl<bool, pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&, 0ul, 1ul, 2ul, 3ul, pybind11::gil_scoped_release>(pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&, std::integer_sequence<unsigned long, 0ul, 1ul, 2ul, 3ul>, pybind11::gil_scoped_release&&) && (this=0x7ffcfe43a690, f=...) at /usr/include/pybind11/detail/../cast.h:1443
+#28 0x00007efb745b2de1 in pybind11::detail::argument_loader<gz::sim::v7::Server*, bool, unsigned long, bool>::call<bool, pybind11::gil_scoped_release, pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&>(pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&) && (this=0x7ffcfe43a690, f=...) at /usr/include/pybind11/detail/../cast.h:1411
+#29 0x00007efb745b19db in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::operator()(pybind11::detail::function_call&) const (__closure=0x0, call=...) at /usr/include/pybind11/pybind11.h:248
+        args_converter = {static kwargs_pos = 0xffffffff, static args_pos = 0xffffffff, static arg_names = {text = "{%}, {bool}, {int}, {bool}"}, argcasters = std::tuple containing = {[1] = {<pybind11::detail::type_caster_base<gz::sim::v7::Server>> = {<pybind11::detail::type_caster_generic> = {typeinfo = 0x55b33a8e7fd0, cpptype = 0x7efb7463c188 <typeinfo for gz::sim::v7::Server>, value = 0x55b33ece84a0}, static name = <same as static member of an already seen type>}, <No data fields>}, [2] = {value = 0x1, static name = <same as static member of an already seen type>}, [3] = {value = 0xc80, static name = <same as static member of an already seen type>}, [4] = {value = 0x0, static name = <same as static member of an already seen type>}}}
+        data = 0x55b33a8e8268
+        policy = pybind11::return_value_policy::automatic
+        cap = 0x55b33a8e8268
+        result = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7efb74e5c040}
+        unique_rec = std::unique_ptr<pybind11::detail::function_record> = {get() = 0x55b33a8e7fd0}
+        rec = 0x7efb7463c188 <typeinfo for gz::sim::v7::Server>
+        signature = {text = "({%}, {bool}, {int}, {bool}) -> bool"}
+        types = {_M_elems = {0x7efb7463c188 <typeinfo for gz::sim::v7::Server>, 0x0}}
+        is_function_ptr = 0x0
+#30 0x00007efb745b1bad in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&) () at /usr/include/pybind11/pybind11.h:223
+        unique_rec = std::unique_ptr<pybind11::detail::function_record> = {get() = 0xe7087b459db99d00}
+        rec = 0x7ffcfe43a6f0
+        signature = {text = "({%}, {bool}, {int}, {bool}) -> bool"}
+        types = {_M_elems = {0x7efb7463c188 <typeinfo for gz::sim::v7::Server>, 0x0}}
+        is_function_ptr = 0x0
+#31 0x00007efb7451f88c in pybind11::cpp_function::dispatcher(_object*, _object*, _object*) (self=0x7efb76836eb0, args_in=0x7efb606183b0, kwargs_in=0x0) at /usr/include/pybind11/pybind11.h:939
+        guard = {parent = 0x0, keep_alive = std::unordered_set with 0 elements}
+        num_args = 0x4
+        call = {func = @0x55b33a8e8230, args = std::vector of length 4, capacity 4 = {{<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7efb609b09f0}, {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7efc5cbae780 <_Py_TrueStruct>}, {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7efb606366f0}, {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7efc5cbae760 <_Py_FalseStruct>}}, args_convert = std::vector<bool> of length 4, capacity 64 = {0x1, 0x1, 0x1, 0x1}, args_ref = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, kwargs_ref = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, parent = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7efb609b09f0}, init_self = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}}
+        positional_args_copied = 0x4
+        kwargs = {<pybind11::object> = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, <No data fields>}
+        func = @0x55b33a8e8230: {name = 0x55b33a8e82c0 "run", doc = 0x55b33a8e83d0 "Run the server. By default this is a non-blocking call,  which means the server runs simulation in a separate thread. Pass  in true to the _blocking argument to run the server in the current  thread.", signature = 0x55b33a8e82e0 "(self: gz.sim7.Server, arg0: bool, arg1: int, arg2: bool) -> bool", args = std::vector of length 0, capacity 0, impl = 0x7efb745b1b90 <pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&)>, data = {0x7efb73fd375e <gz::sim::v7::Server::Run(bool, unsigned long, bool)>, 0x0, 0x0}, free_data = 0x0, policy = pybind11::return_value_policy::automatic, is_constructor = 0x0, is_new_style_constructor = 0x0, is_stateless = 0x0, is_operator = 0x0, is_method = 0x1, has_args = 0x0, has_kwargs = 0x0, prepend = 0x0, nargs = 0x4, nargs_pos = 0x4, nargs_pos_only = 0x0, def = 0x55b33a8e8200, scope = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x55b33a8e7c20}, sibling = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7efc5cba6e40 <_Py_NoneStruct>}, next = 0x0}
+        pos_args = 0x4
+        args_to_copy = 0x4
+        bad_arg = 0x0
+        second_pass_convert = std::vector<bool> of length 0, capacity 0
+        args_copied = 0x4
+        second_pass = std::vector of length 0, capacity 0
+        overloaded = 0x0
+        __PRETTY_FUNCTION__ = "static PyObject* pybind11::cpp_function::dispatcher(PyObject*, PyObject*, PyObject*)"
+        overloads = 0x55b33a8e8230
+        it = 0x55b33a8e8230
+        n_args_in = 0x4
+        parent = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7efb609b09f0}
+        result = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x1}
+        self_value_and_holder = {inst = 0x0, index = 0x0, type = 0x0, vh = 0x0}
+        append_note_if_missing_header_is_suspected = {<No data fields>}
+#32 0x00007efc5c955e21 in  () at /usr/lib/libpython3.10.so.1.0
+#33 0x00007efc5c94f4eb in _PyObject_MakeTpCall () at /usr/lib/libpython3.10.so.1.0
+#34 0x00007efc5c9616a6 in  () at /usr/lib/libpython3.10.so.1.0
+#35 0x00007efc5c94a03f in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#36 0x00007efc5c944120 in  () at /usr/lib/libpython3.10.so.1.0
+#37 0x00007efc5c9f1b94 in PyEval_EvalCode () at /usr/lib/libpython3.10.so.1.0
+#38 0x00007efc5c9f7f1b in  () at /usr/lib/libpython3.10.so.1.0
+#39 0x00007efc5c9564cf in  () at /usr/lib/libpython3.10.so.1.0
+#40 0x00007efc5c9454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#41 0x00007efc5c9fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#42 0x00007efc5c946ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#43 0x00007efc5c9fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#44 0x00007efc5c946ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#45 0x00007efc5c9fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#46 0x00007efc5ca102d7 in  () at /usr/lib/libpython3.10.so.1.0
+#47 0x00007efc5c95f919 in  () at /usr/lib/libpython3.10.so.1.0
+#48 0x00007efc5c94590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#49 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#50 0x00007efc5c9454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#51 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#52 0x00007efc5c94590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#53 0x00007efc5c961446 in  () at /usr/lib/libpython3.10.so.1.0
+#54 0x00007efc5c961ebc in PyObject_Call () at /usr/lib/libpython3.10.so.1.0
+#55 0x00007efc5c947ef8 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#56 0x00007efc5c961446 in  () at /usr/lib/libpython3.10.so.1.0
+#57 0x00007efc5c946618 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#58 0x00007efc5c9fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#59 0x00007efc5c946ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#60 0x00007efc5c9fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#61 0x00007efc5c946ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#62 0x00007efc5c9fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#63 0x00007efc5c946ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#64 0x00007efc5c9fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#65 0x00007efc5c946ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#66 0x00007efc5c9fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#67 0x00007efc5bcbedfe in  () at /usr/lib/python3.10/lib-dynload/_asyncio.cpython-310-x86_64-linux-gnu.so
+#68 0x00007efc5c9556f6 in  () at /usr/lib/libpython3.10.so.1.0
+#69 0x00007efc5c9f38dc in  () at /usr/lib/libpython3.10.so.1.0
+#70 0x00007efc5c8fa22a in  () at /usr/lib/libpython3.10.so.1.0
+#71 0x00007efc5c94d0ef in  () at /usr/lib/libpython3.10.so.1.0
+#72 0x00007efc5c94b3a6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#73 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#74 0x00007efc5c94590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#75 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#76 0x00007efc5c94590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#77 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#78 0x00007efc5c94590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#79 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#80 0x00007efc5c94590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#81 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#82 0x00007efc5c94590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#83 0x00007efc5c961446 in  () at /usr/lib/libpython3.10.so.1.0
+#84 0x00007efc5c94a03f in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#85 0x00007efc5c944120 in  () at /usr/lib/libpython3.10.so.1.0
+#86 0x00007efc5c9f1b94 in PyEval_EvalCode () at /usr/lib/libpython3.10.so.1.0
+#87 0x00007efc5c9f7f1b in  () at /usr/lib/libpython3.10.so.1.0
+#88 0x00007efc5c9564cf in  () at /usr/lib/libpython3.10.so.1.0
+#89 0x00007efc5c9454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#90 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#91 0x00007efc5c9454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#92 0x00007efc5c9562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#93 0x00007efc5ca16617 in  () at /usr/lib/libpython3.10.so.1.0
+#94 0x00007efc5ca0e92c in Py_RunMain () at /usr/lib/libpython3.10.so.1.0
+#95 0x00007efc5c9e336b in Py_BytesMain () at /usr/lib/libpython3.10.so.1.0
+#96 0x00007efc5c63c790 in  () at /usr/lib/libc.so.6
+#97 0x00007efc5c63c84a in __libc_start_main () at /usr/lib/libc.so.6
+#98 0x000055b330110045 in _start ()
+
+
+Cython backtrace
+----------------
+#0  0x00007efc5c6ea6f0 in wait4 ()
+#1  0x0000000000000000 in ?? ()
+#2  0x0000000000000000 in ?? ()
+#3  0x0000000000000000 in ?? ()
+#4  0x0000000000000000 in ?? ()
+#5  0x0000000000000000 in ?? ()
+#6  0x00007efc5c651e90 in raise ()
+#7  0x00007efc5c63b466 in abort ()
+#8  0x0000000000000000 in ?? ()
+#9  0x00007efc5c64a9b0 in __assert_fail ()
+#10 0x0000000000000000 in dart::dynamics::GenericJoint<dart::math::SE3Space>::setPartialAccelerationTo () at /home/benoit/repos/dart/dart/dynamics/detail/GenericJoint.hpp:1699
+  1694      partialAcceleration
+  1695          = math::ad(
+  1696                childVelocity, getRelativeJacobianStatic() * getVelocitiesStatic())
+  1697            + getRelativeJacobianTimeDerivStatic() * getVelocitiesStatic();
+  1698      // Verification
+> 1699      assert(!math::isNan(partialAcceleration));
+  1700    }
+  1701    
+  1702    //==============================================================================
+  1703    template <class ConfigSpaceT>
+#11 0x0000000000000000 in dart::dynamics::BodyNode::updatePartialAcceleration () at /home/benoit/repos/dart/dart/dynamics/BodyNode.cpp:1657
+  1652    
+  1653    //==============================================================================
+  1654    void BodyNode::updatePartialAcceleration() const
+  1655    {
+  1656      // Compute partial acceleration
+> 1657      mParentJoint->setPartialAccelerationTo(
+  1658          mPartialAcceleration, getSpatialVelocity());
+  1659      mIsPartialAccelerationDirty = false;
+  1660    }
+  1661    
+#12 0x0000000000000000 in dart::dynamics::BodyNode::getPartialAcceleration () at /home/benoit/repos/dart/dart/dynamics/BodyNode.cpp:1144
+  1139    
+  1140    //==============================================================================
+  1141    const Eigen::Vector6d& BodyNode::getPartialAcceleration() const
+  1142    {
+  1143      if (mIsPartialAccelerationDirty)
+> 1144        updatePartialAcceleration();
+  1145    
+  1146      return mPartialAcceleration;
+  1147    }
+  1148    
+#13 0x0000000000000000 in dart::dynamics::Frame::getSpatialAcceleration () at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:259
+   254      {
+   255        mAcceleration = math::AdInvT(
+   256                            getRelativeTransform(),
+   257                            getParentFrame()->getSpatialAcceleration())
+   258                        + getPrimaryRelativeAcceleration()
+>  259                        + getPartialAcceleration();
+   260    
+   261        mNeedAccelerationUpdate = false;
+   262      }
+   263    
+#14 0x0000000000000000 in dart::dynamics::Frame::getSpatialAcceleration () at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:255
+   250      if (mAmWorld)
+   251        return mAcceleration;
+   252    
+   253      if (mNeedAccelerationUpdate)
+   254      {
+>  255        mAcceleration = math::AdInvT(
+   256                            getRelativeTransform(),
+   257                            getParentFrame()->getSpatialAcceleration())
+   258                        + getPrimaryRelativeAcceleration()
+   259                        + getPartialAcceleration();
+#15 0x0000000000000000 in dart::dynamics::Frame::getSpatialAcceleration () at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:284
+   279        return Eigen::Vector6d::Zero();
+   280    
+   281      if (_relativeTo->isWorld())
+   282      {
+   283        if (this == _inCoordinatesOf)
+>  284          return getSpatialAcceleration();
+   285    
+   286        if (_inCoordinatesOf->isWorld())
+   287          return math::AdR(getWorldTransform(), getSpatialAcceleration());
+   288    
+#16 0x0000000000000000 in dart::dynamics::Frame::getLinearAcceleration () at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:368
+   363    
+   364      const Eigen::Vector6d& v_rel = getSpatialVelocity(_relativeTo, this);
+   365    
+   366      // r'' = a + w x v
+   367      const Eigen::Vector3d& a
+>  368          = (getSpatialAcceleration(_relativeTo, this).tail<3>()
+   369             + v_rel.head<3>().cross(v_rel.tail<3>()))
+   370                .eval();
+   371    
+   372      if (this == _inCoordinatesOf)
+#17 0x0000000000000000 in gz::physics::dartsim::KinematicsFeatures::FrameDataRelativeToWorld () at /home/benoit/repos/gz-physics/dartsim/src/KinematicsFeatures.cc:57
+    52      }
+    53    
+    54      data.pose = frame->getWorldTransform();
+    55      data.linearVelocity = frame->getLinearVelocity();
+    56      data.angularVelocity = frame->getAngularVelocity();
+>   57      data.linearAcceleration = frame->getLinearAcceleration();
+    58      data.angularAcceleration = frame->getAngularAcceleration();
+    59    
+    60      return data;
+    61    }
+#18 0x0000000000000000 in gz::physics::FrameSemantics::Frame<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::FrameDataRelativeToWorld () at /usr/include/gz/physics6/gz/physics/detail/FrameSemantics.hh:171
+   166        template <typename PolicyT, typename FeaturesT>
+   167        auto FrameSemantics::Frame<PolicyT, FeaturesT>::
+   168        FrameDataRelativeToWorld() const -> FrameData
+   169        {
+   170          return this->template Interface<FrameSemantics>()
+>  171                     ->FrameDataRelativeToWorld(FrameID(this->identity));
+   172        }
+   173    
+   174        /////////////////////////////////////////////////
+   175        template <typename PolicyT, typename FeaturesT>
+#19 0x00007efb3fb5698c in gz::sim::v7::systems::PhysicsPrivate::ChangedLinks () at /home/benoit/repos/gz-sim/src/systems/physics/Physics.cc:2947
+  2942            gzerr << "Internal error: no gazebo entity matches the physics entity "
+  2943              << "with ID [" << link.body << "]." << std::endl;
+  2944            continue;
+  2945          }
+  2946    
+> 2947          auto frameData = linkPhys->FrameDataRelativeToWorld();
+  2948          linkFrameData[entity] = frameData;
+  2949        }
+  2950      }
+  2951      else
+#20 0x0000000000000000 in gz::sim::v7::systems::Physics::Update () at /home/benoit/repos/gz-sim/src/systems/physics/Physics.cc:949
+   944        // Only step if not paused.
+   945        if (!_info.paused)
+   946        {
+   947          stepOutput = this->dataPtr->Step(_info.dt);
+   948        }
+>  949        auto changedLinks = this->dataPtr->ChangedLinks(_ecm, stepOutput);
+   950        this->dataPtr->UpdateSim(_ecm, changedLinks);
+   951    
+   952        // Entities scheduled to be removed should be removed from physics after the
+   953        // simulation step. Otherwise, since the to-be-removed entity still shows up
+#21 0x00007efb73ff707e in gz::sim::v7::SimulationRunner::UpdateSystems () at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:573
+   568      }
+   569    
+   570      {
+   571        GZ_PROFILE("Update");
+   572        for (auto& system : this->systemMgr->SystemsUpdate())
+>  573          system->Update(this->currentInfo, this->entityCompMgr);
+   574      }
+   575    
+   576      {
+   577        GZ_PROFILE("PostUpdate");
+#22 0x00007efb73ff8926 in gz::sim::v7::SimulationRunner::Step () at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:850
+   845    
+   846      // handle systems that need to be added
+   847      this->systemMgr->ProcessPendingEntitySystems();
+   848    
+   849      // Update all the systems.
+>  850      this->UpdateSystems();
+   851    
+   852      if (!this->Paused() &&
+   853           this->requestedRunToSimTime >
+   854           std::chrono::steady_clock::duration::zero() &&
+#23 0x00007efb73ff744c in gz::sim::v7::SimulationRunner::Run () at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:800
+   795              dynamic_cast<NetworkManagerPrimary *>(this->networkMgr.get());
+   796          netPrimary->Step(this->currentInfo);
+   797        }
+   798        else
+   799        {
+>  800          this->Step(this->currentInfo);
+   801        }
+   802    
+   803        // Handle Server::RunOnce(false) in which a single paused run is executed
+   804        if (this->currentInfo.paused && this->blockingPausedStepPending)
+#24 0x00007efb73fe3020 in gz::sim::v7::ServerPrivate::Run () at /home/benoit/repos/gz-sim/src/ServerPrivate.cc:172
+   167    
+   168      // Minor performance tweak. In many situations there will only be one
+   169      // simulation runner, and we can avoid using the thread pool.
+   170      if (this->simRunners.size() == 1)
+   171      {
+>  172        result = this->simRunners[0]->Run(_iterations);
+   173      }
+   174      else
+   175      {
+   176        for (std::unique_ptr<SimulationRunner> &runner : this->simRunners)
+#25 0x00007efb73fd375e in gz::sim::v7::Server::Run () at /home/benoit/repos/gz-sim/src/Server.cc:211
+   206          return false;
+   207        }
+   208      }
+   209    
+   210      if (_blocking)
+>  211        return this->dataPtr->Run(_iterations);
+   212    
+   213      // Make sure two threads are not created
+   214      std::unique_lock<std::mutex> lock(this->dataPtr->runMutex);
+   215      if (this->dataPtr->runThread.get_id() == std::thread::id())
+#26 0x0000000000000000 in pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}::operator()(gz::sim::v7::Server*, bool, unsigned long, bool) const () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:110
+   105        /// Construct a cpp_function from a class method (non-const, no ref-qualifier)
+   106        template <typename Return, typename Class, typename... Arg, typename... Extra>
+   107        // NOLINTNEXTLINE(google-explicit-constructor)
+   108        cpp_function(Return (Class::*f)(Arg...), const Extra &...extra) {
+   109            initialize(
+>  110                [f](Class *c, Arg... args) -> Return { return (c->*f)(std::forward<Arg>(args)...); },
+   111                (Return(*)(Class *, Arg...)) nullptr,
+   112                extra...);
+   113        }
+   114    
+#27 0x0000000000000000 in pybind11::detail::argument_loader<gz::sim::v7::Server*, bool, unsigned long, bool>::call_impl<bool, pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&, 0ul, 1ul, 2ul, 3ul, pybind11::gil_scoped_release>(pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&, std::integer_sequence<unsigned long, 0ul, 1ul, 2ul, 3ul>, pybind11::gil_scoped_release&&) && () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/cast.h:1443
+  1438            return true;
+  1439        }
+  1440    
+  1441        template <typename Return, typename Func, size_t... Is, typename Guard>
+  1442        Return call_impl(Func &&f, index_sequence<Is...>, Guard &&) && {
+> 1443            return std::forward<Func>(f)(cast_op<Args>(std::move(std::get<Is>(argcasters)))...);
+  1444        }
+  1445    
+  1446        std::tuple<make_caster<Args>...> argcasters;
+  1447    };
+#28 0x0000000000000000 in pybind11::detail::argument_loader<gz::sim::v7::Server*, bool, unsigned long, bool>::call<bool, pybind11::gil_scoped_release, pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&>(pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&) && () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/cast.h:1411
+  1406        bool load_args(function_call &call) { return load_impl_sequence(call, indices{}); }
+  1407    
+  1408        template <typename Return, typename Guard, typename Func>
+  1409        // NOLINTNEXTLINE(readability-const-return-type)
+  1410        enable_if_t<!std::is_void<Return>::value, Return> call(Func &&f) && {
+> 1411            return std::move(*this).template call_impl<remove_cv_t<Return>>(
+  1412                std::forward<Func>(f), indices{}, Guard{});
+  1413        }
+  1414    
+  1415        template <typename Return, typename Guard, typename Func>
+#29 0x0000000000000000 in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::operator()(pybind11::detail::function_call&) const () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:248
+   243                /* Function scope guard -- defaults to the compile-to-nothing `void_type` */
+   244                using Guard = extract_guard_t<Extra...>;
+   245    
+   246                /* Perform the function call */
+   247                handle result
+>  248                    = cast_out::cast(std::move(args_converter).template call<Return, Guard>(cap->f),
+   249                                     policy,
+   250                                     call.parent);
+   251    
+   252                /* Invoke call policy post-call hook */
+#30 0x0000000000000000 in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&) () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:223
+   218                expected_num_args<Extra...>(
+   219                    sizeof...(Args), cast_in::args_pos >= 0, cast_in::has_kwargs),
+   220                "The number of argument annotations does not match the number of function arguments");
+   221    
+   222            /* Dispatch code which converts function arguments and performs the actual function call */
+>  223            rec->impl = [](function_call &call) -> handle {
+   224                cast_in args_converter;
+   225    
+   226                /* Try to cast the function arguments into the C++ domain */
+   227                if (!args_converter.load_args(call)) {
+#31 0x00007efb74ac927f in pybind11::cpp_function::dispatcher () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:939
+   934                    }
+   935    
+   936                    // 6. Call the function.
+   937                    try {
+   938                        loader_life_support guard{};
+>  939                        result = func.impl(call);
+   940                    } catch (reference_cast_error &) {
+   941                        result = PYBIND11_TRY_NEXT_OVERLOAD;
+   942                    }
+   943    
+#32 0x0000000000000000 in ?? ()
+#33 0x00007efc5c94f240 in _PyObject_MakeTpCall ()
+#34 0x0000000000000000 in ?? ()
+#35 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#36 0x0000000000000000 in ?? ()
+#37 0x00007efc5c9f1b00 in PyEval_EvalCode ()
+#38 0x0000000000000000 in ?? ()
+#39 0x0000000000000000 in ?? ()
+#40 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#41 0x0000000000000000 in ?? ()
+#42 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#43 0x0000000000000000 in ?? ()
+#44 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#45 0x0000000000000000 in ?? ()
+#46 0x0000000000000000 in ?? ()
+#47 0x0000000000000000 in ?? ()
+#48 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#49 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#50 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#51 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#52 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#53 0x0000000000000000 in ?? ()
+#54 0x00007efc5c961d60 in PyObject_Call ()
+#55 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#56 0x0000000000000000 in ?? ()
+#57 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#58 0x0000000000000000 in ?? ()
+#59 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#60 0x0000000000000000 in ?? ()
+#61 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#62 0x0000000000000000 in ?? ()
+#63 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#64 0x0000000000000000 in ?? ()
+#65 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#66 0x0000000000000000 in ?? ()
+#67 0x0000000000000000 in ?? ()
+#68 0x0000000000000000 in ?? ()
+#69 0x0000000000000000 in ?? ()
+#70 0x0000000000000000 in ?? ()
+#71 0x0000000000000000 in ?? ()
+#72 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#73 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#74 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#75 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#76 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#77 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#78 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#79 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#80 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#81 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#82 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#83 0x0000000000000000 in ?? ()
+#84 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#85 0x0000000000000000 in ?? ()
+#86 0x00007efc5c9f1b00 in PyEval_EvalCode ()
+#87 0x0000000000000000 in ?? ()
+#88 0x0000000000000000 in ?? ()
+#89 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#90 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#91 0x00007efc5c945190 in _PyEval_EvalFrameDefault ()
+#92 0x00007efc5c956260 in _PyFunction_Vectorcall ()
+#93 0x0000000000000000 in ?? ()
+#94 0x00007efc5ca0e730 in Py_RunMain ()
+#95 0x00007efc5c9e3330 in Py_BytesMain ()
+#96 0x0000000000000000 in ?? ()
+#97 0x00007efc5c63c7c0 in __libc_start_main ()
+#98 0x000055b330110020 in _start ()
+
+[Inferior 1 (process 1976370) detached]
+
+warning: /home/benoit/.gdbinit-gef.py: No such file or directory
+Error while running hook_stop:
+Invalid type combination in equality test.
+warning: RTTI symbol not found for class 'std::_Sp_counted_ptr_inplace<gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+warning: RTTI symbol not found for class 'std::_Sp_counted_ptr_inplace<gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'gdb.error'>: No type named std::__detail::_Hash_node<struct _object *, false>.

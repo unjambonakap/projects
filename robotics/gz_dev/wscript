@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+from chdrft.waf.opa import WafBuilder
+
+
+x = WafBuilder(globals())
+x.register_libs(x.libs.Common_N, x.packages.GZ, x.packages.PythonEmbed)
+
+
+x.auto()
+x.get(x.typ.LIB).update(register_name='robotics-gz-test', features='cxxshlib cxx', install=True)
+x.setup()

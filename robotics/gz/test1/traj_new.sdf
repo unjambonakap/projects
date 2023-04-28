@@ -1,0 +1,120 @@
+<sdf version='1.10'>
+  <world name='world0'>
+    <gravity>0 0 0</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <wind>
+      <linear_velocity>0 0 0</linear_velocity>
+    </wind>
+    <physics name='1ms' default='false' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <max_contacts>20</max_contacts>
+    </physics>
+    <gui fullscreen="0">
+      <plugin filename="MinimalScene" name="3D View">
+        <gz-gui>
+          <title>3D View</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+
+        <engine>ogre</engine>
+        <scene>scene</scene>
+        <ambient_light>0 0 0</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>-11.526359 19.527456 24.174088 0 0.559400 -0.989541</camera_pose>
+      </plugin>
+
+      <!-- Plugins that add functionality to the scene -->
+      <plugin filename="CameraTracking" name="Camera Tracking">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+    </gui>
+    <model name='model'>
+      <static>false</static>
+      <self_collide>false</self_collide>
+      <allow_auto_disable>true</allow_auto_disable>
+      <enable_wind>false</enable_wind>
+      <pose>0 0 0 0 0 0</pose>
+      <link name='root'>
+        <pose>0 0 -0.72727272727272729 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+        <visual name='visual_box'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>1</radius>
+              <length>10</length>
+            </cylinder>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+          <laser_retro>0</laser_retro>
+          <transparency>0</transparency>
+          <visibility_flags>4294967295</visibility_flags>
+        </visual>
+      </link>
+      <link name='root.RigidBodyLinkType.RIGID_SolidSpecType.BOX'>
+        <pose>0 0 -8 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+        <visual name='visual_box'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+          <laser_retro>0</laser_retro>
+          <transparency>0</transparency>
+          <visibility_flags>4294967295</visibility_flags>
+        </visual>
+      </link>
+      <joint name='joint' type='fixed'>
+        <parent>root</parent>
+        <child>root.RigidBodyLinkType.RIGID_SolidSpecType.BOX</child>
+      </joint>
+    </model>
+    <atmosphere type='adiabatic'>
+      <temperature>288.14999999999998</temperature>
+      <pressure>101325</pressure>
+      <temperature_gradient>-0.0064999999999999997</temperature_gradient>
+    </atmosphere>
+    <scene>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <grid>true</grid>
+      <origin_visual>true</origin_visual>
+      <shadows>true</shadows>
+    </scene>
+  </world>
+</sdf>

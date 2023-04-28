@@ -1,0 +1,671 @@
+GNU gdb (GDB) 13.1
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Warning: 'set logging on', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled on'.
+
+Warning: 'set logging off', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled off'.
+
+[New LWP 1963551]
+[New LWP 1963552]
+[New LWP 1963553]
+[New LWP 1963554]
+[New LWP 1963555]
+[New LWP 1963556]
+[New LWP 1963557]
+[New LWP 1963558]
+[New LWP 1963559]
+[New LWP 1963560]
+[New LWP 1963572]
+[New LWP 1963592]
+[New LWP 1963593]
+[New LWP 1963656]
+[New LWP 1963657]
+[New LWP 1963658]
+[New LWP 1963659]
+[New LWP 1963661]
+[New LWP 1963662]
+[New LWP 1963663]
+[New LWP 1963664]
+[New LWP 1963665]
+[New LWP 1963666]
+[New LWP 1963667]
+[New LWP 1963668]
+[New LWP 1963669]
+[New LWP 1963670]
+[New LWP 1963672]
+[New LWP 1963673]
+[New LWP 1963674]
+[New LWP 1963675]
+[New LWP 1963676]
+[New LWP 1963677]
+[New LWP 1963678]
+[New LWP 1963679]
+[New LWP 1963680]
+[New LWP 1963681]
+[New LWP 1963682]
+[New LWP 1963683]
+[New LWP 1963684]
+[New LWP 1963685]
+[New LWP 1963686]
+[New LWP 1963831]
+[New LWP 1963832]
+[New LWP 1963833]
+[New LWP 1963834]
+[New LWP 1963835]
+[New LWP 1963836]
+[New LWP 1975780]
+[New LWP 1975781]
+[New LWP 1975782]
+[New LWP 1975783]
+[New LWP 1975784]
+[New LWP 1975785]
+[New LWP 1975786]
+[New LWP 1975787]
+[New LWP 1975788]
+[New LWP 1975789]
+[New LWP 1975790]
+[New LWP 1975791]
+[New LWP 1975792]
+[New LWP 1975793]
+[New LWP 1975794]
+[New LWP 1975795]
+[New LWP 1975796]
+[New LWP 1975797]
+[New LWP 1975798]
+[New LWP 1975799]
+[New LWP 1975800]
+[New LWP 1975801]
+[New LWP 1975802]
+[New LWP 1975803]
+[New LWP 1975804]
+[New LWP 1975805]
+[New LWP 1975806]
+[New LWP 1975807]
+[New LWP 1975808]
+[New LWP 1975809]
+[New LWP 1975810]
+[New LWP 1975811]
+[New LWP 1975812]
+[New LWP 1975813]
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.archlinux.org>
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+[34m-----------------------------------------------------------------------------------------------------------------------[34m[1m[regs]
+[0m  [32mR0:0x00007f42112ea747 in wait4 () from /usr/lib/libc.so.6
+
+Stack backtrace
+---------------
+#1  0x00007f4180614157 in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#2  0x00007f41806142ea in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#3  0x00007f4180616eea in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#4  0x00007f4211251f50 in <signal handler called> () at /usr/lib/libc.so.6
+#5  0x00007f42112a08ec in  () at /usr/lib/libc.so.6
+#6  0x00007f4211251ea8 in raise () at /usr/lib/libc.so.6
+#7  0x00007f421123b53d in abort () at /usr/lib/libc.so.6
+#8  0x00007f421123b45c in  () at /usr/lib/libc.so.6
+#9  0x00007f421124a9f6 in  () at /usr/lib/libc.so.6
+#10 0x00007f40f132db0d in dart::dynamics::FreeJoint::updateRelativeTransform() const (this=0x557ef4280b40) at /home/benoit/repos/dart/dart/dynamics/FreeJoint.cpp:670
+        __PRETTY_FUNCTION__ = "virtual void dart::dynamics::FreeJoint::updateRelativeTransform() const"
+#11 0x00007f40f148ab3e in dart::dynamics::Joint::getRelativeTransform() const (this=0x557ef4280ff0) at /home/benoit/repos/dart/dart/dynamics/Joint.cpp:347
+#12 0x00007f40f1255e59 in dart::dynamics::BodyNode::getRelativeTransform() const (this=0x557ef3cbd200) at /home/benoit/repos/dart/dart/dynamics/BodyNode.cpp:1119
+#13 0x00007f40f131a9fd in dart::dynamics::Frame::getWorldTransform() const (this=0x557ef3cbdda0) at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:99
+#14 0x00007f40f131aa2a in dart::dynamics::Frame::getWorldTransform() const (this=0x557ef3cc8810) at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:99
+#15 0x00007f40f3e00363 in gz::physics::dartsim::SimulationFeatures::Write(gz::physics::WorldPoses&) const (this=0x557eef62be70, _worldPoses=...) at /home/benoit/repos/gz-physics/dartsim/src/SimulationFeatures.cc:108
+        wp = {pose = {p = {data = {0, 0, 0}}, q = {qw = 1, qx = 0, qy = 0, qz = 0}}, body = 0x7ffd5401eee8}
+        info = std::shared_ptr<gz::physics::dartsim::LinkInfo> (use count 6, weak count 0) = {get() = 0x557ef3cbcea0}
+        __for_range = std::unordered_map with 2 elements = {[0x5] = std::shared_ptr<gz::physics::dartsim::LinkInfo> (use count 6, weak count 0) = {get() = 0x557ef3cbcea0}, [0x3] = std::shared_ptr<gz::physics::dartsim::LinkInfo> (use count 5, weak count 0) = {get() = 0x557ef3cc2640}}
+        __for_begin = {<std::__detail::_Node_iterator_base<std::pair<unsigned long const, std::shared_ptr<gz::physics::dartsim::LinkInfo> >, false>> = {_M_cur = 0x557ef1457410}, <No data fields>}
+        __for_end = {<std::__detail::_Node_iterator_base<std::pair<unsigned long const, std::shared_ptr<gz::physics::dartsim::LinkInfo> >, false>> = {_M_cur = 0x0}, <No data fields>}
+        id = @0x557ef1457418: 0x5
+#16 0x00007f40f3e0919c in gz::physics::detail::WriteDataOperation<gz::physics::WorldPoses, gz::physics::dartsim::SimulationFeatures const, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > >::Operate(gz::physics::dartsim::SimulationFeatures const*, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >&) (yourClass=0x557eef62be70, data=...) at /home/benoit/repos/gz-physics/include/gz/physics/detail/CanWriteData.hh:70
+#17 0x00007f40f3e06f42 in gz::physics::OperateOnSpecifiedData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::FindRequired, gz::physics::detail::WriteDataOperation, gz::physics::dartsim::SimulationFeatures const>::SubOperate<gz::physics::WorldPoses, gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > >(gz::physics::detail::type<gz::physics::WorldPoses>, gz::physics::detail::type<gz::physics::RequireData<gz::physics::WorldPoses> >, gz::physics::dartsim::SimulationFeatures const*, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >&, gz::physics::DataStatusMask const&, std::unordered_set<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) (_performer=0x557eef62be70, _data=..., _mask=..., _history=std::unordered_set with 1 element = {...}) at /home/benoit/repos/gz-physics/include/gz/physics/detail/OperateOnSpecifiedData.hh:75
+        inserted = 0x1
+#18 0x00007f40f3e04bc1 in gz::physics::OperateOnSpecifiedData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::FindRequired, gz::physics::detail::WriteDataOperation, gz::physics::dartsim::SimulationFeatures const>::Operate<gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > >(gz::physics::dartsim::SimulationFeatures const*, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >&, gz::physics::DataStatusMask const&, bool) (_performer=0x557eef62be70, _data=..., _mask=..., _onlyCompile=0x0) at /home/benoit/repos/gz-physics/include/gz/physics/detail/OperateOnSpecifiedData.hh:51
+        history = std::unordered_set with 1 element = {[0] = "N2gz7physics10WorldPosesE"}
+#19 0x00007f40f3e0352c in gz::physics::CanWriteRequiredData<gz::physics::dartsim::SimulationFeatures, gz::physics::RequireData<gz::physics::WorldPoses> >::WriteRequiredData<gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > >(gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >&, gz::physics::WriteOptions const&) const (this=0x557eef62be70, _data=..., _options=...) at /home/benoit/repos/gz-physics/include/gz/physics/detail/CanWriteData.hh:105
+        mask = {exist = gz::physics::DataStatusMask::EITHER, queried = gz::physics::DataStatusMask::MUST_NOT, required = gz::physics::DataStatusMask::EITHER}
+#20 0x00007f40f3e001b6 in gz::physics::dartsim::SimulationFeatures::WorldForwardStep(gz::physics::Identity const&, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >&, gz::physics::CompositeData&, gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > > const&) (this=0x557eef62be70, _worldID=..., _h=..., _u=...) at /home/benoit/repos/gz-physics/dartsim/src/SimulationFeatures.cc:94
+        world = 0x557ef48cd820
+        dtDur = 0x557ef42587e8
+        tol = 9.9999999999999995e-07
+#21 0x00007f40f9ba29ab in gz::physics::ForwardStep::World<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Step(gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >&, gz::physics::CompositeData&, gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > > const&) (this=0x557ef4bd00e0, _h=..., _x=..., _u=...) at /usr/include/gz/physics6/gz/physics/ForwardStep.hh:173
+#22 0x00007f40f9b562a1 in gz::sim::v7::systems::PhysicsPrivate::Step(std::chrono::duration<long, std::ratio<1l, 1000000000l> > const&) (this=0x557eef624b80, _dt=...) at /home/benoit/repos/gz-sim/src/systems/physics/Physics.cc:2873
+        world = {first = 0x1, second = {entity = std::optional<gz::physics::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {[contained value] = {<gz::physics::detail::ExtractAPI<gz::physics::detail::SelectWorld, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Impl<std::integer_sequence<unsigned long, 0, 1, 2, 3> >::type<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<gz::physics::Feature::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<gz::physics::Entity<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {_vptr.Entity = 0x7f40f9e237b0 <vtable for gz::physics::World<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>+104>, pimpl = std::shared_ptr<gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>> (use count 16, weak count 0) = {get() = 0x557eef626050}, identity = {id = 0x1, ref = std::shared_ptr<void> (use count 7, weak count 0) = {get() = 0x557ef48cd820}}}, _vptr.World = 0x7f40f9e23788 <vtable for gz::physics::World<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>+64>}, <gz::physics::ForwardStep::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<No data fields>}, <gz::physics::RemoveModelFromWorld::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<No data fields>}, <gz::physics::sdf::ConstructSdfModel::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<No data fields>}, <No data fields>}, <No data fields>}}}}
+        __for_range = std::unordered_map with 1 element = {[0x1] = {entity = std::optional<gz::physics::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {[contained value] = {<gz::physics::detail::ExtractAPI<gz::physics::detail::SelectWorld, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Impl<std::integer_sequence<unsigned long, 0, 1, 2, 3> >::type<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<gz::physics::Feature::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<gz::physics::Entity<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {_vptr.Entity = 0x7f40f9e237b0 <vtable for gz::physics::World<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>+104>, pimpl = std::shared_ptr<gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>> (use count 16, weak count 0) = {get() = 0x557eef626050}, identity = {id = 0x1, ref = std::shared_ptr<void> (use count 7, weak count 0) = {get() = 0x557ef48cd820}}}, _vptr.World = 0x7f40f9e23788 <vtable for gz::physics::World<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>+64>}, <gz::physics::ForwardStep::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<No data fields>}, <gz::physics::RemoveModelFromWorld::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<No data fields>}, <gz::physics::sdf::ConstructSdfModel::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>> = {<No data fields>}, <No data fields>}, <No data fields>}}}}
+        __for_begin = {<std::__detail::_Node_iterator_base<std::pair<unsigned long const, gz::physics::EntityPtr<gz::physics::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList> > >, false>> = {_M_cur = 0x557ef4bd00d0}, <No data fields>}
+        __for_end = {<std::__detail::_Node_iterator_base<std::pair<unsigned long const, gz::physics::EntityPtr<gz::physics::World<gz::physics::FeaturePolicy<double, 3>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList> > >, false>> = {_M_cur = 0x0}, <No data fields>}
+        input = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques>, gz::physics::ExpectData<gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1, 1000000000> > > >> = {<gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques>> = {<gz::physics::CompositeData> = {_vptr.CompositeData = 0x7f40f9e188f0 <vtable for gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >+216>, dataMap = std::map with 5 elements, numEntries = 0x1, numQueries = 0x1}, _vptr.ExpectData = 0x7f40f9e188c8 <vtable for gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >+176>, privateExpectData = {expectedIterator = {_M_node = 0x557ef4256f40}}}, <gz::physics::ExpectData<gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1, 1000000000> > >> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::ApplyGeneralizedForces>, gz::physics::ExpectData<gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1, 1000000000> > > >> = {<gz::physics::ExpectData<gz::physics::ApplyGeneralizedForces>> = {_vptr.ExpectData = 0x7f40f9e18920 <vtable for gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >+264>, privateExpectData = {expectedIterator = {_M_node = 0x557ef1815050}}}, <gz::physics::ExpectData<gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1, 1000000000> > >> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::VelocityControlCommands>, gz::physics::ExpectData<gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1, 1000000000> > > >> = {<gz::physics::ExpectData<gz::physics::VelocityControlCommands>> = {_vptr.ExpectData = 0x7f40f9e18950 <vtable for gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >+312>, privateExpectData = {expectedIterator = {_M_node = 0x557ef1432be0}}}, <gz::physics::ExpectData<gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1, 1000000000> > >> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::ServoControlCommands>, gz::physics::ExpectData<std::chrono::duration<long, std::ratio<1, 1000000000> > > >> = {<gz::physics::ExpectData<gz::physics::ServoControlCommands>> = {_vptr.ExpectData = 0x7f40f9e18980 <vtable for gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >+360>, privateExpectData = {expectedIterator = {_M_node = 0x557ef4fd1c70}}}, <gz::physics::ExpectData<std::chrono::duration<long, std::ratio<1, 1000000000> > >> = {_vptr.ExpectData = 0x7f40f9e189b0 <vtable for gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >+408>, privateExpectData = {expectedIterator = {_M_node = 0x557ef3cc71a0}}}, _vptr.SpecifyData = 0x7f40f9e18898 <vtable for gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >+128>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}
+        state = {_vptr.CompositeData = 0x7f40f9e26618 <vtable for gz::physics::CompositeData+16>, dataMap = std::map with 0 elements, numEntries = 0x0, numQueries = 0x0}
+        output = {<gz::physics::RequireData<gz::physics::WorldPoses>> = {<gz::physics::ExpectData<gz::physics::WorldPoses>> = {<gz::physics::CompositeData> = {_vptr.CompositeData = 0x7f40f9e23c98 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+248>, dataMap = std::map with 4 elements, numEntries = 0x1, numQueries = 0x1}, _vptr.ExpectData = 0x7f40f9e23c70 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+208>, privateExpectData = {expectedIterator = {_M_node = 0x557ef40edf70}}}, _vptr.RequireData = 0x7f40f9e23c40 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+160>, privateRequireData = {<No data fields>}}, <gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions>> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::ChangedWorldPoses>, gz::physics::ExpectData<gz::physics::Contacts, gz::physics::JointPositions> >> = {<gz::physics::ExpectData<gz::physics::ChangedWorldPoses>> = {_vptr.ExpectData = 0x7f40f9e23cc8 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+296>, privateExpectData = {expectedIterator = {_M_node = 0x557ef2f6ab30}}}, <gz::physics::ExpectData<gz::physics::Contacts, gz::physics::JointPositions>> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::Contacts>, gz::physics::ExpectData<gz::physics::JointPositions> >> = {<gz::physics::ExpectData<gz::physics::Contacts>> = {_vptr.ExpectData = 0x7f40f9e23cf8 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+344>, privateExpectData = {expectedIterator = {_M_node = 0x557ef4fd3690}}}, <gz::physics::ExpectData<gz::physics::JointPositions>> = {_vptr.ExpectData = 0x7f40f9e23d28 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+392>, privateExpectData = {expectedIterator = {_M_node = 0x557ef42693c0}}}, _vptr.SpecifyData = 0x7f40f9e23c08 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+104>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}
+#23 0x00007f40f9b4950a in gz::sim::v7::systems::Physics::Update(gz::sim::v7::UpdateInfo const&, gz::sim::v7::EntityComponentManager&) (this=0x557eef624870, _info=..., _ecm=...) at /home/benoit/repos/gz-sim/src/systems/physics/Physics.cc:947
+        stepOutput = {<gz::physics::RequireData<gz::physics::WorldPoses>> = {<gz::physics::ExpectData<gz::physics::WorldPoses>> = {<gz::physics::CompositeData> = {_vptr.CompositeData = 0x7f40f9e23c98 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+248>, dataMap = std::map with 4 elements, numEntries = 0x1, numQueries = 0x0}, _vptr.ExpectData = 0x7f40f9e23c70 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+208>, privateExpectData = {expectedIterator = {_M_node = 0x557ef40efe20}}}, _vptr.RequireData = 0x7f40f9e23c40 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+160>, privateRequireData = {<No data fields>}}, <gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions>> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::ChangedWorldPoses>, gz::physics::ExpectData<gz::physics::Contacts, gz::physics::JointPositions> >> = {<gz::physics::ExpectData<gz::physics::ChangedWorldPoses>> = {_vptr.ExpectData = 0x7f40f9e23cc8 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+296>, privateExpectData = {expectedIterator = {_M_node = 0x557ef4256420}}}, <gz::physics::ExpectData<gz::physics::Contacts, gz::physics::JointPositions>> = {<gz::physics::SpecifyData<gz::physics::ExpectData<gz::physics::Contacts>, gz::physics::ExpectData<gz::physics::JointPositions> >> = {<gz::physics::ExpectData<gz::physics::Contacts>> = {_vptr.ExpectData = 0x7f40f9e23cf8 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+344>, privateExpectData = {expectedIterator = {_M_node = 0x557ef4fd3080}}}, <gz::physics::ExpectData<gz::physics::JointPositions>> = {_vptr.ExpectData = 0x7f40f9e23d28 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+392>, privateExpectData = {expectedIterator = {_M_node = 0x557ef4fd3920}}}, _vptr.SpecifyData = 0x7f40f9e23c08 <vtable for gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> >+104>}, <No data fields>}, <No data fields>}, <No data fields>}, <No data fields>}
+        changedLinks = std::map with 139917046987928 elements<error reading variable: Cannot access memory at address 0xffffffffffffffe8>
+#24 0x00007f4128bf71f4 in gz::sim::v7::SimulationRunner::UpdateSystems() (this=0x557ef349e940) at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:573
+        system = @0x557ef3a5ed10: 0x557eef624888
+        __for_range = std::vector of length 2, capacity 2 = {0x557eef624888, 0x557ef2c10968}
+        __for_begin = 0x557eef624888
+        __for_end = 0x557e00737461
+#25 0x00007f4128bf89ff in gz::sim::v7::SimulationRunner::Step(gz::sim::v7::UpdateInfo const&) (this=0x557ef349e940, _info=...) at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:850
+#26 0x00007f4128bf8516 in gz::sim::v7::SimulationRunner::Run(unsigned long) (this=0x557ef349e940, _iterations=0x1388) at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:800
+        startTime = {__d = {__r = 0x0}}
+        sleepTime = {__r = 0x0}
+        actualSleep = {__r = 0x0}
+        processedIterations = 0xbc7
+#27 0x00007f4128be3366 in gz::sim::v7::ServerPrivate::Run(unsigned long, std::optional<std::condition_variable*>) (this=0x557ef42522b0, _iterations=0x1388, _cond=std::optional<std::condition_variable *> [no contained value]) at /home/benoit/repos/gz-sim/src/ServerPrivate.cc:172
+        result = 0x1
+#28 0x00007f4128bd39f1 in gz::sim::v7::Server::Run(bool, unsigned long, bool) (this=0x557ef4ad4c40, _blocking=0x1, _iterations=0x1388, _paused=0x0) at /home/benoit/repos/gz-sim/src/Server.cc:211
+        lock = {_M_device = 0x557eef623be8, _M_owns = 0x0}
+#29 0x00007f41291b0f56 in pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}::operator()(gz::sim::v7::Server*, bool, unsigned long, bool) const (__closure=0x557eeef96c28, c=0x557ef4ad4c40, args#0=0x1, args#1=0x1388, args#2=0x0) at /usr/include/pybind11/pybind11.h:110
+        f = (bool (gz::sim::v7::Server::*)(class gz::sim::v7::Server * const, bool, unsigned long, bool)) 0x7f4128bd375e <gz::sim::v7::Server::Run(bool, unsigned long, bool)>
+#30 0x00007f41291b416d in pybind11::detail::argument_loader<gz::sim::v7::Server*, bool, unsigned long, bool>::call_impl<bool, pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&, 0ul, 1ul, 2ul, 3ul, pybind11::gil_scoped_release>(pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&, std::integer_sequence<unsigned long, 0ul, 1ul, 2ul, 3ul>, pybind11::gil_scoped_release&&) && (this=0x7ffd5401f480, f=...) at /usr/include/pybind11/detail/../cast.h:1443
+#31 0x00007f41291b2de1 in pybind11::detail::argument_loader<gz::sim::v7::Server*, bool, unsigned long, bool>::call<bool, pybind11::gil_scoped_release, pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&>(pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&) && (this=0x7ffd5401f480, f=...) at /usr/include/pybind11/detail/../cast.h:1411
+#32 0x00007f41291b19db in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::operator()(pybind11::detail::function_call&) const (__closure=0x0, call=...) at /usr/include/pybind11/pybind11.h:248
+        args_converter = {static kwargs_pos = 0xffffffff, static args_pos = 0xffffffff, static arg_names = {text = "{%}, {bool}, {int}, {bool}"}, argcasters = std::tuple containing = {[1] = {<pybind11::detail::type_caster_base<gz::sim::v7::Server>> = {<pybind11::detail::type_caster_generic> = {typeinfo = 0x557eeef96990, cpptype = 0x7f412923c188 <typeinfo for gz::sim::v7::Server>, value = 0x557ef4ad4c40}, static name = <same as static member of an already seen type>}, <No data fields>}, [2] = {value = 0x1, static name = <same as static member of an already seen type>}, [3] = {value = 0x1388, static name = <same as static member of an already seen type>}, [4] = {value = 0x0, static name = <same as static member of an already seen type>}}}
+        data = 0x557eeef96c28
+        policy = pybind11::return_value_policy::automatic
+        cap = 0x557eeef96c28
+        result = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f41297c1d50}
+        unique_rec = std::unique_ptr<pybind11::detail::function_record> = {get() = 0x557eeef96990}
+        rec = 0x7f412923c188 <typeinfo for gz::sim::v7::Server>
+        signature = {text = "({%}, {bool}, {int}, {bool}) -> bool"}
+        types = {_M_elems = {0x7f412923c188 <typeinfo for gz::sim::v7::Server>, 0x0}}
+        is_function_ptr = 0x0
+#33 0x00007f41291b1bad in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&) () at /usr/include/pybind11/pybind11.h:223
+        unique_rec = std::unique_ptr<pybind11::detail::function_record> = {get() = 0x67d39a2c358ce600}
+        rec = 0x7ffd5401f4e0
+        signature = {text = "({%}, {bool}, {int}, {bool}) -> bool"}
+        types = {_M_elems = {0x7f412923c188 <typeinfo for gz::sim::v7::Server>, 0x0}}
+        is_function_ptr = 0x0
+#34 0x00007f412911f88c in pybind11::cpp_function::dispatcher(_object*, _object*, _object*) (self=0x7f412b47c9f0, args_in=0x7f40ec42b600, kwargs_in=0x0) at /usr/include/pybind11/pybind11.h:939
+        guard = {parent = 0x0, keep_alive = std::unordered_set with 0 elements}
+        num_args = 0x4
+        call = {func = @0x557eeef96bf0, args = std::vector of length 4, capacity 4 = {{<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f412c0dad70}, {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f42117ae780 <_Py_TrueStruct>}, {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f40ef357530}, {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f42117ae760 <_Py_FalseStruct>}}, args_convert = std::vector<bool> of length 4, capacity 64 = {0x1, 0x1, 0x1, 0x1}, args_ref = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, kwargs_ref = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, parent = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f412c0dad70}, init_self = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}}
+        positional_args_copied = 0x4
+        kwargs = {<pybind11::object> = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, <No data fields>}
+        func = @0x557eeef96bf0: {name = 0x557eeef96c80 "run", doc = 0x557eeef96d90 "Run the server. By default this is a non-blocking call,  which means the server runs simulation in a separate thread. Pass  in true to the _blocking argument to run the server in the current  thread.", signature = 0x557eeef96ca0 "(self: gz.sim7.Server, arg0: bool, arg1: int, arg2: bool) -> bool", args = std::vector of length 0, capacity 0, impl = 0x7f41291b1b90 <pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&)>, data = {0x7f4128bd375e <gz::sim::v7::Server::Run(bool, unsigned long, bool)>, 0x0, 0x0}, free_data = 0x0, policy = pybind11::return_value_policy::automatic, is_constructor = 0x0, is_new_style_constructor = 0x0, is_stateless = 0x0, is_operator = 0x0, is_method = 0x1, has_args = 0x0, has_kwargs = 0x0, prepend = 0x0, nargs = 0x4, nargs_pos = 0x4, nargs_pos_only = 0x0, def = 0x557eeef96bc0, scope = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x557eeef965e0}, sibling = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f42117a6e40 <_Py_NoneStruct>}, next = 0x0}
+        pos_args = 0x4
+        args_to_copy = 0x4
+        bad_arg = 0x0
+        second_pass_convert = std::vector<bool> of length 0, capacity 0
+        args_copied = 0x4
+        second_pass = std::vector of length 0, capacity 0
+        overloaded = 0x0
+        __PRETTY_FUNCTION__ = "static PyObject* pybind11::cpp_function::dispatcher(PyObject*, PyObject*, PyObject*)"
+        overloads = 0x557eeef96bf0
+        it = 0x557eeef96bf0
+        n_args_in = 0x4
+        parent = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f412c0dad70}
+        result = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x1}
+        self_value_and_holder = {inst = 0x0, index = 0x0, type = 0x0, vh = 0x0}
+        append_note_if_missing_header_is_suspected = {<No data fields>}
+#35 0x00007f4211555e21 in  () at /usr/lib/libpython3.10.so.1.0
+#36 0x00007f421154f4eb in _PyObject_MakeTpCall () at /usr/lib/libpython3.10.so.1.0
+#37 0x00007f42115616a6 in  () at /usr/lib/libpython3.10.so.1.0
+#38 0x00007f421154a03f in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#39 0x00007f4211544120 in  () at /usr/lib/libpython3.10.so.1.0
+#40 0x00007f42115f1b94 in PyEval_EvalCode () at /usr/lib/libpython3.10.so.1.0
+#41 0x00007f42115f7f1b in  () at /usr/lib/libpython3.10.so.1.0
+#42 0x00007f42115564cf in  () at /usr/lib/libpython3.10.so.1.0
+#43 0x00007f42115454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#44 0x00007f42115fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#45 0x00007f4211546ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#46 0x00007f42115fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#47 0x00007f4211546ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#48 0x00007f42115fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#49 0x00007f42116102d7 in  () at /usr/lib/libpython3.10.so.1.0
+#50 0x00007f421155f919 in  () at /usr/lib/libpython3.10.so.1.0
+#51 0x00007f421154590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#52 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#53 0x00007f42115454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#54 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#55 0x00007f421154590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#56 0x00007f4211561446 in  () at /usr/lib/libpython3.10.so.1.0
+#57 0x00007f4211561ebc in PyObject_Call () at /usr/lib/libpython3.10.so.1.0
+#58 0x00007f4211547ef8 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#59 0x00007f4211561446 in  () at /usr/lib/libpython3.10.so.1.0
+#60 0x00007f4211546618 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#61 0x00007f42115fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#62 0x00007f4211546ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#63 0x00007f42115fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#64 0x00007f4211546ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#65 0x00007f42115fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#66 0x00007f4211546ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#67 0x00007f42115fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#68 0x00007f4211546ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#69 0x00007f42115fc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#70 0x00007f4210895dfe in  () at /usr/lib/python3.10/lib-dynload/_asyncio.cpython-310-x86_64-linux-gnu.so
+#71 0x00007f42115556f6 in  () at /usr/lib/libpython3.10.so.1.0
+#72 0x00007f42115f38dc in  () at /usr/lib/libpython3.10.so.1.0
+#73 0x00007f42114fa22a in  () at /usr/lib/libpython3.10.so.1.0
+#74 0x00007f421154d0ef in  () at /usr/lib/libpython3.10.so.1.0
+#75 0x00007f421154b3a6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#76 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#77 0x00007f421154590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#78 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#79 0x00007f421154590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#80 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#81 0x00007f421154590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#82 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#83 0x00007f421154590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#84 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#85 0x00007f421154590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#86 0x00007f4211561446 in  () at /usr/lib/libpython3.10.so.1.0
+#87 0x00007f421154a03f in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#88 0x00007f4211544120 in  () at /usr/lib/libpython3.10.so.1.0
+#89 0x00007f42115f1b94 in PyEval_EvalCode () at /usr/lib/libpython3.10.so.1.0
+#90 0x00007f42115f7f1b in  () at /usr/lib/libpython3.10.so.1.0
+#91 0x00007f42115564cf in  () at /usr/lib/libpython3.10.so.1.0
+#92 0x00007f42115454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#93 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#94 0x00007f42115454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#95 0x00007f42115562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#96 0x00007f4211616617 in  () at /usr/lib/libpython3.10.so.1.0
+#97 0x00007f421160e92c in Py_RunMain () at /usr/lib/libpython3.10.so.1.0
+#98 0x00007f42115e336b in Py_BytesMain () at /usr/lib/libpython3.10.so.1.0
+#99 0x00007f421123c790 in  () at /usr/lib/libc.so.6
+#100 0x00007f421123c84a in __libc_start_main () at /usr/lib/libc.so.6
+#101 0x0000557ee5520045 in _start ()
+
+
+Cython backtrace
+----------------
+#0  0x00007f42112ea6f0 in wait4 ()
+#1  0x0000000000000000 in ?? ()
+#2  0x0000000000000000 in ?? ()
+#3  0x0000000000000000 in ?? ()
+#4  0x0000000000000000 in ?? ()
+#5  0x0000000000000000 in ?? ()
+#6  0x00007f4211251e90 in raise ()
+#7  0x00007f421123b466 in abort ()
+#8  0x0000000000000000 in ?? ()
+#9  0x00007f421124a9b0 in __assert_fail ()
+#10 0x0000000000000000 in dart::dynamics::FreeJoint::updateRelativeTransform () at /home/benoit/repos/dart/dart/dynamics/FreeJoint.cpp:670
+   665      mQ = convertToTransform(getPositionsStatic());
+   666    
+   667      mT = Joint::mAspectProperties.mT_ParentBodyToJoint * mQ
+   668           * Joint::mAspectProperties.mT_ChildBodyToJoint.inverse();
+   669    
+>  670      assert(math::verifyTransform(mT));
+   671    }
+   672    
+   673    //==============================================================================
+   674    void FreeJoint::updateRelativeJacobian(bool _mandatory) const
+#11 0x00007f40f148ab0a in dart::dynamics::Joint::getRelativeTransform () at /home/benoit/repos/dart/dart/dynamics/Joint.cpp:347
+   342    //==============================================================================
+   343    const Eigen::Isometry3d& Joint::getRelativeTransform() const
+   344    {
+   345      if (mNeedTransformUpdate)
+   346      {
+>  347        updateRelativeTransform();
+   348        mNeedTransformUpdate = false;
+   349      }
+   350    
+   351      return mT;
+#12 0x0000000000000000 in dart::dynamics::BodyNode::getRelativeTransform () at /home/benoit/repos/dart/dart/dynamics/BodyNode.cpp:1119
+  1114    }
+  1115    
+  1116    //==============================================================================
+  1117    const Eigen::Isometry3d& BodyNode::getRelativeTransform() const
+  1118    {
+> 1119      return mParentJoint->getRelativeTransform();
+  1120    }
+  1121    
+  1122    //==============================================================================
+  1123    const Eigen::Vector6d& BodyNode::getRelativeSpatialVelocity() const
+#13 0x00007f40f131a972 in dart::dynamics::Frame::getWorldTransform () at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:99
+    94        return mWorldTransform;
+    95    
+    96      if (mNeedTransformUpdate)
+    97      {
+    98        mWorldTransform
+>   99            = mParentFrame->getWorldTransform() * getRelativeTransform();
+   100        mNeedTransformUpdate = false;
+   101      }
+   102    
+   103      return mWorldTransform;
+#14 0x00007f40f131a972 in dart::dynamics::Frame::getWorldTransform () at /home/benoit/repos/dart/dart/dynamics/Frame.cpp:99
+    94        return mWorldTransform;
+    95    
+    96      if (mNeedTransformUpdate)
+    97      {
+    98        mWorldTransform
+>   99            = mParentFrame->getWorldTransform() * getRelativeTransform();
+   100        mNeedTransformUpdate = false;
+   101      }
+   102    
+   103      return mWorldTransform;
+#15 0x0000000000000000 in gz::physics::dartsim::SimulationFeatures::Write () at /home/benoit/repos/gz-physics/dartsim/src/SimulationFeatures.cc:108
+   103      _worldPoses.entries.reserve(this->links.size());
+   104    
+   105      for (const auto &[id, info] : this->links.idToObject)
+   106      {
+   107        WorldPose wp;
+>  108        wp.pose = gz::math::eigen3::convert(
+   109            info->link->getWorldTransform());
+   110        wp.body = id;
+   111        _worldPoses.entries.push_back(wp);
+   112      }
+#16 0x00007f40f3e09170 in gz::physics::detail::WriteDataOperation<gz::physics::WorldPoses, gz::physics::dartsim::SimulationFeatures const, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > >::Operate () at /home/benoit/repos/gz-physics/include/gz/physics/detail/CanWriteData.hh:70
+    65              ///       // ...
+    66              ///    };
+    67              /// \endcode
+    68              ///
+    69              ///    ^^^ READ THE ABOVE EXPLANATION IF YOU CANNOT COMPILE ^^^
+>   70              yourClass->Write(data.template Get<Data>());
+    71            }
+    72          };
+    73        }
+    74    
+#17 0x00007f40f3e06e6a in gz::physics::OperateOnSpecifiedData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::FindRequired, gz::physics::detail::WriteDataOperation, gz::physics::dartsim::SimulationFeatures const>::SubOperate<gz::physics::WorldPoses, gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > > () at /home/benoit/repos/gz-physics/include/gz/physics/detail/OperateOnSpecifiedData.hh:75
+    70    
+    71            if (inserted)
+    72            {
+    73              // We have found a specified type that matches what we want, so we
+    74              // will call operate on it.
+>   75              Operation<Data, Performer, CompositeType>::Operate(_performer, _data);
+    76            }
+    77          }
+    78    
+    79          // Here we call the version of this function that performs branching,
+#18 0x00007f40f3e04b54 in gz::physics::OperateOnSpecifiedData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::FindRequired, gz::physics::detail::WriteDataOperation, gz::physics::dartsim::SimulationFeatures const>::Operate<gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > > () at /home/benoit/repos/gz-physics/include/gz/physics/detail/OperateOnSpecifiedData.hh:51
+    46    
+    47          History history;
+    48          history.reserve(CountUpperLimitOfSpecifiedData<
+    49                          Specification, SpecFinder>());
+    50    
+>   51          SubOperate(detail::type<typename SpecFinder<Specification>::Data>(),
+    52              detail::type<Specification>(), _performer, _data, _mask, history);
+    53        }
+    54    
+    55        /////////////////////////////////////////////////
+#19 0x00007f40f3e034b0 in gz::physics::CanWriteRequiredData<gz::physics::dartsim::SimulationFeatures, gz::physics::RequireData<gz::physics::WorldPoses> >::WriteRequiredData<gz::physics::SpecifyData<gz::physics::RequireData<gz::physics::WorldPoses>, gz::physics::ExpectData<gz::physics::ChangedWorldPoses, gz::physics::Contacts, gz::physics::JointPositions> > > () at /home/benoit/repos/gz-physics/include/gz/physics/detail/CanWriteData.hh:105
+   100          if (_options.onlyWriteUnqueriedData)
+   101            mask.queried = DataStatusMask::MUST_NOT;
+   102    
+   103          OperateOnSpecifiedData<
+   104              Specification, FindRequired, detail::WriteDataOperation,
+>  105              const Derived>::Operate(static_cast<const Derived*>(this),
+   106                                      _data, mask);
+   107        }
+   108    
+   109        template <typename Derived, typename Specification>
+#20 0x0000000000000000 in gz::physics::dartsim::SimulationFeatures::WorldForwardStep () at /home/benoit/repos/gz-physics/dartsim/src/SimulationFeatures.cc:94
+    89        }
+    90      }
+    91    
+    92      // TODO(MXG): Parse input
+    93      world->step();
+>   94      this->WriteRequiredData(_h);
+    95      this->Write(_h.Get<ChangedWorldPoses>());
+    96      // TODO(MXG): Fill in state
+    97    }
+    98    
+#21 0x0000000000000000 in gz::physics::ForwardStep::World<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Step () at /usr/include/gz/physics6/gz/physics/ForwardStep.hh:173
+   168          class World : public virtual Feature::World<PolicyT, FeaturesT>
+   169          {
+   170            public: void Step(Output &_h, State &_x, const Input &_u)
+   171            {
+   172              this->template Interface<ForwardStep>()->
+>  173                  WorldForwardStep(this->identity, _h, _x, _u);
+   174            }
+   175          };
+   176    
+   177          public: template <typename PolicyT>
+#22 0x00007f40f9b5618a in gz::sim::v7::systems::PhysicsPrivate::Step () at /home/benoit/repos/gz-sim/src/systems/physics/Physics.cc:2873
+  2868    
+  2869      input.Get<std::chrono::steady_clock::duration>() = _dt;
+  2870    
+  2871      for (const auto &world : this->entityWorldMap.Map())
+  2872      {
+> 2873        world.second->Step(output, state, input);
+  2874      }
+  2875    
+  2876      return output;
+  2877    }
+#23 0x0000000000000000 in gz::sim::v7::systems::Physics::Update () at /home/benoit/repos/gz-sim/src/systems/physics/Physics.cc:947
+   942        this->dataPtr->UpdatePhysics(_ecm);
+   943        gz::physics::ForwardStep::Output stepOutput;
+   944        // Only step if not paused.
+   945        if (!_info.paused)
+   946        {
+>  947          stepOutput = this->dataPtr->Step(_info.dt);
+   948        }
+   949        auto changedLinks = this->dataPtr->ChangedLinks(_ecm, stepOutput);
+   950        this->dataPtr->UpdateSim(_ecm, changedLinks);
+   951    
+#24 0x00007f4128bf707e in gz::sim::v7::SimulationRunner::UpdateSystems () at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:573
+   568      }
+   569    
+   570      {
+   571        GZ_PROFILE("Update");
+   572        for (auto& system : this->systemMgr->SystemsUpdate())
+>  573          system->Update(this->currentInfo, this->entityCompMgr);
+   574      }
+   575    
+   576      {
+   577        GZ_PROFILE("PostUpdate");
+#25 0x00007f4128bf8926 in gz::sim::v7::SimulationRunner::Step () at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:850
+   845    
+   846      // handle systems that need to be added
+   847      this->systemMgr->ProcessPendingEntitySystems();
+   848    
+   849      // Update all the systems.
+>  850      this->UpdateSystems();
+   851    
+   852      if (!this->Paused() &&
+   853           this->requestedRunToSimTime >
+   854           std::chrono::steady_clock::duration::zero() &&
+#26 0x00007f4128bf744c in gz::sim::v7::SimulationRunner::Run () at /home/benoit/repos/gz-sim/src/SimulationRunner.cc:800
+   795              dynamic_cast<NetworkManagerPrimary *>(this->networkMgr.get());
+   796          netPrimary->Step(this->currentInfo);
+   797        }
+   798        else
+   799        {
+>  800          this->Step(this->currentInfo);
+   801        }
+   802    
+   803        // Handle Server::RunOnce(false) in which a single paused run is executed
+   804        if (this->currentInfo.paused && this->blockingPausedStepPending)
+#27 0x00007f4128be3020 in gz::sim::v7::ServerPrivate::Run () at /home/benoit/repos/gz-sim/src/ServerPrivate.cc:172
+   167    
+   168      // Minor performance tweak. In many situations there will only be one
+   169      // simulation runner, and we can avoid using the thread pool.
+   170      if (this->simRunners.size() == 1)
+   171      {
+>  172        result = this->simRunners[0]->Run(_iterations);
+   173      }
+   174      else
+   175      {
+   176        for (std::unique_ptr<SimulationRunner> &runner : this->simRunners)
+#28 0x00007f4128bd375e in gz::sim::v7::Server::Run () at /home/benoit/repos/gz-sim/src/Server.cc:211
+   206          return false;
+   207        }
+   208      }
+   209    
+   210      if (_blocking)
+>  211        return this->dataPtr->Run(_iterations);
+   212    
+   213      // Make sure two threads are not created
+   214      std::unique_lock<std::mutex> lock(this->dataPtr->runMutex);
+   215      if (this->dataPtr->runThread.get_id() == std::thread::id())
+#29 0x0000000000000000 in pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}::operator()(gz::sim::v7::Server*, bool, unsigned long, bool) const () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:110
+   105        /// Construct a cpp_function from a class method (non-const, no ref-qualifier)
+   106        template <typename Return, typename Class, typename... Arg, typename... Extra>
+   107        // NOLINTNEXTLINE(google-explicit-constructor)
+   108        cpp_function(Return (Class::*f)(Arg...), const Extra &...extra) {
+   109            initialize(
+>  110                [f](Class *c, Arg... args) -> Return { return (c->*f)(std::forward<Arg>(args)...); },
+   111                (Return(*)(Class *, Arg...)) nullptr,
+   112                extra...);
+   113        }
+   114    
+#30 0x0000000000000000 in pybind11::detail::argument_loader<gz::sim::v7::Server*, bool, unsigned long, bool>::call_impl<bool, pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&, 0ul, 1ul, 2ul, 3ul, pybind11::gil_scoped_release>(pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&, std::integer_sequence<unsigned long, 0ul, 1ul, 2ul, 3ul>, pybind11::gil_scoped_release&&) && () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/cast.h:1443
+  1438            return true;
+  1439        }
+  1440    
+  1441        template <typename Return, typename Func, size_t... Is, typename Guard>
+  1442        Return call_impl(Func &&f, index_sequence<Is...>, Guard &&) && {
+> 1443            return std::forward<Func>(f)(cast_op<Args>(std::move(std::get<Is>(argcasters)))...);
+  1444        }
+  1445    
+  1446        std::tuple<make_caster<Args>...> argcasters;
+  1447    };
+#31 0x0000000000000000 in pybind11::detail::argument_loader<gz::sim::v7::Server*, bool, unsigned long, bool>::call<bool, pybind11::gil_scoped_release, pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&>(pybind11::cpp_function::cpp_function<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&) && () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/cast.h:1411
+  1406        bool load_args(function_call &call) { return load_impl_sequence(call, indices{}); }
+  1407    
+  1408        template <typename Return, typename Guard, typename Func>
+  1409        // NOLINTNEXTLINE(readability-const-return-type)
+  1410        enable_if_t<!std::is_void<Return>::value, Return> call(Func &&f) && {
+> 1411            return std::move(*this).template call_impl<remove_cv_t<Return>>(
+  1412                std::forward<Func>(f), indices{}, Guard{});
+  1413        }
+  1414    
+  1415        template <typename Return, typename Guard, typename Func>
+#32 0x0000000000000000 in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::operator()(pybind11::detail::function_call&) const () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:248
+   243                /* Function scope guard -- defaults to the compile-to-nothing `void_type` */
+   244                using Guard = extract_guard_t<Extra...>;
+   245    
+   246                /* Perform the function call */
+   247                handle result
+>  248                    = cast_out::cast(std::move(args_converter).template call<Return, Guard>(cap->f),
+   249                                     policy,
+   250                                     call.parent);
+   251    
+   252                /* Invoke call policy post-call hook */
+#33 0x0000000000000000 in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}, bool, gz::sim::v7::Server*, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(pybind11::cpp_function::initialize<bool, gz::sim::v7::Server, bool, unsigned long, bool, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::call_guard<pybind11::gil_scoped_release>, char [200]>(bool (gz::sim::v7::Server::*)(bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(gz::sim::v7::Server*, bool, unsigned long, bool)#1}&&, bool (*)(gz::sim::v7::Server*, bool, unsigned long, bool), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::call_guard<pybind11::gil_scoped_release> const&, char const (&) [200])::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&) () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:223
+   218                expected_num_args<Extra...>(
+   219                    sizeof...(Args), cast_in::args_pos >= 0, cast_in::has_kwargs),
+   220                "The number of argument annotations does not match the number of function arguments");
+   221    
+   222            /* Dispatch code which converts function arguments and performs the actual function call */
+>  223            rec->impl = [](function_call &call) -> handle {
+   224                cast_in args_converter;
+   225    
+   226                /* Try to cast the function arguments into the C++ domain */
+   227                if (!args_converter.load_args(call)) {
+#34 0x00007f41296c927f in pybind11::cpp_function::dispatcher () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:939
+   934                    }
+   935    
+   936                    // 6. Call the function.
+   937                    try {
+   938                        loader_life_support guard{};
+>  939                        result = func.impl(call);
+   940                    } catch (reference_cast_error &) {
+   941                        result = PYBIND11_TRY_NEXT_OVERLOAD;
+   942                    }
+   943    
+#35 0x0000000000000000 in ?? ()
+#36 0x00007f421154f240 in _PyObject_MakeTpCall ()
+#37 0x0000000000000000 in ?? ()
+#38 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#39 0x0000000000000000 in ?? ()
+#40 0x00007f42115f1b00 in PyEval_EvalCode ()
+#41 0x0000000000000000 in ?? ()
+#42 0x0000000000000000 in ?? ()
+#43 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#44 0x0000000000000000 in ?? ()
+#45 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#46 0x0000000000000000 in ?? ()
+#47 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#48 0x0000000000000000 in ?? ()
+#49 0x0000000000000000 in ?? ()
+#50 0x0000000000000000 in ?? ()
+#51 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#52 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#53 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#54 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#55 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#56 0x0000000000000000 in ?? ()
+#57 0x00007f4211561d60 in PyObject_Call ()
+#58 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#59 0x0000000000000000 in ?? ()
+#60 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#61 0x0000000000000000 in ?? ()
+#62 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#63 0x0000000000000000 in ?? ()
+#64 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#65 0x0000000000000000 in ?? ()
+#66 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#67 0x0000000000000000 in ?? ()
+#68 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#69 0x0000000000000000 in ?? ()
+#70 0x0000000000000000 in ?? ()
+#71 0x0000000000000000 in ?? ()
+#72 0x0000000000000000 in ?? ()
+#73 0x0000000000000000 in ?? ()
+#74 0x0000000000000000 in ?? ()
+#75 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#76 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#77 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#78 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#79 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#80 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#81 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#82 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#83 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#84 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#85 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#86 0x0000000000000000 in ?? ()
+#87 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#88 0x0000000000000000 in ?? ()
+#89 0x00007f42115f1b00 in PyEval_EvalCode ()
+#90 0x0000000000000000 in ?? ()
+#91 0x0000000000000000 in ?? ()
+#92 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#93 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#94 0x00007f4211545190 in _PyEval_EvalFrameDefault ()
+#95 0x00007f4211556260 in _PyFunction_Vectorcall ()
+#96 0x0000000000000000 in ?? ()
+#97 0x00007f421160e730 in Py_RunMain ()
+#98 0x00007f42115e3330 in Py_BytesMain ()
+#99 0x0000000000000000 in ?? ()
+#100 0x00007f421123c7c0 in __libc_start_main ()
+#101 0x0000557ee5520020 in _start ()
+
+[Inferior 1 (process 1963547) detached]
+
+warning: /home/benoit/.gdbinit-gef.py: No such file or directory
+Error while running hook_stop:
+Invalid type combination in equality test.
+warning: RTTI symbol not found for class 'gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >'
+warning: RTTI symbol not found for class 'gz::physics::ExpectData<gz::physics::ApplyExternalForceTorques, gz::physics::ApplyGeneralizedForces, gz::physics::VelocityControlCommands, gz::physics::ServoControlCommands, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >'
+warning: RTTI symbol not found for class 'std::_Sp_counted_ptr_inplace<gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+warning: RTTI symbol not found for class 'std::_Sp_counted_ptr_inplace<gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+warning: RTTI symbol not found for class 'std::_Sp_counted_ptr_inplace<gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+warning: RTTI symbol not found for class 'std::_Sp_counted_ptr_inplace<gz::plugin::TemplatePluginPtr<gz::physics::detail::DeterminePlugin<gz::physics::FeaturePolicy<double, 3ul>, gz::sim::v7::systems::PhysicsPrivate::MinimumFeatureList>::Specializer>, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'AttributeError'>: 'NoneType' object has no attribute 'pointer'
+Python Exception <class 'gdb.error'>: No type named std::__detail::_Hash_node<struct _object *, false>.

@@ -1,0 +1,420 @@
+GNU gdb (GDB) 13.1
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Warning: 'set logging on', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled on'.
+
+Warning: 'set logging off', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled off'.
+
+[New LWP 1702826]
+[New LWP 1702827]
+[New LWP 1702828]
+[New LWP 1702829]
+[New LWP 1702830]
+[New LWP 1702831]
+[New LWP 1702832]
+[New LWP 1702833]
+[New LWP 1702834]
+[New LWP 1702835]
+[New LWP 1702863]
+[New LWP 1702874]
+[New LWP 1702875]
+[New LWP 1702879]
+[New LWP 1702880]
+[New LWP 1702881]
+[New LWP 1702882]
+[New LWP 1702893]
+[New LWP 1702894]
+[New LWP 1702895]
+[New LWP 1702896]
+[New LWP 1702897]
+[New LWP 1702898]
+[New LWP 1702899]
+[New LWP 1702900]
+[New LWP 1702901]
+[New LWP 1702902]
+[New LWP 1702904]
+[New LWP 1702905]
+[New LWP 1702906]
+[New LWP 1702907]
+[New LWP 1702908]
+[New LWP 1702909]
+[New LWP 1702910]
+[New LWP 1702911]
+[New LWP 1702912]
+[New LWP 1702913]
+[New LWP 1702914]
+[New LWP 1702915]
+[New LWP 1702916]
+[New LWP 1702917]
+[New LWP 1702918]
+[New LWP 1702941]
+[New LWP 1702942]
+[New LWP 1702943]
+[New LWP 1702944]
+[New LWP 1702945]
+[New LWP 1702946]
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.archlinux.org>
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+[34m-----------------------------------------------------------------------------------------------------------------------[34m[1m[regs]
+[0m  [32mR0:0x00007f8ce7cea747 in wait4 () from /usr/lib/libc.so.6
+
+Stack backtrace
+---------------
+#1  0x00007f8c56c62157 in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#2  0x00007f8c56c622ea in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#3  0x00007f8c56c64f1d in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#4  0x00007f8ce7c51f50 in <signal handler called> () at /usr/lib/libc.so.6
+#5  0x00007f8bff2cde24 in std::_Hashtable<unsigned long, std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > >, std::allocator<std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > > >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::size() const (this=0x3f0) at /usr/include/c++/12.2.1/bits/hashtable.h:649
+#6  0x00007f8bff2cc7dc in std::_Hashtable<unsigned long, std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > >, std::allocator<std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > > >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::find(unsigned long const&) (this=0x3f0, __k=@0x7ffe4cd99780: 0x4) at /usr/include/c++/12.2.1/bits/hashtable.h:1645
+        __code = 0x56383ff10448
+        __bkt = 0x7ffe4cd99740
+#7  0x00007f8bff2c28c7 in std::unordered_map<unsigned long, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > >, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > > > >::find(unsigned long const&) (this=0x3f0, __x=@0x7ffe4cd99780: 0x4) at /usr/include/c++/12.2.1/bits/unordered_map.h:869
+#8  0x00007f8bff2b091a in gz::sim::v7::EntityComponentManager::ComponentImplementation(unsigned long, unsigned long) const (this=0x56383ff10448, _entity=0x4, _type=0xa03759b5750cd791) at /home/benoit/repos/gz-sim/src/EntityComponentManager.cc:1191
+        typeMapIter = {<std::__detail::_Node_iterator_base<std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > >, false>> = {_M_cur = 0x7f8bff9102fb <std::_Bit_iterator::operator+=(long)+35>}, <No data fields>}
+        compIdxIter = {<std::__detail::_Node_iterator_base<std::pair<unsigned long const, unsigned long>, false>> = {_M_cur = 0x1}, <No data fields>}
+        compVecIter = {<std::__detail::_Node_iterator_base<std::pair<unsigned long const, std::vector<std::unique_ptr<gz::sim::v7::components::BaseComponent, std::default_delete<gz::sim::v7::components::BaseComponent> >, std::allocator<std::unique_ptr<gz::sim::v7::components::BaseComponent, std::default_delete<gz::sim::v7::components::BaseComponent> > > > >, false>> = {_M_cur = 0x7ffe4cd997e0}, <No data fields>}
+        compPtr = 0x2
+#9  0x00007f8bff2b0cfd in gz::sim::v7::EntityComponentManager::ComponentImplementation(unsigned long, unsigned long) (this=0x56383ff10448, _entity=0x4, _type=0xa03759b5750cd791) at /home/benoit/repos/gz-sim/src/EntityComponentManager.cc:1234
+#10 0x00007f8bff942d85 in gz::sim::v7::EntityComponentManager::Component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(unsigned long) (this=0x56383ff10448, _entity=0x4) at /home/benoit/repos/gz-sim/include/gz/sim/detail/EntityComponentManager.hh:130
+        typeId = 0xa03759b5750cd791
+#11 0x00007f8bff932851 in gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}::operator()(gz::sim::v7::EntityComponentManager&, unsigned long) const (__closure=0x56383bbe9348, ecm=..., id=0x4) at /home/benoit/repos/gz-sim/python/src/gz/sim/_gz_sim_pybind11.cc:64
+#12 0x00007f8bff987c71 in pybind11::detail::argument_loader<gz::sim::v7::EntityComponentManager&, unsigned long>::call_impl<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&, 0ul, 1ul, pybind11::detail::void_type>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&, std::integer_sequence<unsigned long, 0ul, 1ul>, pybind11::detail::void_type&&) && (this=0x7ffe4cd99950, f=...) at /usr/include/pybind11/detail/../cast.h:1443
+#13 0x00007f8bff97d668 in pybind11::detail::argument_loader<gz::sim::v7::EntityComponentManager&, unsigned long>::call<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, pybind11::detail::void_type, gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&) && (this=0x7ffe4cd99950, f=...) at /usr/include/pybind11/detail/../cast.h:1411
+#14 0x00007f8bff969cc5 in pybind11::cpp_function::initialize<gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, gz::sim::v7::EntityComponentManager&, unsigned long, pybind11::name, pybind11::scope, pybind11::sibling, pybind11::return_value_policy>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&&, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >* (*)(gz::sim::v7::EntityComponentManager&, unsigned long), pybind11::name const&, pybind11::scope const&, pybind11::sibling const&, pybind11::return_value_policy const&)::{lambda(pybind11::detail::function_call&)#3}::operator()(pybind11::detail::function_call&) const (__closure=0x0, call=...) at /usr/include/pybind11/pybind11.h:248
+        args_converter = {static kwargs_pos = 0xffffffff, static args_pos = 0xffffffff, static arg_names = {text = "{%}, {int}"}, argcasters = std::tuple containing = {[1] = {<pybind11::detail::type_caster_base<gz::sim::v7::EntityComponentManager>> = {<pybind11::detail::type_caster_generic> = {typeinfo = 0x56383bc63650, cpptype = 0x7f8bffa3b978 <typeinfo for gz::sim::v7::EntityComponentManager>, value = 0x56383ff10448}, static name = <same as static member of an already seen type>}, <No data fields>}, [2] = {value = 0x4, static name = <same as static member of an already seen type>}}}
+        data = 0x56383bbe9348
+        policy = pybind11::return_value_policy::reference
+        cap = 0x56383bbe9348
+        result = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x56383321f880}
+        unique_rec = std::unique_ptr<pybind11::detail::function_record> = {get() = 0x56383bc63650}
+        rec = 0x7f8bffa3b978 <typeinfo for gz::sim::v7::EntityComponentManager>
+        signature = {text = "({%}, {int}) -> %"}
+        types = {_M_elems = {0x7f8bffa3b978 <typeinfo for gz::sim::v7::EntityComponentManager>, 0x7f8bffa3bc48 <typeinfo for gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >>, 0x0}}
+        is_function_ptr = 0x0
+#15 0x00007f8bff969d2c in pybind11::cpp_function::initialize<gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, gz::sim::v7::EntityComponentManager&, unsigned long, pybind11::name, pybind11::scope, pybind11::sibling, pybind11::return_value_policy>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&&, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >* (*)(gz::sim::v7::EntityComponentManager&, unsigned long), pybind11::name const&, pybind11::scope const&, pybind11::sibling const&, pybind11::return_value_policy const&)::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&) () at /usr/include/pybind11/pybind11.h:223
+        unique_rec = std::unique_ptr<pybind11::detail::function_record> = {get() = 0xe571f480d69b3800}
+        rec = 0x7ffe4cd999a0
+        signature = {text = "({%}, {int}) -> %"}
+        types = {_M_elems = {0x7f8bffa3b978 <typeinfo for gz::sim::v7::EntityComponentManager>, 0x7f8bffa3bc48 <typeinfo for gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >>, 0x0}}
+        is_function_ptr = 0x0
+#16 0x00007f8bff91f88c in pybind11::cpp_function::dispatcher(_object*, _object*, _object*) (self=0x7f8c01cedbc0, args_in=0x7f8c0248f040, kwargs_in=0x0) at /usr/include/pybind11/pybind11.h:939
+        guard = {parent = 0x0, keep_alive = std::unordered_set with 0 elements}
+        num_args = 0x2
+        call = {func = @0x56383bbe9310, args = std::vector of length 2, capacity 2 = {{<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f8bec14e670}, {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f8ce7700150}}, args_convert = std::vector<bool> of length 2, capacity 64 = {0x1, 0x1}, args_ref = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, kwargs_ref = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, parent = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f8bec14e670}, init_self = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}}
+        positional_args_copied = 0x2
+        kwargs = {<pybind11::object> = {<pybind11::handle> = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x0}, <No data fields>}, <No data fields>}
+        func = @0x56383bbe9310: {name = 0x56383bbe93a0 "Get", doc = 0x0, signature = 0x56383bbe9460 "(arg0: gz.sim7.EntityComponentManager, arg1: int) -> gz.sim7.LinearVelocityCmd", args = std::vector of length 0, capacity 0, impl = 0x7f8bff969d0f <pybind11::cpp_function::initialize<gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, gz::sim::v7::EntityComponentManager&, unsigned long, pybind11::name, pybind11::scope, pybind11::sibling, pybind11::return_value_policy>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&&, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >* (*)(gz::sim::v7::EntityComponentManager&, unsigned long), pybind11::name const&, pybind11::scope const&, pybind11::sibling const&, pybind11::return_value_policy const&)::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&)>, data = {0x0, 0x0, 0x0}, free_data = 0x0, policy = pybind11::return_value_policy::reference, is_constructor = 0x0, is_new_style_constructor = 0x0, is_stateless = 0x0, is_operator = 0x0, is_method = 0x0, has_args = 0x0, has_kwargs = 0x0, prepend = 0x0, nargs = 0x2, nargs_pos = 0x2, nargs_pos_only = 0x0, def = 0x56383bbe9430, scope = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x56383bbe8f00}, sibling = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f8ce81a6e40 <_Py_NoneStruct>}, next = 0x0}
+        pos_args = 0x2
+        args_to_copy = 0x2
+        bad_arg = 0x0
+        second_pass_convert = std::vector<bool> of length 0, capacity 0
+        args_copied = 0x2
+        second_pass = std::vector of length 0, capacity 0
+        overloaded = 0x0
+        __PRETTY_FUNCTION__ = "static PyObject* pybind11::cpp_function::dispatcher(PyObject*, PyObject*, PyObject*)"
+        overloads = 0x56383bbe9310
+        it = 0x56383bbe9310
+        n_args_in = 0x2
+        parent = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x7f8bec14e670}
+        result = {<pybind11::detail::object_api<pybind11::handle>> = {<pybind11::detail::pyobject_tag> = {<No data fields>}, <No data fields>}, m_ptr = 0x1}
+        self_value_and_holder = {inst = 0x0, index = 0x0, type = 0x0, vh = 0x0}
+        append_note_if_missing_header_is_suspected = {<No data fields>}
+#17 0x00007f8ce7f55e21 in  () at /usr/lib/libpython3.10.so.1.0
+#18 0x00007f8ce7f4f4eb in _PyObject_MakeTpCall () at /usr/lib/libpython3.10.so.1.0
+#19 0x00007f8ce7f4a8ee in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#20 0x00007f8ce7f44120 in  () at /usr/lib/libpython3.10.so.1.0
+#21 0x00007f8ce7ff1b94 in PyEval_EvalCode () at /usr/lib/libpython3.10.so.1.0
+#22 0x00007f8ce7ff7f1b in  () at /usr/lib/libpython3.10.so.1.0
+#23 0x00007f8ce7f564cf in  () at /usr/lib/libpython3.10.so.1.0
+#24 0x00007f8ce7f454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#25 0x00007f8ce7ffc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#26 0x00007f8ce7f46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#27 0x00007f8ce7ffc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#28 0x00007f8ce7f46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#29 0x00007f8ce7ffc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#30 0x00007f8ce80102d7 in  () at /usr/lib/libpython3.10.so.1.0
+#31 0x00007f8ce7f5f919 in  () at /usr/lib/libpython3.10.so.1.0
+#32 0x00007f8ce7f4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#33 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#34 0x00007f8ce7f454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#35 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#36 0x00007f8ce7f4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#37 0x00007f8ce7f61446 in  () at /usr/lib/libpython3.10.so.1.0
+#38 0x00007f8ce7f61ebc in PyObject_Call () at /usr/lib/libpython3.10.so.1.0
+#39 0x00007f8ce7f47ef8 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#40 0x00007f8ce7f61446 in  () at /usr/lib/libpython3.10.so.1.0
+#41 0x00007f8ce7f46618 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#42 0x00007f8ce7ffc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#43 0x00007f8ce7f46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#44 0x00007f8ce7ffc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#45 0x00007f8ce7f46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#46 0x00007f8ce7ffc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#47 0x00007f8ce7f46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#48 0x00007f8ce7ffc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#49 0x00007f8ce7f46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#50 0x00007f8ce7ffc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#51 0x00007f8ce6e13dfe in  () at /usr/lib/python3.10/lib-dynload/_asyncio.cpython-310-x86_64-linux-gnu.so
+#52 0x00007f8ce7f556f6 in  () at /usr/lib/libpython3.10.so.1.0
+#53 0x00007f8ce7ff38dc in  () at /usr/lib/libpython3.10.so.1.0
+#54 0x00007f8ce7efa22a in  () at /usr/lib/libpython3.10.so.1.0
+#55 0x00007f8ce7f4d0ef in  () at /usr/lib/libpython3.10.so.1.0
+#56 0x00007f8ce7f4b3a6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#57 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#58 0x00007f8ce7f4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#59 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#60 0x00007f8ce7f4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#61 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#62 0x00007f8ce7f4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#63 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#64 0x00007f8ce7f4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#65 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#66 0x00007f8ce7f4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#67 0x00007f8ce7f61446 in  () at /usr/lib/libpython3.10.so.1.0
+#68 0x00007f8ce7f4a03f in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#69 0x00007f8ce7f44120 in  () at /usr/lib/libpython3.10.so.1.0
+#70 0x00007f8ce7ff1b94 in PyEval_EvalCode () at /usr/lib/libpython3.10.so.1.0
+#71 0x00007f8ce7ff7f1b in  () at /usr/lib/libpython3.10.so.1.0
+#72 0x00007f8ce7f564cf in  () at /usr/lib/libpython3.10.so.1.0
+#73 0x00007f8ce7f454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#74 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#75 0x00007f8ce7f454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#76 0x00007f8ce7f562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#77 0x00007f8ce8016617 in  () at /usr/lib/libpython3.10.so.1.0
+#78 0x00007f8ce800e92c in Py_RunMain () at /usr/lib/libpython3.10.so.1.0
+#79 0x00007f8ce7fe336b in Py_BytesMain () at /usr/lib/libpython3.10.so.1.0
+#80 0x00007f8ce7c3c790 in  () at /usr/lib/libc.so.6
+#81 0x00007f8ce7c3c84a in __libc_start_main () at /usr/lib/libc.so.6
+#82 0x0000563831ec8045 in _start ()
+
+
+Cython backtrace
+----------------
+#0  0x00007f8ce7cea6f0 in wait4 ()
+#1  0x0000000000000000 in ?? ()
+#2  0x0000000000000000 in ?? ()
+#3  0x0000000000000000 in ?? ()
+#4  0x0000000000000000 in ?? ()
+#5  0x00007f8bff2cde18 in std::_Hashtable<unsigned long, std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > >, std::allocator<std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > > >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::size () at /usr/include/c++/12.2.1/bits/hashtable.h:649
+   644          cend() const noexcept
+   645          { return const_iterator(nullptr); }
+   646    
+   647          size_type
+   648          size() const noexcept
+>  649          { return _M_element_count; }
+   650    
+   651          _GLIBCXX_NODISCARD bool
+   652          empty() const noexcept
+   653          { return size() == 0; }
+#6  0x0000000000000000 in std::_Hashtable<unsigned long, std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > >, std::allocator<std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > > >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::find () at /usr/include/c++/12.2.1/bits/hashtable.h:1645
+  1640        _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+  1641    	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+  1642        find(const key_type& __k)
+  1643        -> iterator
+  1644        {
+> 1645          if (size() <= __small_size_threshold())
+  1646    	{
+  1647    	  for (auto __it = begin(); __it != end(); ++__it)
+  1648    	    if (this->_M_key_equals(__k, *__it._M_cur))
+  1649    	      return __it;
+#7  0x0000000000000000 in std::unordered_map<unsigned long, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > >, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, std::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> > > > > >::find () at /usr/include/c++/12.2.1/bits/unordered_map.h:869
+   864           *  pointing to the sought after element.  If unsuccessful it returns the
+   865           *  past-the-end ( @c end() ) iterator.
+   866           */
+   867          iterator
+   868          find(const key_type& __x)
+>  869          { return _M_h.find(__x); }
+   870    
+   871    #if __cplusplus > 201703L
+   872          template<typename _Kt>
+   873    	auto
+#8  0x0000000000000000 in gz::sim::v7::EntityComponentManager::ComponentImplementation () at /home/benoit/repos/gz-sim/src/EntityComponentManager.cc:1191
+  1186        const Entity _entity, const ComponentTypeId _type) const
+  1187    {
+  1188      GZ_PROFILE("EntityComponentManager::ComponentImplementation");
+  1189    
+  1190      // make sure the entity exists
+> 1191      const auto typeMapIter = this->dataPtr->componentTypeIndex.find(_entity);
+  1192      if (typeMapIter == this->dataPtr->componentTypeIndex.end())
+  1193        return nullptr;
+  1194    
+  1195      // make sure the component type exists for the entity
+#9  0x0000000000000000 in gz::sim::v7::EntityComponentManager::ComponentImplementation () at /home/benoit/repos/gz-sim/src/EntityComponentManager.cc:1234
+  1229        const Entity _entity, const ComponentTypeId _type)
+  1230    {
+  1231      // Call the const version of the function
+  1232      return const_cast<components::BaseComponent *>(
+  1233          static_cast<const EntityComponentManager &>(
+> 1234          *this).ComponentImplementation(_entity, _type));
+  1235    }
+  1236    
+  1237    /////////////////////////////////////////////////
+  1238    bool EntityComponentManager::HasComponentType(
+#10 0x00007f8bff942d50 in gz::sim::v7::EntityComponentManager::Component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > > () at /home/benoit/repos/gz-sim/include/gz/sim/detail/EntityComponentManager.hh:130
+   125    {
+   126      // Get a unique identifier to the component type
+   127      const ComponentTypeId typeId = ComponentTypeT::typeId;
+   128    
+   129      return static_cast<ComponentTypeT *>(
+>  130          this->ComponentImplementation(_entity, typeId));
+   131    }
+   132    
+   133    //////////////////////////////////////////////////
+   134    template<typename ComponentTypeT>
+#11 0x0000000000000000 in gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}::operator()(gz::sim::v7::EntityComponentManager&, unsigned long) const () at /home/benoit/repos/gz-sim/python/src/gz/sim/_gz_sim_pybind11.cc:64
+    59    namespace python {
+    60    template <typename T> void define_component(pybind11::object module, const char *name) {
+    61    
+    62      pybind11::class_<T>(module, name)
+    63        .def_static(
+>   64          "Get", [](EntityComponentManager &ecm, Entity id) { return ecm.Component<T>(id); },
+    65          py::return_value_policy::reference)
+    66        .def_static(
+    67          "Remove", [](EntityComponentManager &ecm, Entity id) { return ecm.RemoveComponent<T>(id); },
+    68          py::return_value_policy::reference)
+#12 0x0000000000000000 in pybind11::detail::argument_loader<gz::sim::v7::EntityComponentManager&, unsigned long>::call_impl<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&, 0ul, 1ul, pybind11::detail::void_type>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&, std::integer_sequence<unsigned long, 0ul, 1ul>, pybind11::detail::void_type&&) && () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/cast.h:1443
+  1438            return true;
+  1439        }
+  1440    
+  1441        template <typename Return, typename Func, size_t... Is, typename Guard>
+  1442        Return call_impl(Func &&f, index_sequence<Is...>, Guard &&) && {
+> 1443            return std::forward<Func>(f)(cast_op<Args>(std::move(std::get<Is>(argcasters)))...);
+  1444        }
+  1445    
+  1446        std::tuple<make_caster<Args>...> argcasters;
+  1447    };
+#13 0x0000000000000000 in pybind11::detail::argument_loader<gz::sim::v7::EntityComponentManager&, unsigned long>::call<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, pybind11::detail::void_type, gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&) && () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/cast.h:1411
+  1406        bool load_args(function_call &call) { return load_impl_sequence(call, indices{}); }
+  1407    
+  1408        template <typename Return, typename Guard, typename Func>
+  1409        // NOLINTNEXTLINE(readability-const-return-type)
+  1410        enable_if_t<!std::is_void<Return>::value, Return> call(Func &&f) && {
+> 1411            return std::move(*this).template call_impl<remove_cv_t<Return>>(
+  1412                std::forward<Func>(f), indices{}, Guard{});
+  1413        }
+  1414    
+  1415        template <typename Return, typename Guard, typename Func>
+#14 0x0000000000000000 in pybind11::cpp_function::initialize<gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, gz::sim::v7::EntityComponentManager&, unsigned long, pybind11::name, pybind11::scope, pybind11::sibling, pybind11::return_value_policy>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&&, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >* (*)(gz::sim::v7::EntityComponentManager&, unsigned long), pybind11::name const&, pybind11::scope const&, pybind11::sibling const&, pybind11::return_value_policy const&)::{lambda(pybind11::detail::function_call&)#3}::operator()(pybind11::detail::function_call&) const () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:248
+   243                /* Function scope guard -- defaults to the compile-to-nothing `void_type` */
+   244                using Guard = extract_guard_t<Extra...>;
+   245    
+   246                /* Perform the function call */
+   247                handle result
+>  248                    = cast_out::cast(std::move(args_converter).template call<Return, Guard>(cap->f),
+   249                                     policy,
+   250                                     call.parent);
+   251    
+   252                /* Invoke call policy post-call hook */
+#15 0x0000000000000000 in pybind11::cpp_function::initialize<gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >*, gz::sim::v7::EntityComponentManager&, unsigned long, pybind11::name, pybind11::scope, pybind11::sibling, pybind11::return_value_policy>(gz::sim::python::define_component<gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > > >(pybind11::object, char const*)::{lambda(gz::sim::v7::EntityComponentManager&, unsigned long)#1}&&, gz::sim::v7::components::Component<gz::math::v7::Vector3<double>, gz::sim::v7::components::LinearVelocityCmdTag, gz::sim::v7::serializers::DefaultSerializer<gz::math::v7::Vector3<double> > >* (*)(gz::sim::v7::EntityComponentManager&, unsigned long), pybind11::name const&, pybind11::scope const&, pybind11::sibling const&, pybind11::return_value_policy const&)::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call&) () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:223
+   218                expected_num_args<Extra...>(
+   219                    sizeof...(Args), cast_in::args_pos >= 0, cast_in::has_kwargs),
+   220                "The number of argument annotations does not match the number of function arguments");
+   221    
+   222            /* Dispatch code which converts function arguments and performs the actual function call */
+>  223            rec->impl = [](function_call &call) -> handle {
+   224                cast_in args_converter;
+   225    
+   226                /* Try to cast the function arguments into the C++ domain */
+   227                if (!args_converter.load_args(call)) {
+#16 0x00007f8c002c927f in pybind11::cpp_function::dispatcher () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:939
+   934                    }
+   935    
+   936                    // 6. Call the function.
+   937                    try {
+   938                        loader_life_support guard{};
+>  939                        result = func.impl(call);
+   940                    } catch (reference_cast_error &) {
+   941                        result = PYBIND11_TRY_NEXT_OVERLOAD;
+   942                    }
+   943    
+#17 0x0000000000000000 in ?? ()
+#18 0x00007f8ce7f4f240 in _PyObject_MakeTpCall ()
+#19 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#20 0x0000000000000000 in ?? ()
+#21 0x00007f8ce7ff1b00 in PyEval_EvalCode ()
+#22 0x0000000000000000 in ?? ()
+#23 0x0000000000000000 in ?? ()
+#24 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#25 0x0000000000000000 in ?? ()
+#26 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#27 0x0000000000000000 in ?? ()
+#28 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#29 0x0000000000000000 in ?? ()
+#30 0x0000000000000000 in ?? ()
+#31 0x0000000000000000 in ?? ()
+#32 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#33 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#34 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#35 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#36 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#37 0x0000000000000000 in ?? ()
+#38 0x00007f8ce7f61d60 in PyObject_Call ()
+#39 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#40 0x0000000000000000 in ?? ()
+#41 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#42 0x0000000000000000 in ?? ()
+#43 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#44 0x0000000000000000 in ?? ()
+#45 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#46 0x0000000000000000 in ?? ()
+#47 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#48 0x0000000000000000 in ?? ()
+#49 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#50 0x0000000000000000 in ?? ()
+#51 0x0000000000000000 in ?? ()
+#52 0x0000000000000000 in ?? ()
+#53 0x0000000000000000 in ?? ()
+#54 0x0000000000000000 in ?? ()
+#55 0x0000000000000000 in ?? ()
+#56 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#57 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#58 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#59 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#60 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#61 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#62 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#63 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#64 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#65 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#66 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#67 0x0000000000000000 in ?? ()
+#68 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#69 0x0000000000000000 in ?? ()
+#70 0x00007f8ce7ff1b00 in PyEval_EvalCode ()
+#71 0x0000000000000000 in ?? ()
+#72 0x0000000000000000 in ?? ()
+#73 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#74 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#75 0x00007f8ce7f45190 in _PyEval_EvalFrameDefault ()
+#76 0x00007f8ce7f56260 in _PyFunction_Vectorcall ()
+#77 0x0000000000000000 in ?? ()
+#78 0x00007f8ce800e730 in Py_RunMain ()
+#79 0x00007f8ce7fe3330 in Py_BytesMain ()
+#80 0x0000000000000000 in ?? ()
+#81 0x00007f8ce7c3c7c0 in __libc_start_main ()
+#82 0x0000563831ec8020 in _start ()
+
+[Inferior 1 (process 1702808) detached]
+
+warning: /home/benoit/.gdbinit-gef.py: No such file or directory
+Error while running hook_stop:
+Invalid type combination in equality test.
+Python Exception <class 'gdb.error'>: No type named std::__detail::_Hash_node<struct _object *, false>.

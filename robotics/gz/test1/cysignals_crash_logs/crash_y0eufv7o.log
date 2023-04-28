@@ -1,0 +1,393 @@
+GNU gdb (GDB) 13.1
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Warning: 'set logging on', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled on'.
+
+Warning: 'set logging off', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled off'.
+
+[New LWP 600974]
+[New LWP 600975]
+[New LWP 600976]
+[New LWP 600977]
+[New LWP 600978]
+[New LWP 600979]
+[New LWP 600980]
+[New LWP 600981]
+[New LWP 600982]
+[New LWP 600983]
+[New LWP 600987]
+[New LWP 601028]
+[New LWP 601029]
+[New LWP 601032]
+[New LWP 601033]
+[New LWP 601034]
+[New LWP 601035]
+[New LWP 601062]
+[New LWP 601063]
+[New LWP 601064]
+[New LWP 601065]
+[New LWP 601066]
+[New LWP 601067]
+[New LWP 601068]
+[New LWP 601069]
+[New LWP 601070]
+[New LWP 601071]
+[New LWP 601072]
+[New LWP 601073]
+[New LWP 601074]
+[New LWP 601075]
+[New LWP 601076]
+[New LWP 601120]
+[New LWP 601121]
+[New LWP 601122]
+[New LWP 601123]
+[New LWP 601124]
+[New LWP 601125]
+[New LWP 601177]
+[New LWP 601178]
+[New LWP 601179]
+[New LWP 601180]
+[New LWP 601181]
+[New LWP 601182]
+[New LWP 601183]
+[New LWP 601184]
+[New LWP 601185]
+[New LWP 601186]
+[New LWP 601187]
+[New LWP 601188]
+[New LWP 601189]
+[New LWP 601190]
+[New LWP 601191]
+[New LWP 601192]
+[New LWP 601193]
+[New LWP 601194]
+[New LWP 601195]
+[New LWP 601196]
+[New LWP 601197]
+[New LWP 601198]
+[New LWP 601199]
+[New LWP 601200]
+[New LWP 601201]
+[New LWP 601202]
+[New LWP 601203]
+[New LWP 601204]
+[New LWP 601205]
+[New LWP 601206]
+[New LWP 601207]
+[New LWP 601208]
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.archlinux.org>
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+[34m-----------------------------------------------------------------------------------------------------------------------[34m[1m[regs]
+[0m  [32mR0:0x00007f9f118ea747 in wait4 () from /usr/lib/libc.so.6
+
+Stack backtrace
+---------------
+#1  0x00007f9e800e4157 in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#2  0x00007f9e800e42ea in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#3  0x00007f9e800e6f1d in  () at /usr/lib/python3.10/site-packages/cysignals/signals.cpython-310-x86_64-linux-gnu.so
+#4  0x00007f9f11851f50 in <signal handler called> () at /usr/lib/libc.so.6
+#5  0x00007f9e29594e40 in std::_Hashtable<unsigned long, unsigned long, std::allocator<unsigned long>, std::__detail::_Identity, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_begin() const (this=0x569) at /usr/include/c++/12.2.1/bits/hashtable.h:466
+#6  0x00007f9e2959473e in std::_Hashtable<unsigned long, unsigned long, std::allocator<unsigned long>, std::__detail::_Identity, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::clear() (this=0x569) at /usr/include/c++/12.2.1/bits/hashtable.h:2500
+#7  0x00007f9e2959418c in std::_Hashtable<unsigned long, unsigned long, std::allocator<unsigned long>, std::__detail::_Identity, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::~_Hashtable() (this=0x569, __in_chrg=<optimized out>) at /usr/include/c++/12.2.1/bits/hashtable.h:1584
+#8  0x00007f9e29593d58 in std::unordered_set<unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<unsigned long> >::~unordered_set() (this=0x569, __in_chrg=<optimized out>) at /usr/include/c++/12.2.1/bits/unordered_set.h:97
+#9  0x00007f9e28ec5e42 in gz::sim::v7::EntityComponentManagerPrivate::~EntityComponentManagerPrivate() (this=0x41, __in_chrg=<optimized out>) at /home/benoit/repos/gz-sim/src/EntityComponentManager.cc:49
+#10 0x00007f9e28ec5fa4 in std::default_delete<gz::sim::v7::EntityComponentManagerPrivate>::operator()(gz::sim::v7::EntityComponentManagerPrivate*) const (this=0x5636c46ebd98, __ptr=0x41) at /usr/include/c++/12.2.1/bits/unique_ptr.h:95
+#11 0x00007f9e28ebf002 in std::unique_ptr<gz::sim::v7::EntityComponentManagerPrivate, std::default_delete<gz::sim::v7::EntityComponentManagerPrivate> >::~unique_ptr() (this=0x5636c46ebd98, __in_chrg=<optimized out>) at /usr/include/c++/12.2.1/bits/unique_ptr.h:396
+        __ptr = @0x5636c46ebd98: 0x41
+#12 0x00007f9e28eab7de in gz::sim::v7::EntityComponentManager::~EntityComponentManager() (this=0x5636c46ebd98, __in_chrg=<optimized out>) at /home/benoit/repos/gz-sim/src/EntityComponentManager.cc:297
+#13 0x00007f9e2959463e in std::default_delete<gz::sim::v7::EntityComponentManager>::operator()(gz::sim::v7::EntityComponentManager*) const (this=0x7f9e29b44988, __ptr=0x5636c46ebd98) at /usr/include/c++/12.2.1/bits/unique_ptr.h:95
+#14 0x00007f9e29593f6e in std::unique_ptr<gz::sim::v7::EntityComponentManager, std::default_delete<gz::sim::v7::EntityComponentManager> >::~unique_ptr() (this=0x7f9e29b44988, __in_chrg=<optimized out>) at /usr/include/c++/12.2.1/bits/unique_ptr.h:396
+        __ptr = @0x7f9e29b44988: 0x5636c46ebd98
+#15 0x00007f9e29593b53 in pybind11::class_<gz::sim::v7::EntityComponentManager>::dealloc(pybind11::detail::value_and_holder&) (v_h=...) at /usr/include/pybind11/pybind11.h:1872
+        scope = {type = 0x0, value = 0x0, trace = 0x0}
+#16 0x00007f9ee43c783d in  () at /usr/lib/python3.10/site-packages/scipy/fft/_pocketfft/pypocketfft.cpython-310-x86_64-linux-gnu.so
+#17 0x00007f9f11b3bbc4 in  () at /usr/lib/libpython3.10.so.1.0
+#18 0x00007f9f11b6f529 in  () at /usr/lib/libpython3.10.so.1.0
+#19 0x00007f9f11b2f757 in  () at /usr/lib/libpython3.10.so.1.0
+#20 0x00007f9f11b47136 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#21 0x00007f9f11b44120 in  () at /usr/lib/libpython3.10.so.1.0
+#22 0x00007f9f11bf1b94 in PyEval_EvalCode () at /usr/lib/libpython3.10.so.1.0
+#23 0x00007f9f11bf7f1b in  () at /usr/lib/libpython3.10.so.1.0
+#24 0x00007f9f11b564cf in  () at /usr/lib/libpython3.10.so.1.0
+#25 0x00007f9f11b454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#26 0x00007f9f11bfc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#27 0x00007f9f11b46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#28 0x00007f9f11bfc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#29 0x00007f9f11b46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#30 0x00007f9f11bfc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#31 0x00007f9f11c102d7 in  () at /usr/lib/libpython3.10.so.1.0
+#32 0x00007f9f11b5f919 in  () at /usr/lib/libpython3.10.so.1.0
+#33 0x00007f9f11b4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#34 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#35 0x00007f9f11b454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#36 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#37 0x00007f9f11b4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#38 0x00007f9f11b61446 in  () at /usr/lib/libpython3.10.so.1.0
+#39 0x00007f9f11b61ebc in PyObject_Call () at /usr/lib/libpython3.10.so.1.0
+#40 0x00007f9f11b47ef8 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#41 0x00007f9f11b61446 in  () at /usr/lib/libpython3.10.so.1.0
+#42 0x00007f9f11b46618 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#43 0x00007f9f11bfc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#44 0x00007f9f11b46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#45 0x00007f9f11bfc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#46 0x00007f9f11b46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#47 0x00007f9f11bfc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#48 0x00007f9f11b46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#49 0x00007f9f11bfc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#50 0x00007f9f11b46ee0 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#51 0x00007f9f11bfc2d0 in  () at /usr/lib/libpython3.10.so.1.0
+#52 0x00007f9f10c40dfe in  () at /usr/lib/python3.10/lib-dynload/_asyncio.cpython-310-x86_64-linux-gnu.so
+#53 0x00007f9f11b556f6 in  () at /usr/lib/libpython3.10.so.1.0
+#54 0x00007f9f11bf38dc in  () at /usr/lib/libpython3.10.so.1.0
+#55 0x00007f9f11afa22a in  () at /usr/lib/libpython3.10.so.1.0
+#56 0x00007f9f11b4d0ef in  () at /usr/lib/libpython3.10.so.1.0
+#57 0x00007f9f11b4b3a6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#58 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#59 0x00007f9f11b4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#60 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#61 0x00007f9f11b4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#62 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#63 0x00007f9f11b4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#64 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#65 0x00007f9f11b4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#66 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#67 0x00007f9f11b4590a in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#68 0x00007f9f11b61446 in  () at /usr/lib/libpython3.10.so.1.0
+#69 0x00007f9f11b4a03f in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#70 0x00007f9f11b44120 in  () at /usr/lib/libpython3.10.so.1.0
+#71 0x00007f9f11bf1b94 in PyEval_EvalCode () at /usr/lib/libpython3.10.so.1.0
+#72 0x00007f9f11bf7f1b in  () at /usr/lib/libpython3.10.so.1.0
+#73 0x00007f9f11b564cf in  () at /usr/lib/libpython3.10.so.1.0
+#74 0x00007f9f11b454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#75 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#76 0x00007f9f11b454d6 in _PyEval_EvalFrameDefault () at /usr/lib/libpython3.10.so.1.0
+#77 0x00007f9f11b562d9 in _PyFunction_Vectorcall () at /usr/lib/libpython3.10.so.1.0
+#78 0x00007f9f11c16617 in  () at /usr/lib/libpython3.10.so.1.0
+#79 0x00007f9f11c0e92c in Py_RunMain () at /usr/lib/libpython3.10.so.1.0
+#80 0x00007f9f11be336b in Py_BytesMain () at /usr/lib/libpython3.10.so.1.0
+#81 0x00007f9f1183c790 in  () at /usr/lib/libc.so.6
+#82 0x00007f9f1183c84a in __libc_start_main () at /usr/lib/libc.so.6
+#83 0x00005636ba275045 in _start ()
+
+
+Cython backtrace
+----------------
+#0  0x00007f9f118ea6f0 in wait4 ()
+#1  0x0000000000000000 in ?? ()
+#2  0x0000000000000000 in ?? ()
+#3  0x0000000000000000 in ?? ()
+#4  0x0000000000000000 in ?? ()
+#5  0x00007f9e29594e34 in std::_Hashtable<unsigned long, unsigned long, std::allocator<unsigned long>, std::__detail::_Identity, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_begin () at /usr/include/c++/12.2.1/bits/hashtable.h:466
+   461          __node_ptr
+   462          _M_bucket_begin(size_type __bkt) const;
+   463    
+   464          __node_ptr
+   465          _M_begin() const
+>  466          { return static_cast<__node_ptr>(_M_before_begin._M_nxt); }
+   467    
+   468          // Assign *this using another _Hashtable instance. Whether elements
+   469          // are copied or moved depends on the _Ht reference.
+   470          template<typename _Ht>
+#6  0x00007f9e29594726 in std::_Hashtable<unsigned long, unsigned long, std::allocator<unsigned long>, std::__detail::_Identity, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::clear () at /usr/include/c++/12.2.1/bits/hashtable.h:2500
+  2495        void
+  2496        _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+  2497    	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+  2498        clear() noexcept
+  2499        {
+> 2500          this->_M_deallocate_nodes(_M_begin());
+  2501          __builtin_memset(_M_buckets, 0,
+  2502    		       _M_bucket_count * sizeof(__node_base_ptr));
+  2503          _M_element_count = 0;
+  2504          _M_before_begin._M_nxt = nullptr;
+#7  0x0000000000000000 in std::_Hashtable<unsigned long, unsigned long, std::allocator<unsigned long>, std::__detail::_Identity, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::~_Hashtable () at /usr/include/c++/12.2.1/bits/hashtable.h:1584
+  1579    			._M_bucket_index(declval<const __node_value_type&>(),
+  1580    					 (std::size_t)0)),
+  1581    		    "Cache the hash code or qualify your functors involved"
+  1582    		    " in hash code and bucket index computation with noexcept");
+  1583    
+> 1584          clear();
+  1585          _M_deallocate_buckets();
+  1586        }
+  1587    
+  1588      template<typename _Key, typename _Value, typename _Alloc,
+#8  0x0000000000000000 in std::unordered_set<unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<unsigned long> >::~unordered_set () at /usr/include/c++/12.2.1/bits/unordered_set.h:97
+    92       */
+    93      template<typename _Value,
+    94    	   typename _Hash = hash<_Value>,
+    95    	   typename _Pred = equal_to<_Value>,
+    96    	   typename _Alloc = allocator<_Value>>
+>   97        class unordered_set
+    98        {
+    99          typedef __uset_hashtable<_Value, _Hash, _Pred, _Alloc>  _Hashtable;
+   100          _Hashtable _M_h;
+   101    
+#9  0x0000000000000000 in gz::sim::v7::EntityComponentManagerPrivate::~EntityComponentManagerPrivate () at /home/benoit/repos/gz-sim/src/EntityComponentManager.cc:49
+    44    #include "gz/sim/components/World.hh"
+    45    
+    46    using namespace gz;
+    47    using namespace sim;
+    48    
+>   49    class gz::sim::EntityComponentManagerPrivate
+    50    {
+    51      /// \brief Implementation of the CreateEntity function, which takes a specific
+    52      /// entity as input.
+    53      /// \param[in] _entity Entity to be created.
+#10 0x00007f9e28ec5f82 in std::default_delete<gz::sim::v7::EntityComponentManagerPrivate>::operator() () at /usr/include/c++/12.2.1/bits/unique_ptr.h:95
+    90          {
+    91    	static_assert(!is_void<_Tp>::value,
+    92    		      "can't delete pointer to incomplete type");
+    93    	static_assert(sizeof(_Tp)>0,
+    94    		      "can't delete pointer to incomplete type");
+>   95    	delete __ptr;
+    96          }
+    97        };
+    98    
+    99      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+#11 0x0000000000000000 in std::unique_ptr<gz::sim::v7::EntityComponentManagerPrivate, std::default_delete<gz::sim::v7::EntityComponentManagerPrivate> >::~unique_ptr () at /usr/include/c++/12.2.1/bits/unique_ptr.h:396
+   391          {
+   392    	static_assert(__is_invocable<deleter_type&, pointer>::value,
+   393    		      "unique_ptr's deleter must be invocable with a pointer");
+   394    	auto& __ptr = _M_t._M_ptr();
+   395    	if (__ptr != nullptr)
+>  396    	  get_deleter()(std::move(__ptr));
+   397    	__ptr = pointer();
+   398          }
+   399    
+   400          // Assignment.
+#12 0x0000000000000000 in gz::sim::v7::EntityComponentManager::~EntityComponentManager () at /home/benoit/repos/gz-sim/src/EntityComponentManager.cc:297
+   292      : dataPtr(new EntityComponentManagerPrivate)
+   293    {
+   294    }
+   295    
+   296    //////////////////////////////////////////////////
+>  297    EntityComponentManager::~EntityComponentManager() = default;
+   298    
+   299    //////////////////////////////////////////////////
+   300    void EntityComponentManagerPrivate::CopyFrom(
+   301        const EntityComponentManagerPrivate &_from)
+#13 0x00007f9e2959461c in std::default_delete<gz::sim::v7::EntityComponentManager>::operator() () at /usr/include/c++/12.2.1/bits/unique_ptr.h:95
+    90          {
+    91    	static_assert(!is_void<_Tp>::value,
+    92    		      "can't delete pointer to incomplete type");
+    93    	static_assert(sizeof(_Tp)>0,
+    94    		      "can't delete pointer to incomplete type");
+>   95    	delete __ptr;
+    96          }
+    97        };
+    98    
+    99      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+#14 0x0000000000000000 in std::unique_ptr<gz::sim::v7::EntityComponentManager, std::default_delete<gz::sim::v7::EntityComponentManager> >::~unique_ptr () at /usr/include/c++/12.2.1/bits/unique_ptr.h:396
+   391          {
+   392    	static_assert(__is_invocable<deleter_type&, pointer>::value,
+   393    		      "unique_ptr's deleter must be invocable with a pointer");
+   394    	auto& __ptr = _M_t._M_ptr();
+   395    	if (__ptr != nullptr)
+>  396    	  get_deleter()(std::move(__ptr));
+   397    	__ptr = pointer();
+   398          }
+   399    
+   400          // Assignment.
+#15 0x00007f9e29593b05 in pybind11::class_<gz::sim::v7::EntityComponentManager>::dealloc () at /usr/lib/python3.10/site-packages/pybind11/include/pybind11/pybind11.h:1872
+  1867            // If we don't, the Python API will exit with an exception, and pybind11 will
+  1868            // throw error_already_set from the C++ destructor which is forbidden and triggers
+  1869            // std::terminate().
+  1870            error_scope scope;
+  1871            if (v_h.holder_constructed()) {
+> 1872                v_h.holder<holder_type>().~holder_type();
+  1873                v_h.set_holder_constructed(false);
+  1874            } else {
+  1875                detail::call_operator_delete(
+  1876                    v_h.value_ptr<type>(), v_h.type->type_size, v_h.type->type_align);
+#16 0x0000000000000000 in ?? ()
+#17 0x0000000000000000 in ?? ()
+#18 0x0000000000000000 in ?? ()
+#19 0x0000000000000000 in ?? ()
+#20 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#21 0x0000000000000000 in ?? ()
+#22 0x00007f9f11bf1b00 in PyEval_EvalCode ()
+#23 0x0000000000000000 in ?? ()
+#24 0x0000000000000000 in ?? ()
+#25 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#26 0x0000000000000000 in ?? ()
+#27 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#28 0x0000000000000000 in ?? ()
+#29 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#30 0x0000000000000000 in ?? ()
+#31 0x0000000000000000 in ?? ()
+#32 0x0000000000000000 in ?? ()
+#33 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#34 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#35 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#36 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#37 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#38 0x0000000000000000 in ?? ()
+#39 0x00007f9f11b61d60 in PyObject_Call ()
+#40 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#41 0x0000000000000000 in ?? ()
+#42 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#43 0x0000000000000000 in ?? ()
+#44 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#45 0x0000000000000000 in ?? ()
+#46 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#47 0x0000000000000000 in ?? ()
+#48 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#49 0x0000000000000000 in ?? ()
+#50 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#51 0x0000000000000000 in ?? ()
+#52 0x0000000000000000 in ?? ()
+#53 0x0000000000000000 in ?? ()
+#54 0x0000000000000000 in ?? ()
+#55 0x0000000000000000 in ?? ()
+#56 0x0000000000000000 in ?? ()
+#57 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#58 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#59 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#60 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#61 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#62 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#63 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#64 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#65 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#66 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#67 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#68 0x0000000000000000 in ?? ()
+#69 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#70 0x0000000000000000 in ?? ()
+#71 0x00007f9f11bf1b00 in PyEval_EvalCode ()
+#72 0x0000000000000000 in ?? ()
+#73 0x0000000000000000 in ?? ()
+#74 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#75 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#76 0x00007f9f11b45190 in _PyEval_EvalFrameDefault ()
+#77 0x00007f9f11b56260 in _PyFunction_Vectorcall ()
+#78 0x0000000000000000 in ?? ()
+#79 0x00007f9f11c0e730 in Py_RunMain ()
+#80 0x00007f9f11be3330 in Py_BytesMain ()
+#81 0x0000000000000000 in ?? ()
+#82 0x00007f9f1183c7c0 in __libc_start_main ()
+#83 0x00005636ba275020 in _start ()
+
+[Inferior 1 (process 600970) detached]
+
+warning: /home/benoit/.gdbinit-gef.py: No such file or directory
+Error while running hook_stop:
+Invalid type combination in equality test.
