@@ -28,72 +28,8 @@ from astropy import coordinates
 from astropy import units as u
 from chdrft.sim.rb.scenes import *
 from chdrft.sim.gz.helper import *
+from chdrft.sim.traj.lander import *
 
-
-class PIDZParameters(cmisc.PatchedModel):
-  max_ang: float = np.pi / 8
-  kp: float
-  kd: float
-
-
-class PIDZController(cmisc.PatchedModel):
-  target_z: Vec3
-  err: object = None
-  params: PIDZParameters
-  step_sec: float
-
-  @cmisc.cached_property
-  def pid(self) -> ctrl.PIDController:
-    return ctrl.PIDController(
-        kp=self.params.kp,
-        kd=self.params.kd,
-        control_range=ctrl.Range1D(-self.params.max_ang, self.params.max_ang),
-        step_sec=self.step_sec
-    )
-
-  def proc(self, wl: rb_base.Transform) -> rb_base.Vec3:
-    target_local = wl.inv @ self.target_z
-    proj = -target_local[:2]
-    self.err = proj
-    action = self.pid.push(proj)
-    rotx = rb_base.Transform.From(rot=rb_base.R.from_euler('yx', action * [1, -1]))
-    return rotx @ Vec3.Z()
-
-
-class LanderControllerTGOState(cmisc.PatchedModel):
-  snapshot: tgo.TGOSnapshot
-  ctrl: PIDZController
-
-
-class LanderController(cmisc.PatchedModel):
-  tgo: tgo.TGOSolver
-  t_tgo: float
-  rl: rb_gen.RigidBodyLink
-  state: LanderControllerTGOState = None
-  refresh_t_seconds: int = 1
-  step_sec: float
-  pidz_params: PIDZParameters
-
-  def reset(self):
-    self.state = None
-
-  def process(self, t: float, p: Transform, dp: Vec3, gravity: Vec3) -> Vec3:
-    if self.state is None or t - self.state.snapshot.t0 > self.refresh_t_seconds:
-      print('REFRESHING TGO Controller')
-      self.state = LanderControllerTGOState(
-          snapshot=tgo.TGOSnapshot(tgo=self.tgo, p=p.pos_v, dp=dp, tgo_t0=self.t_tgo - t, t0=t),
-          ctrl=PIDZController(
-              target_z=p @ Vec3.Z(), step_sec=self.step_sec, params=self.pidz_params
-          ),
-      )
-    want = self.state.snapshot.get_p(t)
-    target_acc = want - gravity
-    print(target_acc, want, gravity)
-    target_norm = target_acc.norm
-    self.state.ctrl.target_z = target_acc.uvec
-    action = p @ self.state.ctrl.proc(p)
-    res = action * target_norm * self.rl.mass
-    return res
 
 
 class BaseSim(helper.SimInstance):
