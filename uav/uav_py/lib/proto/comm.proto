@@ -1,0 +1,21 @@
+syntax = "proto3";
+package siyi;
+
+enum SiyiJoyMode {
+    YAW = 0;
+    PITCH = 1;
+  }
+
+message SiyiJoyData {
+  SiyiJoyMode mode = 1;
+  float ctrl = 2;
+  float zoom = 3;
+  int32 photo_count = 4;
+  int32 record_count = 5;
+}
+
+message SiyiRawReq {
+  int32 msg_id =1;
+  string desc = 2;
+  bytes res = 3;
+}

@@ -142,7 +142,7 @@ runner.world.
 
 from chdrft.sim.rb import rb_player
 from chdrft.dsp.utils import linearize_clamp
-from chdrft.utils.math import make_norm
+from chdrft.utils.omath import make_norm
 import shapely.geometry
 import shapely.ops
 from chdrft.utils.geo import Circle, to_shapely
