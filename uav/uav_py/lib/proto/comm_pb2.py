@@ -24,17 +24,17 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ncomm.proto\x12\x04siyi\"u\n\x0bSiyiJoyData\x12\x1f\n\x04mode\x18\x01 \x01(\x0e\x32\x11.siyi.SiyiJoyMode\x12\x0c\n\x04\x63trl\x18\x02 \x01(\x02\x12\x0c\n\x04zoom\x18\x03 \x01(\x02\x12\x13\n\x0bphoto_count\x18\x04 \x01(\x05\x12\x14\n\x0crecord_count\x18\x05 \x01(\x05\"7\n\nSiyiRawReq\x12\x0e\n\x06msg_id\x18\x01 \x01(\x05\x12\x0c\n\x04\x64\x65sc\x18\x02 \x01(\t\x12\x0b\n\x03res\x18\x03 \x01(\x0c*!\n\x0bSiyiJoyMode\x12\x07\n\x03YAW\x10\x00\x12\t\n\x05PITCH\x10\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ncomm.proto\x12\x04siyi\"\x85\x01\n\x0bSiyiJoyData\x12\x1f\n\x04mode\x18\x01 \x01(\x0e\x32\x11.siyi.SiyiJoyMode\x12\x0c\n\x04\x63trl\x18\x02 \x01(\x02\x12\x0c\n\x04zoom\x18\x03 \x01(\x02\x12\x13\n\x0bphoto_count\x18\x04 \x01(\x05\x12\x14\n\x0crecord_count\x18\x05 \x01(\x05\x12\x0e\n\x06\x63\x65nter\x18\x06 \x01(\x05\"7\n\nSiyiRawReq\x12\x0e\n\x06msg_id\x18\x01 \x01(\x05\x12\x0c\n\x04\x64\x65sc\x18\x02 \x01(\t\x12\x0b\n\x03res\x18\x03 \x01(\x0c*!\n\x0bSiyiJoyMode\x12\x07\n\x03YAW\x10\x00\x12\t\n\x05PITCH\x10\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'comm_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_SIYIJOYMODE']._serialized_start=196
-  _globals['_SIYIJOYMODE']._serialized_end=229
-  _globals['_SIYIJOYDATA']._serialized_start=20
-  _globals['_SIYIJOYDATA']._serialized_end=137
-  _globals['_SIYIRAWREQ']._serialized_start=139
-  _globals['_SIYIRAWREQ']._serialized_end=194
+  _globals['_SIYIJOYMODE']._serialized_start=213
+  _globals['_SIYIJOYMODE']._serialized_end=246
+  _globals['_SIYIJOYDATA']._serialized_start=21
+  _globals['_SIYIJOYDATA']._serialized_end=154
+  _globals['_SIYIRAWREQ']._serialized_start=156
+  _globals['_SIYIRAWREQ']._serialized_end=211
 # @@protoc_insertion_point(module_scope)

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cel_server.base;
+option go_package = "chdrft/cel-server/app/proto";
+
+message PII {
+
+int32 a = 1;
+int32 b = 2;
+
+
+}

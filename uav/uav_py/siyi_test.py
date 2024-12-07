@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 from __future__ import annotations
+
+__package__ = "chdrft.projects.uav_py"
 from chdrft.cmds import CmdsList
 from chdrft.main import app
 from chdrft.utils.cmdify import ActionHandler
@@ -38,9 +40,18 @@ from chdrft.dsp.utils import linearize_clamp
 from .lib.siyi import *
 from .lib.proto import comm_p2p, comm_pb2
 import subprocess as sp
+from pydantic_core import from_json
 
 if not g_env.slim:
   from chdrft.display.service import g_plot_service as oplt
+
+import Pyro5 as pyro
+import Pyro5.server, Pyro5.nameserver, Pyro5.client
+try:
+  import chdrft.ros.base as ros_base
+except:
+  glog.error('failed to import chdrft.ros.base')
+  pass
 
 import rich.json
 import rich.live
@@ -51,35 +62,43 @@ cache = None
 
 
 class ServiceType(enum.Enum):
-  SERVER='server'
+  SERVER = 'server'
   CLIENT = 'client'
 
 
 def args(parser):
   clist = CmdsList()
   parser.add_argument('--target', default='192.168.1.25')
+  parser.add_argument('--target-port', type=int, default=37260)
   parser.add_argument('--sync-folder', default='./data/')
+  parser.add_argument('--ros-pub-id', default='main')
   parser.add_argument('--format', action='store_true')
   parser.add_argument('--reset', action='store_true')
+  parser.add_argument('--export-ros', action='store_true')
   parser.add_argument('--center', action='store_true')
   parser.add_argument('--resolution', type=lambda x: SiyiResolution[x])
   parser.add_argument('--set-mode', type=lambda x: SiyiGimbalMotionMode[x])
   parser.add_argument('--target-speed', type=str)
   parser.add_argument('--stream-type', type=int)
-  parser.add_argument('--target-port', type=int, default=37260)
   parser.add_argument('--seq', type=int, default=0)
   parser.add_argument('--no-cam', action='store_true')
+  parser.add_argument('--no-gamepad', action='store_true')
   parser.add_argument('--no-live', action='store_true')
-  parser.add_argument('--video', type=int)
+  parser.add_argument('--video', type=int, default=0)
   parser.add_argument('--video-duration', type=int)
   parser.add_argument('--service-type', type=lambda x: ServiceType(x))
   parser.add_argument('--endpoint', type=str)
 
+  parser.add_argument('--start-pyro', action='store_true')
+  parser.add_argument('--pyro-target', type=str)
   ActionHandler.Prepare(parser, clist.lst, global_action=1)
 
 
 crcx = crcmod.mkCrcFun(0x11021, initCrc=0, rev=False)
 kSiyiOffsetData = 8
+kPyroNSPort = 11111
+pyro.config.NS_HOST = 'localhost'
+pyro.config.NS_PORT = kPyroNSPort
 
 if 0:
   a = bytes.fromhex('55 66 01 00 00 00 00 19')
@@ -226,7 +245,37 @@ def test_http(ctx):
   print(hc.get_files(is_video))
 
 
-def sync_cam_files(ctx):
+def delta_sync_cam_files_init(ctx):
+  sh = SyncHelper(host=ctx.target, sync_folder=ctx.sync_folder, video=False)
+  sh.init()
+
+
+def delta_sync_cam_files_sync(ctx):
+  sh = SyncHelper(host=ctx.target, sync_folder=ctx.sync_folder, video=False)
+  sh.sync()
+
+
+def test_sync_cam(ctx):
+  sh = SyncHelper(host=ctx.target, sync_folder=ctx.sync_folder, video=False)
+  print(sh.cur_state.json())
+  sh.init()
+  m: CameraManager = ctx.m
+  with m.enter():
+    m.take_picture()
+    time.sleep(1)
+
+  sh.sync()
+
+
+def cam_list_files(ctx):
+  assert ctx.sync_folder
+  hc = SiyiHTTPClient(host=ctx.target)
+  is_video = ctx.video
+  for rel, f in hc.get_files(is_video).items():
+    print(rel, f)
+
+
+def whole_sync_cam_files(ctx):
   assert ctx.sync_folder
   hc = SiyiHTTPClient(host=ctx.target)
   is_video = ctx.video
@@ -246,11 +295,14 @@ def action(ctx):
       return
     if ctx.center:
       m.center()
+    print(m.handler.send_msg(SiyiCmd_GimbalAngle.Req(yaw=0, pitch=00), wait_reply=True))
 
     print('spec0', m.get_codec_specs(0))
     print('spec1', m.get_codec_specs(1))
     if ctx.resolution:
       m.set_resolution(ctx.resolution, stream_type=ctx.stream_type)
+      print(m.get_codec_specs(ctx.stream_type))
+
     if ctx.set_mode is not None:
       m.set_mode(ctx.set_mode)
 
@@ -346,6 +398,12 @@ def test_controller(ctx):
   gp = OGamepad()
 
   m: CameraManager = ctx.m
+  rctx = None
+  if ctx.export_ros:
+    rctx = ros_base.RospyContext(subid=ctx.ros_pub_id)
+    app.stack.enter_context(rctx.enter())
+    rctx.create_publisher(f'joy', SiyiJoyData)
+
   if m is None:
     with siyi_joypad(gp) as state:
       debug_controller_state(state, lambda x: SiyiJoyData.from_inputs(x.inputs).json())
@@ -353,28 +411,26 @@ def test_controller(ctx):
 
   with rich.live.Live(refresh_per_second=10) as live, m.enter() as m, siyi_joypad(gp) as state:
     for x in list(ButtonKind):
-      state.set(x, 0)
+      state.last.set(x, 0)
 
-    def get_val(x, mode: SiyiJoyMode) -> float:
-      if x[ButtonKind.MODE] != mode: return 0
-      return x[ButtonKind.CTRL]
-
-    max_zoom = m.max_zoom()
     m.set_mode(SiyiGimbalMotionMode.FOLLOW)
     if ctx.center:
       m.center()
       time.sleep(1)
+
     prev = dict(state.last.inputs)
     while True:
-      live.update(rich.json.JSON(state.last.json()))
-      cur = dict(state.last.inputs)
-      m.set_speed(get_val(cur, SiyiJoyMode.YAW), -get_val(cur, SiyiJoyMode.PITCH))
-      cur_zoom = get_val(cur, SiyiJoyMode.ZOOM)
-      prev_zoom = get_val(prev, SiyiJoyMode.ZOOM)
-      if cur_zoom != prev_zoom:
-        m.rel_zoom(cur[ButtonKind.ZOOM])
-      prev = cur
-      time.sleep(0.05)
+      if not ctx.no_live:
+        live.update(rich.json.JSON(cmisc.json_dumps(state.last.inputs)))
+
+      jd = SiyiJoyData(**{k.value: v for k, v in state.last.inputs.items()})
+      if rctx is not None:
+        rctx.cbs.joy(jd)
+
+      glog.warn('Start')
+      m.recv_joy_data(jd)
+      glog.warn('end')
+      time.sleep(0.1)
 
 
 def test(ctx):
@@ -440,7 +496,7 @@ def test_tunnel_mock(ctx):
   sc = SiyiController(gp=gp, th=th1)
   sc.th.tg.add_rich_monitor(lambda: 10, lambda: sc.siyi_data.to_json())
 
-  with sc.enter(), drone_server.enter():
+  with sc, drone_server:
     input('DONE ?')
 
 
@@ -449,24 +505,56 @@ kConfBase = tunnel.Conf(
 )
 
 
+class GlobalParams(tunnel.pydantic_settings.BaseSettings):
+  server_params: SiyiServerParams
+
 def make_service(th: tunnel.PyMsgTunnelData, ctx):
   if ctx.service_type is ServiceType.SERVER:
-    ss =  SiyiServer(th=th, m=ctx.m)
+    x = tunnel.pydantic_settings.YamlConfigSettingsSource(GlobalParams, './config.yaml')()
+    print(x)
+    conf = GlobalParams(**x)
+    ss = SiyiServer(th=th, m=ctx.m, params=conf.server_params)
     if not ctx.no_live:
-      ss.th.tg.add_rich_monitor(lambda: 10, lambda: ss.last_joy.json())
+      ss.th.tg.add_rich_monitor(lambda: 10, lambda: ss.siyi_data.to_json())
+
+    if ctx.start_pyro:
+      ss.th.tg.add(func=lambda: pyro.nameserver.start_ns_loop(port=kPyroNSPort, host='0.0.0.0'))
+      ss.th.tg.add(
+          func=lambda: pyro.server.Daemon.
+          serveSimple({
+              ss: 'pyro.siyiserver',
+              ctx.m: 'pyro.cameramanager'
+          })
+      )
     return ss
   else:
 
-    gp = OGamepad()
+    if ctx.no_gamepad: gp = None
+    else: gp = OGamepad()
     sc = SiyiController(gp=gp, th=th)
+
+    th.ep.recv_handler.add_handler(None, glog.info)
+
+    if ctx.export_ros:
+      rc = ctx.rctx = ros_base.RospyContext(subid=ctx.ros_pub_id)
+      rc.create_publisher('joy', SiyiJoyData)
+      sc.th.tg.add_timer(lambda: 10, lambda: rc.cbs.joy(sc.siyi_data.joy))
+      th.ep.recv_handler.add_handler(
+          ros_base.mavlink_msgs.MAVLink_radio_status_message,
+          rc.create_publisher('radio', ros_base.mavlink_msgs.MAVLink_radio_status_message)
+      )
+      sc.ctx_push(rc.enter(), prepend=True)
+
     if not ctx.no_live:
       sc.th.tg.add_rich_monitor(lambda: 10, lambda: sc.siyi_data.to_json())
     return sc
+
 
 def run_endpoint(ctx):
   assert ctx.endpoint and ctx.service_type, ctx
   f1 = f'/tmp/test_py_{ctx.service_type.value}.sock'
 
+  # TODO: remove this - use get-smart_tube
   proc = sp.Popen(f'socat UNIX-LISTEN:{f1} {ctx.endpoint}', shell=True)
   time.sleep(1.3)
 
@@ -475,47 +563,54 @@ def run_endpoint(ctx):
     cmisc.failsafe(lambda: os.remove(f1))
 
   c1 = app.stack.enter_context(tunnel.Connection(f1))
+  time.sleep(0.1)
 
-
+  ep = tunnel.MavlinkEndpoint(conn=c1)
   tunnel.g_p2p.add(comm_pb2, comm_p2p)
   tunnel.g_p2p.build()
-  th1 = tunnel.PyMsgTunnelData(conf=kConfBase.maybe_toggle(ctx.service_type is ServiceType.SERVER), f_enc=c1)
+  th1 = tunnel.PyMsgTunnelData(
+      conf=kConfBase.maybe_toggle(ctx.service_type is ServiceType.SERVER),
+      ep=ep,
+  )
   sx = make_service(th1, ctx)
 
+  ep.recv_handler.add_handler(None, glog.info)
 
-  with sx.enter():
-    input('DONE ?')
+  app.stack.enter_context(sx)
+  if ctx.pyro_target:
+    m = pyro.client.Proxy('PYRONAME:pyro.cameramanager')
+  app.wait_or_interactive()
 
   print('Done test')
 
 
+def interactive(ctx):
+  if ctx.pyro_target:
+    m = pyro.client.Proxy('PYRONAME:pyro.cameramanager')
+  else:
+    m: CameraManager = ctx.m
 
+    app.global_context.enter_context(m.enter())
+    print(m.get_firmware())
 
-def test_msgpack(ctx):
-  cmisc.return_to_ipython()
+  app.wait_or_interactive()
   #%%
 
-
   #%%
-
 
 
 def test_proto(ctx):
 
-
   p2p = tunnel.Proto2Pydantic()
   p2p.add(comm_pb2, comm_p2p)
   p2p.build()
-  a = comm_p2p.SiyiJoyData(mode=comm_p2p.SiyiJoyMode.PITCH,
-                       ctrl=0, photo_count = 3, record_count=12)
-  b=  p2p.to_proto(a)
+  a = comm_p2p.SiyiJoyData(mode=comm_p2p.SiyiJoyMode.PITCH, ctrl=0, photo_count=3, record_count=12)
+  b = p2p.to_proto(a)
   print(b)
   print(json_format.MessageToDict(b))
   print(json_format.MessageToJson(b))
 
-  c=  p2p.to_pyd(b)
-
-
+  c = p2p.to_pyd(b)
 
 
 def main():
@@ -527,7 +622,7 @@ def main():
         target_hostname=flags.target, target_port=flags.target_port, seq=flags.seq
     )
   else:
-    ctx.m = CameraManager( mock=True)
+    ctx.m = CameraManager(mock=True)
   ActionHandler.Run(ctx)
 
 

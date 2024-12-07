@@ -12,6 +12,7 @@ message SiyiJoyData {
   float zoom = 3;
   int32 photo_count = 4;
   int32 record_count = 5;
+  int32 center = 6;
 }
 
 message SiyiRawReq {

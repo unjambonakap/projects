@@ -1,0 +1,5 @@
+server_params:
+  stats_params:
+    dump_file: '/tmp/stats.json'
+  image_collector_params:
+    enable: true

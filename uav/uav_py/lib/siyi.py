@@ -38,10 +38,11 @@ from chdrft.dsp.utils import linearize_clamp
 import asyncio
 import typing
 import base64
+import urllib.parse
+from chdrft.utils.path import FileFormatHelper
 
-if not g_env.slim:
-  from chdrft.display.service import g_plot_service as oplt
-
+import Pyro5 as pyro
+import Pyro5.server
 import rich.json
 import rich.live
 from .proto import comm_p2p
@@ -76,11 +77,21 @@ def run_ev_protected_op(fun, timeout, *args, **kwargs):
     return future.result()
 
 
+class SDFolder(cmisc.PatchedModel):
+  count: int = 0
+
+
+class SDState(cmisc.PatchedModel):
+  folders: dict[str, SDFolder] = cmisc.Field(default_factory=dict)
+  is_video: bool
+  guessing: bool
+
+
 class DeltaSDState(cmisc.PatchedModel):
   hc: SiyiHTTPClient
-  orig: list[dict] = cmisc.Field(default_factory=dict)
-  res: list[dict] = None
-  diff: list[dict] = None
+  orig: dict = cmisc.Field(default_factory=dict)
+  res: dict = None
+  diff: dict = None
 
   @contextlib.contextmanager
   def enter(self) -> DeltaSDState:
@@ -90,15 +101,24 @@ class DeltaSDState(cmisc.PatchedModel):
     self.diff = {k: v for k, v in self.res.items() if k not in self.orig}
 
 
+class SyncResult(cmisc.PatchedModel):
+  sd_state: SDState
+  added: list[str] = cmisc.pyd_f(list)
+  existing: list[str] = cmisc.pyd_f(list)
+
+
 class SiyiHTTPClient(cmisc.PatchedModel):
-  host: str
+  host: str | None
+  mock: bool = False
+  port: int = 82
 
   def delta(self) -> DeltaSDState:
+    if self.mock: return None
     return DeltaSDState(hc=self)
 
   @property
   def base_url(self) -> str:
-    return f'http://{self.host}:82/cgi-bin/media.cgi/api/v1'
+    return f'http://{self.host}:{self.port}/cgi-bin/media.cgi/api/v1'
 
   def query(self, action, params):
     res = A.RecursiveImport(requests.get(f'{self.base_url}/{action}', params).json())
@@ -114,32 +134,125 @@ class SiyiHTTPClient(cmisc.PatchedModel):
   def get_media_count(self, path: str, video: bool) -> int:
     return self.query('getmediacount', dict(media_type=1 if video else 0, path=path)).count
 
-  def get_media_list(self, path: str, start: int, count: int, video: bool) -> dict[str, str]:
+  def get_media_list(self,
+                     path: str,
+                     start: int,
+                     video: bool,
+                     count: int = 0,
+                     to: int = None) -> dict[str, str]:
+    if to is not None:
+      count = to + 1
     res = self.query(
         'getmedialist', dict(media_type=1 if video else 0, path=path, start=start, count=count)
     )
+
     return {x.name: x.url.replace('192.168.144.25', self.host) for x in res.list}
 
-  def get_files(self, video: bool) -> dict[str, str]:
-    dirs = self.get_directories(video=video)
-    res = {}
+  def get_sd_state(
+      self, video: bool = None, from_state: SDState = None, guessing: bool = None
+  ) -> SDState:
+    if self.mock:
+      return SDState(is_video=video, guessing=guessing, folders=dict(abc=dict(count=3)))
+    if from_state is not None and from_state.guessing:
+
+      if guessing is None: guessing = True
+
+      dirs = list(from_state.folders.keys())
+      is_video = from_state.is_video
+    else:
+      if guessing is None: guessing = False
+      dirs = self.get_directories(video=video)
+
+    res = SDState(is_video=video, guessing=guessing)
     for name, dir in dirs.items():
       count = self.get_media_count(path=dir, video=video)
-      if count <= 0: continue
-      cur = self.get_media_list(path=dir, video=video, start=0, count=count)
-      res |= {f'{dir}/{k}': A(url=v, video=video) for k, v in cur.items()}
+      f = res.folders[dir] = SDFolder(count=count)
+
     return res
+
+  def sync_from(self, sync_folder: str, from_state: SDState) -> SyncResult:
+    to_state = self.get_sd_state(video=from_state.is_video)
+    res = SyncResult(sd_state=to_state)
+    for rel, f in self.get_delta_files(from_state, to_state).items():
+      ofile = os.path.join(sync_folder, rel)
+      if self.maybe_download(ofile, f.url):
+        res.added.append(ofile)
+      else:
+        res.existing.append(ofile)
+    return res
+
+  def get_fname_url(self, dir, is_video, i):
+    fname = 'IMG_{i:04d}.jpg'
+    type = ['photo', 'mp4'][is_video]
+    if is_video:
+      fname = f'REC_{i:04d}.mp4'
+    return fname, f'http://{self.host}:{self.port}/{type}/{dir}/{fname}'
+
+  def get_delta_files(self, from_state: SDState, to_state: SDState) -> dict[str, str]:
+    res = {}
+    for dir, to_folder in to_state.folders.items():
+      from_folder = from_state.folders.get(dir, SDFolder())
+      if from_folder.count == to_folder.count: continue
+
+      if to_state.guessing:
+        cur = dict(
+            [
+                self.get_fname_url(dir, to_state.is_video, i)
+                for i in range(from_folder.count, to_folder.count)
+            ]
+        )
+      else:
+        cur = self.get_media_list(
+            path=dir, video=to_state.is_video, start=from_count, to=to_count - 1
+        )
+      glog.info(f'Getting delta files {from_count=} {to_count=} {len(cur)=}')
+
+      res |= {f'{dir}/{k}': A(url=v, video=to_state.is_video) for k, v in cur.items()}
+    return res
+
+  def get_files(self, video: bool) -> dict[str, str]:
+    return self.get_delta_files(from_state=SDState(), to_state=sel.get_sd_state(video))
 
   def file_content(self, url):
     return requests.get(url, stream=True).raw.read()
 
-  def maybe_download(self, target, url):
-    if os.path.exists(target): return
+  def maybe_download(self, target, url) -> bool:
+    if os.path.exists(target): return False
     cmisc.makedirs(os.path.dirname(target))
-    Z.FileFormatHelper.Write(target, self.file_content(url))
+    FileFormatHelper.Write(target, self.file_content(url))
+    return True
 
 
 DeltaSDState.update_forward_refs()
+
+
+class SyncHelper(cmisc.PatchedModel):
+  host: str
+  sync_folder: str
+  video: bool = False
+
+  @cmisc.cached_property
+  def hc(self) -> SiyiHTTPClient:
+    return SiyiHTTPClient(host=self.host)
+
+  @property
+  def dump_file(self):
+    return os.path.join(self.sync_folder, 'sync.json')
+
+  def save_state(self, state: SDState):
+    FileFormatHelper.Write(self.dump_file, state)
+
+  def init(self):
+    self.save_state(self.hc.get_sd_state(self.video))
+
+  @property
+  def cur_state(self):
+    return SDState.parse_obj(FileFormatHelper.Read(self.dump_file))
+
+  def sync(self):
+    rs = self.hc.sync_from(self.sync_folder, self.cur_state)
+    self.save_state(rs.sd_state)
+    print(rs.json())
 
 
 class SiyiMessage(cmisc.PatchedModel):
@@ -197,9 +310,13 @@ class SiyiMessage(cmisc.PatchedModel):
 
 siyi_message_types = {}
 
+
 class SiyiResolution(enum.Enum):
-  R_360p  = (480, 360)
-  R_480p  = (720, 480)
+  # R_120p = (160, 120) not working
+  R_192p = (256, 192)
+  R_240p = (320, 240)
+  R_360p = (480, 360)
+  R_480p = (720, 480)
   R_720p = (1280, 720)
   R_1080p = (1920, 1020)
   R_2K = (2560, 1440)
@@ -218,7 +335,7 @@ class SiyiCmd_Metaclass(type):
       fields = []
       norms = {}
       for k, v in obj.__dict__.items():
-        if k.startswith('__'): continue
+        if k.startswith('_'): continue
         if v.__module__ != ctypes.__name__:
           fields.append((k, v.ctype))
           norms[k] = v
@@ -262,6 +379,15 @@ class SiyiCmd_Metaclass(type):
           raw = clx.from_buffer_copy(data)
           return raw.to_obj()
 
+      if info == 'Req':
+
+        def default_mock_res(x):
+          return x.base.Res()
+
+        Fx._to_mock_res = getattr(obj, '_to_mock_res', default_mock_res)
+
+      for attr in '__doc__', '__name__', '__qualname__', '__module__':
+        setattr(Fx, attr, getattr(obj, attr))
       return Fx
 
     siyi_message_types[res.ID] = res
@@ -397,6 +523,10 @@ class SiyiCmd_Center(metaclass=SiyiCmd_Metaclass):
   class Req:
     center_pos = ctypes.c_uint8
 
+    def _to_mock_res(self):
+      tmp = self.base.Res(sta=1)
+      return tmp
+
   class Res:
     sta = ctypes.c_uint8
 
@@ -474,6 +604,10 @@ class SiyiCmd_RequestCodecSpecs(metaclass=SiyiCmd_Metaclass):
 
   class Req:
     stream_type = ctypes.c_uint8
+
+    def _to_mock_res(self):
+      tmp = self.base.Res(stream_type=self.stream_type)
+      return tmp
 
   class Res:
     stream_type = ctypes.c_uint8
@@ -639,7 +773,6 @@ class SiyiCmd_RequestGimbalAttitudeStream(metaclass=SiyiCmd_Metaclass):
   class Req:
     data_type: ctypes.c_uint8
     data_freq = EnumAsU8(SiyiDataFreq)
-    ax: ctypes.c_uint64
 
   class Res:
     data_type: ctypes.c_uint8
@@ -653,12 +786,14 @@ class SiyiHandler(cmisc.PatchedModel):
   mock: bool = False
   seq: int = 0
   q: dict[int, queue.Queue] = cmisc.Field(default_factory=dict)
+  handlers: tunnel.HandlersManager = cmisc.pyd_f(tunnel.HandlersManager)
 
   @contextlib.contextmanager
   def enter(self):
     for x in siyi_message_types.keys():
       self.q[x] = queue.Queue()
 
+    self.handlers.backup_handler = lambda msg: self.q[msg.typ._base.ID].put_nowait(msg.obj)
     if self.mock:
       yield self
       return
@@ -680,42 +815,66 @@ class SiyiHandler(cmisc.PatchedModel):
         rem = self.conn.recv_fixed_size(msg.sizeof - kSiyiOffsetData)
         b += rem
         m = self.unpack(b, is_req=False)
-        glog.debug(f'SiyiHandler: Real msg >> {m}')
+        glog.info(f'SiyiHandler: Real msg >> {m}')
 
-        self.q[msg.cmd_id].put_nowait(m.obj)
+        self.recv_msg(m)
       except cmisc.TimeoutException:
         pass
 
-  def wait_msg(self, cmd_id: int) -> dict:
+  def wait_msg(self, cmd_id: int, timeout=None) -> dict | None:
     q = self.q[cmd_id]
     if self.mock:
       if q.empty():
         return siyi_message_types[cmd_id].Res().to_obj()
       return q.get_nowait()
     else:
-      return q.get()
+      try:
+        return q.get(timeout=timeout)
+      except queue.Empty:
+        print('GOT timeout')
+        pass
 
   def clear_cmd(self, cmd_id: int):
     while not self.q[cmd_id].empty():
       self.q[cmd_id].get_nowait()
 
-  def send_msg(self, msg, wait_reply: bool = False) -> dict | None:
+  def send_msg(self, msg, wait_reply: bool = False, timeout=None) -> dict | None:
     cmd_id = msg.base.ID
 
     if wait_reply:
       self.clear_cmd(cmd_id)
 
-    d = self.pack(msg, self.seq)
-
     if not self.mock:
+      glog.warn('SEND')
+      d = self.pack(msg, self.seq)
       self.conn.send(d)
+      glog.warn('DONE SEND')
     else:
       if msg.base.Res is not None:
-        res = self.unpack(self.pack(msg.base.Res(), 0))
-        self.q[cmd_id].put_nowait(res.obj)
+        self.recv_msg(self.unpack(self.pack(msg._to_mock_res(), seq=0), is_req=False))
+
     if wait_reply:
-      res = self.wait_msg(cmd_id)
+      glog.warn('WATI')
+      res = self.wait_msg(cmd_id, timeout=timeout)
+      glog.warn('DONE WATI')
       return res
+
+  async def asend_msg(self, msg, func=None, filter=None):
+    cmd_id = msg.base.ID
+
+    loop = asyncio.get_event_loop()
+    f = loop.create_future()
+
+    def fx(msg):
+      if func is not None: func(msg)
+      loop.call_soon_threadsafe(f.set_result, msg)
+
+    with self.handlers.add_handler_oneshot(msg.base.Res, fx, absorb=True, filter=filter):
+      self.send_msg(msg)
+      return await f
+
+  def recv_msg(self, m: A):
+    self.handlers.handle(m, key=m.typ)
 
   def pack(self, msg, seq):
     data = msg.pack()
@@ -729,26 +888,26 @@ class SiyiHandler(cmisc.PatchedModel):
     )
     return m.pack()
 
-  def unpack(self, data, is_req=False) -> SiyiMessage:
+  def unpack(self, data, is_req=False) -> A:
+
     m = SiyiMessage.unpack(data, with_data=True)
     typ = siyi_message_types[m.cmd_id]
     cl_typ = typ.Req if is_req else typ.Res
 
-    m.obj = cl_typ.unpack(m.data)
-    return m
+    return A(obj=cl_typ.unpack(m.data), typ=cl_typ, raw=m)
 
 
-
+@pyro.server.expose
 class CameraManager(cmisc.PatchedModel):
   seq: int = 0
   mock: bool = False
   target_hostname: str = None
   target_port: int = None
+  start_state: DeltaSDState = None
 
   @cmisc.cached_property
   def hc(self) -> SiyiHTTPClient:
-    assert not self.mock
-    return SiyiHTTPClient(host=self.target_hostname)
+    return SiyiHTTPClient(host=self.target_hostname, mock=self.mock)
 
   @cmisc.cached_property
   def handler(self) -> SiyiHandler:
@@ -762,22 +921,37 @@ class CameraManager(cmisc.PatchedModel):
   @contextlib.contextmanager
   def enter(self) -> CameraManager:
     with self.handler.enter():
+      self.start_state = self.hc.delta()
       yield self
 
   def get_attitude(self):
-    return self.handler.send_msg(SiyiCmd_RequestGimbalAttitude.Req(), wait_reply=True)
+    return self.handler.send_msg(SiyiCmd_RequestGimbalAttitude.Req(), wait_reply=True).obj
 
-  def set_speed(self, yaw, pitch):
-    return self.handler.send_msg(SiyiCmd_GimbalRotSpeed.Req(yaw=yaw, pitch=pitch), wait_reply=True)
+  async def aget_attitude(self):
+    return (await self.handler.asend_msg(SiyiCmd_RequestGimbalAttitude.Req())).obj
 
-  def rel_zoom(self, v: float) -> float:
+  def request_attitude_stream(self, freq: SiyiDataFreq):
+    assert 0, 'not working, crashing cam'
+    self.handler.send_msg(
+        SiyiCmd_RequestGimbalAttitudeStream.Req(data_type=1, data_freq=freq), wait_reply=True
+    )
+
+  def get_firmware(self):
+    return self.handler.send_msg(SiyiCmd_Firmware.Req(), wait_reply=True)
+
+  def set_speed(self, yaw, pitch, **kwargs):
+    return self.handler.send_msg(
+        SiyiCmd_GimbalRotSpeed.Req(yaw=yaw, pitch=pitch), wait_reply=True, **kwargs
+    )
+
+  def rel_zoom(self, v: float, **kwargs) -> float:
     zoom_map = {
         -1: SiyiManualZoom.ZOOM_OUT,
         0: SiyiManualZoom.STOP,
         1: SiyiManualZoom.ZOOM_IN,
     }
     return self.handler.send_msg(
-        SiyiCmd_ManualZoom.Req(action=zoom_map[v]), wait_reply=True
+        SiyiCmd_ManualZoom.Req(action=zoom_map[v]), wait_reply=True, **kwargs
     ).cur_zoom
 
   def zoom(self, v: float):
@@ -800,14 +974,19 @@ class CameraManager(cmisc.PatchedModel):
   def get_mode(self) -> SiyiGimbalMotionMode:
     return self.handler.send_msg(SiyiCmd_GetGimbalMode.Req(), wait_reply=True).motion
 
-  def set_resolution(self, res: SiyiResolution, stream_type):
+  def set_resolution(
+      self,
+      res: SiyiResolution,
+      stream_type,
+  ):
     ans = self.handler.send_msg(
         SiyiCmd_SendCodecSpecs.Req(
             stream_type=stream_type,
             video_enc_type=2,
             resolution_l=res.value[0],
             resolution_h=res.value[1],
-            video_bitrate=20000
+            video_bitrate=1000,
+            reserve=15,
         ),
         wait_reply=True
     )
@@ -831,7 +1010,7 @@ class CameraManager(cmisc.PatchedModel):
     self.handler.send_msg(SiyiCmd_SoftReset.Req(gimbal_reset=1, cam_reset=1), wait_reply=True)
 
   def center(self):
-    assert self.handler.send_msg(SiyiCmd_Center.Req(center_pos=0), wait_reply=True).sta == 1
+    assert self.handler.send_msg(SiyiCmd_Center.Req(center_pos=1), wait_reply=True).sta == 1
 
   def record_video_as_photos(self, stop_sig: threading.Event, cb_fc_state=lambda idx: {}):
     data = A()
@@ -858,6 +1037,7 @@ class CameraManager(cmisc.PatchedModel):
   def take_picture(self, wait_cb=cmisc.nop_func):
     self.handler.clear_cmd(SiyiCmd_FuncFeedback.ID)
     self.handler.send_msg(SiyiCmd_PhotoVideoAction.Req(action=SiyiActionType.PICTURE_TAKE))
+    glog.info('Try take picture')
     wait_cb()
     ff = self.handler.wait_msg(SiyiCmd_FuncFeedback.ID)
     glog.info(f'take picture>> {ff}')
@@ -866,22 +1046,27 @@ class CameraManager(cmisc.PatchedModel):
   def toggle_video(self):
     self.handler.clear_cmd(SiyiCmd_FuncFeedback.ID)
     self.handler.send_msg(SiyiCmd_PhotoVideoAction.Req(action=SiyiActionType.RECORDING_TOGGLE))
-    ff = self.handler.wait_msg(SiyiCmd_FuncFeedback.ID)
-    glog.info(f'toggle vide >> {ff}')
-    return ff
+    #ff = self.handler.wait_msg(SiyiCmd_FuncFeedback.ID)
+    #glog.info(f'toggle vide >> {ff}')
+    #return ff
 
     #assert ff.info == SiyiFunctionFeedback.SUCCESS
+
+  def set_utc(self, dt: datetime.datetime = None):
+    if dt is None: dt = datetime.datetime.utcnow()
+    self.send_msg(SiyiCmd_SetUtcTime.Req(timestamp=int(dt.timestamp()) * 1000), wait_reply=True)
 
 
 class ButtonKind(enum.Enum):
   MODE = 'mode'
   CTRL = 'ctrl'
   ZOOM = 'zoom'
-  RECORD_COUNT = 'photo_count'
-  PHOTO_COUNT = 'record_count'
+  RECORD_COUNT = 'record_count'
+  PHOTO_COUNT = 'photo_count'
+  CENTER = 'center'
 
 
-def siyi_joypad(gp: OGamepad):
+def siyi_joypad(gp: OGamepad | None):
 
   def mixaxis(v1, v2):
     v = (max(v1, v2) + 1) / 2
@@ -898,111 +1083,271 @@ def siyi_joypad(gp: OGamepad):
         return 0
 
   mp = {
-      ('Y', True):
-          lambda s: s.inc(
-              ButtonKind.PHOTO_COUNT
-              if (s.cur_buttons['LB'] and s.cur_buttons['RB']) else ButtonKind.RECORD_COUNT
-          ),
+      ('Y', True): lambda s: s.inc(ButtonKind.PHOTO_COUNT),
+      ('RB', True): lambda s: s.inc(ButtonKind.CENTER),
+      ('START', True): lambda s: s.inc(ButtonKind.RECORD_COUNT),
       'DPAD-Y': lambda s, v: s.set(ButtonKind.ZOOM, v),
-      ('LT', 'RT'):
-          lambda s, v: s.set(ButtonKind.CTRL, mixaxis(*v)),
-      'LB':
-          lambda s, v: s.set(
-              ButtonKind.MODE, {
-                  True: SiyiJoyMode.PITCH,
-              }.get(v, SiyiJoyMode.YAW)
-          ),
+      ('LT', 'RT'): lambda s, v: s.set(ButtonKind.CTRL, mixaxis(*v)),
+      'LB': lambda s, v: s.set(ButtonKind.MODE, {
+          True: SiyiJoyMode.PITCH,
+      }.get(v, SiyiJoyMode.YAW)),
   }
   return configure_joy(gp, mp, {x: 0 for x in ButtonKind})
 
 
-class SiyiServerParams(cmisc.PatchedModel):
-  send_status_freq_hz: float = 1
+class StatsStreamParams(cmisc.PatchedModel):
+  name: str
+  gather_ellapsed: bool = False
 
 
-class SiyiServer(cmisc.PatchedModel):
-  th: tunnel.PyMsgTunnelData
-  m: CameraManager
-  params: SiyiServerParams = cmisc.Field(default_factory=SiyiServerParams)
-
-  last_joy: SiyiJoyData = SiyiJoyData()
-
-  def set_params(self, params):
-    self.params = params
-
-  def siyimessage2pyd(self, msg, desc='') -> comm_p2p.SiyiRawReq:
-    return comm_p2p.SiyiRawReq(desc=desc, msg_id=type(msg)._base.ID, res=base64.b64encode(msg.pack()).decode())
-
-  def siyireq2pyd(self, req, desc='') -> comm_p2p.SiyiRawReq:
-    ans = self.m.handler.send_msg(req, wait_reply=True)
-    return self.siyimessage2pyd(req.base.Res(**ans), desc)
-
-  def get_status(self) -> list:
-    return [
-        self.siyireq2pyd(SiyiCmd_RequestCodecSpecs.Req(stream_type=0), '0'),
-        self.siyireq2pyd(SiyiCmd_RequestCodecSpecs.Req(stream_type=1), '1'),
-        self.siyireq2pyd(SiyiCmd_RequestGimbalInfo.Req()),
-    ]
+class StatsStream(cmisc.PatchedModel):
+  params: StatsStreamParams
+  data: list = cmisc.pyd_f(list)
+  context: A = cmisc.pyd_f(A)
 
   @contextlib.contextmanager
-  def enter(self) -> SiyiServer:
-    self.th.add_handler(SiyiJoyData, self.recv_joy_data)
-    self.th.add_handler(SiyiServerParams, self.set_params)
+  def begin_entry(self) -> StatsEntry:
+    start_time = time.clock_gettime(time.CLOCK_REALTIME)
+    st = time.monotonic()
+
+    e = dict()
+    yield e
+    if self.params.gather_ellapsed:
+      e['gather_ellapsed'] = time.monotonic() - st
+    e['start_time'] = start_time
+    self.data.append(e)
+
+  async def alog_func(self, get_data_func):
+    with self.begin_entry() as e:
+      e.update(await get_data_func())
+
+  def log_func(self, get_data_func):
+    with self.begin_entry() as e:
+      e.update(get_data_func())
+
+  def dump_data(self) -> dict:
+    return dict(params=self.params, context=self.context, data=self.data)
+
+
+class StatsCollectorParams(tunnel.pydantic_settings.BaseSettings):
+  dump_file: str = '/dev/null'
+
+
+class StatsCollector(cmisc.ContextModel):
+  params: StatsCollectorParams
+  streams: list[StatsStream] = cmisc.pyd_f(list)
+
+  def create(self, params: StatsStreamParams) -> StatsStream:
+    stream = StatsStream(params=params)
+    self.streams.append(stream)
+    return stream
+
+  def dump_data(self) -> dict:
+    return dict(params=self.params, streams=[s.dump_data() for s in self.streams])
+
+  def __exit__(self, *args):
+    FileFormatHelper.Write(self.params.dump_file, self.dump_data())
+
+    super().__exit__(*args)
+
+
+class ImageCollectorParams(tunnel.pydantic_settings.BaseSettings):
+  image_freq_hz: float = 0.5
+  enable: bool = False
+
+
+class SiyiServerParams(tunnel.pydantic_settings.BaseSettings):
+  send_status_freq_hz: float = 1
+  attitude_collection_freq_hz: float = 5
+  image_collector_params: ImageCollectorParams = cmisc.pyd_f(ImageCollectorParams)
+  stats_params: StatsCollectorParams = cmisc.pyd_f(StatsCollectorParams)
+
+
+@pyro.server.expose
+class SiyiServer(cmisc.ContextModel):
+  th: tunnel.PyMsgTunnelData
+  m: CameraManager
+
+  params: SiyiServerParams = cmisc.pyd_f(SiyiServerParams)
+  status: A = cmisc.pyd_f(A)
+  last_joy: SiyiJoyData = SiyiJoyData()
+  cmd_timeout: float = 0.3
+
+  sc: StatsCollector = None
+  stream_attitude: StatsStream = None
+
+  def __post_init__(self):
+    super().__post_init__()
+    self.sc = StatsCollector(params=self.params.stats_params)
+    self.stream_attitude = self.sc.create(StatsStreamParams(name='attitude', gather_ellapsed=True))
+
+    self.th.hm.add_handler(SiyiJoyData, self.recv_joy_data)
+    self.th.hm.add_handler(SiyiServerParams, self.set_params)
+    self.th.tg.add_timer(lambda: self.params.send_status_freq_hz, self.proc_status)
     self.th.tg.add_timer(
-        lambda: self.params.send_status_freq_hz, lambda: self.th.push_msgs(self.get_status())
+        lambda: self.params.attitude_collection_freq_hz,
+      lambda: self.stream_attitude.alog_func(self.m.aget_attitude), force_async=True)
+    self.ctx_push(self.m.enter())
+    self.ctx_push(self.th)
+    self.ctx_push(self.sc)
+    self.ctx_push(
+        ImageCollector(
+            m=self.m, sc=self.sc, params=self.params.image_collector_params, tg=self.th.tg
+        )
     )
 
-    with self.m.enter(), self.th.enter():
-      yield self
+  @property
+  def siyi_data(self):
+    return A(joy=self.m.last_joy, status=self.status)
 
-  @cmisc.logged_failsafe
   def recv_joy_data(self, joy: SiyiJoyData):
     if joy.photo_count != self.last_joy.photo_count:
       self.m.take_picture()
+    if joy.center != self.last_joy.center:
+      self.m.center()
     if (joy.record_count - self.last_joy.record_count) & 1 != 0:
       self.m.toggle_video()
 
     def get_joyv(joy: SiyiJoyData, mode):
       return 0 if joy.mode != mode else joy.ctrl
 
-    self.m.set_speed(get_joyv(joy, SiyiJoyMode.YAW), get_joyv(joy, SiyiJoyMode.PITCH))
+    self.m.set_speed(
+        get_joyv(joy, SiyiJoyMode.YAW), get_joyv(joy, SiyiJoyMode.PITCH), timeout=self.cmd_timeout
+    )
     if joy.zoom != self.last_joy.zoom:
-      self.m.rel_zoom(joy.zoom)
+      self.m.rel_zoom(joy.zoom, timeout=self.cmd_timeout)
     self.last_joy = joy
+
+
+  def set_params(self, params):
+    self.params = params
+
+  def siyimessage2pyd(self, x: A) -> comm_p2p.SiyiRawReq:
+    msg = x.ans.typ(**x.ans.obj)
+    return comm_p2p.SiyiRawReq(
+        desc=x.desc, msg_id=x.ans.typ._base.ID, res=base64.b64encode(msg.pack()).decode()
+    )
+
+  async def siyireq2pyd(self, req, desc='', **kwargs) -> comm_p2p.SiyiRawReq:
+    ans = await self.m.handler.asend_msg(req, **kwargs)
+    return A(ans=ans, desc=desc, name=f'{ans.typ._base.__name__}/{desc}')
+
+  async def proc_status(self) -> list:
+    async with asyncio.timeout(1), asyncio.TaskGroup() as tg:
+      mlist = [
+          self.siyireq2pyd(
+              SiyiCmd_RequestCodecSpecs.Req(stream_type=0),
+              'stream0',
+              filter=lambda x: x.obj.stream_type == 0
+          ),
+          self.siyireq2pyd(
+              SiyiCmd_RequestCodecSpecs.Req(stream_type=1),
+              'stream1',
+              filter=lambda x: x.obj.stream_type == 1
+          ),
+          self.siyireq2pyd(SiyiCmd_RequestGimbalInfo.Req()),
+      ]
+      tasks = [tg.create_task(x) for x in mlist]
+
+    for x in tasks:
+      xr = x.result()
+      self.status[xr.name] = xr.ans.obj
+      self.th.push_msg(self.siyimessage2pyd(xr))
+
+
+class ImageCollector(cmisc.ContextModel):
+  m: CameraManager
+  sc: StatsCollector
+  params: ImageCollectorParams
+  tg: tunnel.ThreadGroup
+
+  cur_state: SDState = None
+  active_dir: str = None
+  stream: StatsStream = None
+
+  @cmisc.cached_property
+  def active_folder(self) -> SDFolder:
+    return self.cur_state.folders[self.active_dir]
+
+  def __post_init__(self):
+    super().__post_init__()
+    self.tg.add_timer(self.get_freq, self.proc)
+    self.stream = self.sc.create(StatsStreamParams(name='images', gather_ellapsed=True))
+
+  @property
+  def last_image(self):
+    return (self.active_dir, self.active_folder.count)
+
+  def get_freq(self) -> float:
+    return self.params.image_freq_hz
+
+  def __enter__(self):
+    self.cur_state = self.m.hc.get_sd_state(video=False, guessing=True)
+    self.active_dir = cmisc.single_value(self.cur_state.folders.keys())
+    self.stream.context.update(
+        params=self.params.copy(), start_state=self.cur_state.copy(), active_dir=self.active_dir
+    )
+    return super().__enter__()
+
+  def proc(self):
+    if not self.params.enable: return
+
+    with self.stream.begin_entry() as e:
+      self.m.take_picture()
+
+      pic_id = self.active_folder.count
+      self.active_folder.count += 1
+      e.update(pic_id=pic_id)
 
 
 class SiyiControllerParams(cmisc.PatchedModel):
   input_rate: float = 4
 
 
-class SiyiController(cmisc.PatchedModel):
-  gp: OGamepad
+class SiyiController(cmisc.ContextModel):
+  gp: OGamepad | None
   th: tunnel.PyMsgTunnelData
   params: SiyiControllerParams = cmisc.pyd_f(SiyiControllerParams)
+  msg_handler: tunnel.HandlersManager = cmisc.pyd_f(tunnel.HandlersManager)
 
   siyi_data: A = cmisc.pyd_f(A)
+  joy_state: object = None
 
   def handle_recv_req(self, msg: comm_p2p.SiyiRawReq):
     msg_typ: SiyiCmd_Metaclass = siyi_message_types[msg.msg_id]
     res = msg_typ.Res.unpack(base64.b64decode(msg.res))
     self.siyi_data[(msg_typ.__name__, msg.desc)] = res
+    self.msg_handler.handle(res, key=(type(res), msg.desc))
 
-  @contextlib.contextmanager
-  def enter(self) -> SiyiServer:
-    self.th.add_handler(comm_p2p.SiyiRawReq, self.handle_recv_req)
+  def __post_init__(self):
+    super().__post_init__()
 
+    self.th.hm.add_handler(comm_p2p.SiyiRawReq, self.handle_recv_req)
+    self.siyi_data.joy = SiyiJoyData()
+
+    self.msg_handler.verbose = False
+    self.msg_handler.add_handler((SiyiCmd_RequestGimbalInfo.Res, ''), self.handle_gimbal_info)
 
     def timer_joy():
-      jd = SiyiJoyData(**{k.value: v for k, v in state.last.inputs.items()})
-
+      jd = SiyiJoyData(**{k.value: v for k, v in self.joy_state.last.inputs.items()})
       self.siyi_data.joy = jd
       self.th.push_msg(jd)
 
-    with siyi_joypad(self.gp) as state:
-      self.th.tg.add_timer(lambda: self.params.input_rate, timer_joy)
+    joyd = siyi_joypad(self.gp)
+    self.joy_state = joyd.obj
+    self.th.tg.add_timer(lambda: self.params.input_rate, timer_joy)
+    self.ctx_push(joyd)
+    self.ctx_push(self.th)
 
-      with self.th.enter():
-        yield self
+  def handle_gimbal_info(self, msg: SiyiCmd_RequestGimbalInfo.Res):
+    mp = {
+        SiyiRecordStatus.RECORD_ON: 10,
+        SiyiRecordStatus.RECORD_OFF: 0,
+        SiyiRecordStatus.NO_SD: 5,
+        SiyiRecordStatus.RECORD_DATALOSS: 4,
+    }
+
+    self.gp.set_led(mp[msg.record_sta])
 
 
 def main():

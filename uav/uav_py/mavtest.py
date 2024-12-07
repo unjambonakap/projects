@@ -77,6 +77,67 @@ async def upload_ftp(ctx):
   print('done')
 
 
+def homepos_tst(ctx):
+  from pymavlink.dialects.v20 import ardupilotmega as ml
+
+  conn = mavutil.mavlink_connection(
+    'udp:127.0.0.1:14550', source_system=1, source_component=3
+  )
+  conn.wait_heartbeat()
+  print(conn.target_system, conn.target_component)
+
+  conn.mav.command_long_send(
+    conn.target_system,
+    conn.target_component,
+    179,  # VEHICLE_CMD_DO_SET_HOME
+    0,
+    1,  # set home pos from current gps loc
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+  )
+  res = conn.recv_match(type='HOME_POSITION', blocking=True)
+  print(res)
+  time.sleep(1)
+
+
+
+
+
+def motor_test(ctx):
+  from pymavlink.dialects.v20 import ardupilotmega as ml
+
+  conn = mavutil.mavlink_connection(
+      '/dev/ttyUSB0', baud=57600, source_system=1, source_component=3
+  )
+  conn.wait_heartbeat()
+  print(conn.target_system, conn.target_component)
+
+  for i in range(4):
+    conn.mav.command_long_send(
+      conn.target_system,
+      conn.target_component,
+      310,  #px4  VEHICLE_CMD_ACTUATOR_TEST
+      0,
+
+      0.005, #value
+      0.5, # timeout, sec
+      0,
+      0,
+      i+1, # motor num
+      0,
+      0,
+    )
+    res = conn.recv_match(type='COMMAND_ACK', blocking=True)
+    print(res)
+    time.sleep(1)
+
+
+
+
 async def calibrate_esc(ctx):
   d: mavsdk.System = ctx.drone
   from pymavlink.dialects.v20 import ardupilotmega as ml

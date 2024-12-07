@@ -270,3 +270,106 @@ valgrind --leak-check=full --show-leak-kinds=all --gen-suppressions=all --log-fi
 
 git update-index --assume-unchanged .editorconfig
 
+
+python -m chdrft.projects.uav_py.siyi_test --actions=run_endpoint  --no-cam --endpoint /dev/ttyUSB0,b57600,raw,echo=0  --service-type=client  --verbosity=DEBUG --no-live
+
+raw is very important !!
+
+
+
+
+
+root@rpi-fc:/home/benoit# ^Ctables -t nat -A PREROUTING -p tcp --dport 9901 -j DNAT --to-destination 192.168.213.214:5140
+root@rpi-fc:/home/benoit# iptables -t nat -A POSTROUTING -j MASQUERADE
+
+
+
+python uav_py/mavtest.py  --actions=motor_test --no-drone
+
+
+socat / nc -u4v localhost 12345 + send data -> connection refused oO -> becuase ICMP port unreachable
+iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP
+
+
+ll40ls start -X -b 3
+
+listener distance_sensor -n 5 -r 1 -n 10
+
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A PREROUTING -p udp --dport 37260 -j DNAT --to-destination 192.168.1.25:37260
+iptables -t nat -A PREROUTING -p udp --dport 82 -j DNAT --to-destination 192.168.1.25:82
+iptables -t nat -A PREROUTING -p tcp --dport 8554 -j DNAT --to-destination 192.168.1.25:8554
+iptables -t nat -A PREROUTING -p udp --dport 9001 -j DNAT --to-destination 192.168.1.25:9001
+iptables -t nat -A PREROUTING -p udp --dport 9000 -j DNAT --to-destination 192.168.1.25:9000
+iptables -t nat -A POSTROUTING -j MASQUERADE
+
+iptables -L -n -t nat
+
+
+
+
+
+
+https://github.com/catid/fecal/blob/master/FecalEncoder.h
+
+vcs import --input https://raw.githubusercontent.com/ros2/ros2/jazzy/ros2.repos src
+
+
+02/12
+plotjuggler ros installed 
+modified to preview curve by alt +click
+
+custom ROS message (chdrft.ros.base) based on pydantic model + publish directly with pydantic data
+rqt_image_view (working but ~~soso)
+
+
+
+navigator -> mode: RTL/loiter,land ...
+
+commander.cpp :: Run -> main loop for the whole sys
+failsafe.cpp -> decide what to do based on current state
+HealthAndArmingChecks.cpp -> compute state
+
+_param_nav_dll_act: what to do if gcs loss
+
+
+CHECKLIST before flight:
+- radio status import - check both sides: one side OK
+- _param_nav_dll_act conf
+- distance sensor geometry conf
+- distance sensor dds export
+- radio tx power + duty cycle
+- camera: take pictures + event log synced with time since boot: done - not tested
+- dds agent on rpi? : OK
+- double link qgc: a priori OK
+
+
+
+
+
+
+
+https://github.com/MobileRoboticsSkoltech/OpenCamera-Sensors
+
+
+/home/benoit/repos/pkg/rustdesk/rustdesk/pkg/rustdesk/usr/lib/rustdesk/rustdesk
+
+
+nsh> param set SER_TEL3_BAUD 921600
+uxrce_dds_client start -t serial -d /dev/ttyS1 -b 921600
+
+
+
+04/12
+DDS agent working on rpi
+
+time sync between FC and DDS agent done automatically. publishes agent's timestamps in ROS
+
+g uav
+uav/time_sync
+ntpd -4 -c ./ntp.conf  -n -d 5 -g # on rpi: NTP client connecting to www.local
+sudo ntpd -c ./ntpd.conf -n # on desktop: NTP server
+
+TZ=GMT date #
+

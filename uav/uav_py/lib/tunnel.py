@@ -10,7 +10,6 @@ import glog
 import numpy as np
 from pydantic import Field, BaseModel
 from chdrft.utils.path import FileFormatHelper
-from pymavlink.dialects.v20 import common as mavlink2
 import os
 import struct
 from chdrft.tube.file_like import FileLike
@@ -27,10 +26,12 @@ import pickle
 from google.protobuf import json_format
 
 os.environ['MAVLINK20'] = '1'
+#os.environ['MAVLINK11'] = '1'
 
 from pymavlink import mavutil
 from pymavlink.dialects.v20 import ardupilotmega as ml
 from pymavlink.dialects.v20.ardupilotmega import MAVLink
+from chdrft.utils.othreading import ThreadGroup
 import io
 import pymavlink.mavutil
 import asyncio
@@ -100,6 +101,62 @@ class Config:
 dc = pydantic.dataclasses.dataclass(config=Config)
 
 
+class HandlerDesc(cmisc.PatchedModel):
+  func: object = None
+  absorb: bool = True
+  oneshot: bool = False
+  filter: object = None
+
+
+class HandlersManager(cmisc.PatchedModel):
+  handlers: dict[typing.Type, list[HandlerDesc]] = cmisc.pyd_f(lambda: cmisc.defaultdict(list))
+  verbose: bool = True
+  backup_handler: object = None
+
+  def remove_handler(self, typ, u):
+    try:
+      self.handlers[typ].remove(u)
+    except ValueError:
+      pass
+
+  @contextlib.contextmanager
+  def add_handler_oneshot(self, typ, cb, **kwargs):
+    u = self.add_handler(typ, cb, **kwargs)
+    try:
+      yield
+    finally:
+      self.remove_handler(typ, u)
+
+  def add_handler(self, typ, cb, **kwargs):
+    u = HandlerDesc(func=cb, **kwargs)
+    self.handlers[typ].append(u)
+    return u
+
+  def try_handle(self, handler, msg, key):
+    if handler.filter is None or handler.filter(msg):
+      try:
+        handler.func(msg)
+      except Exception as e:
+        glog.error(f'FAILED {e} {msg}')
+        raise
+      if handler.oneshot:
+        self.handlers[key].remove(handler)
+      if handler.absorb: return True
+    return False
+
+  def handle(self, msg, key=None):
+    if key is None:
+      key = type(msg)
+
+    for handler in self.handlers[key]:
+      if self.try_handle(handler, msg, key): return
+    for handler in self.handlers[None]:
+      if self.try_handle(handler, msg, None): return
+    glog.info(f'Message of type {key} has no handlers - nop ')
+    if self.backup_handler:
+      self.backup_handler(msg)
+
+
 class MavAddress(cmisc.PatchedModel):
   sys: int
   comp: int
@@ -119,69 +176,56 @@ class Conf(pydantic_settings.BaseSettings):
     return self
 
 
-class ThreadGroup(cmisc.PatchedModel):
-  group: list[threading.Thread] = pydantic.Field(default_factory=list)
-  ev: threading.Event = pydantic.Field(default_factory=threading.Event)
-  disable_async: bool = False
-  asyncs: list = pydantic.Field(default_factory=list)
-  context: cmisc.ExitStackWithPush = pydantic.Field(default_factory=cmisc.ExitStackWithPush)
+class MavlinkStreamDecoder(cmisc.PatchedModel):
 
-  def run_async(self):
-    el = asyncio.new_event_loop()
-    el.run_until_complete(self.async_runner())
+  mav: MAVLink = None
 
   def __post_init__(self):
-    if not self.disable_async:
-      self.add(threading.Thread(target=self.run_async))
+    self.mav = MAVLink(file=io.BytesIO)
+    self.mav.robust_parsing = True
 
-  @contextlib.contextmanager
-  def enter(self):
-    with self.context:
-      self.start()
-      try:
-        yield self
-      finally:
-        self.stop()
-        self.join()
+  def push(self, data: bytes) -> list[ardupilotmega.MAVLink_message]:
+    return self.mav.parse_buffer(data)
 
-  def add_timer(self, get_freq, action):
 
-    action = cmisc.logged_failsafe(action)
+class MavlinkEndpoint(cmisc.ContextModel):
+  conn: Connection
+  recv_handler: HandlersManager = cmisc.pyd_f(HandlersManager)
+  tg: ThreadGroup = cmisc.pyd_f(ThreadGroup)
+  m: MavlinkStreamDecoder = cmisc.pyd_f(MavlinkStreamDecoder)
 
-    async def timer_func():
-      while not self.should_stop():
-        freq = get_freq()
-        await asyncio.sleep(1 / freq)
-        action()
+  def __post_init__(self):
+    super().__post_init__()
+    self.ctx_push(self.tg.enter())
 
-    self.asyncs.append(timer_func)
+    self.tg.add(func=self.decode_thread)
 
-  def add_rich_monitor(self, get_freq, cb):
-    import rich.live, rich.json
-    live = rich.live.Live(refresh_per_second=10)
-    self.context.pushs.append(live)
-    self.add_timer(get_freq, lambda: live.update(rich.json.JSON(cb())))
+  def recv(self, conn: Connection, ev: threading.Event) -> bytearray:
 
-  async def async_runner(self):
-    glog.info('Async runner go')
-    waitables = [cb() for cb in self.asyncs]
-    await asyncio.gather(*waitables)
-    glog.info('Async runner go')
+    while not ev.is_set():
+      need = self.m.mav.bytes_needed()
+      if need > 0:
+        buf = conn.recv_fixed_size(need, timeout=cmisc.Timeout.from_event(0.3, ev))
+      else:
+        buf = b''
+      glog.debug(f'Recv raw {buf}')
 
-  def add(self, th: threading.Thread):
-    self.group.append(th)
+      msgs = self.m.push(buf)
+      if msgs is None: continue
 
-  def should_stop(self) -> bool:
-    return self.ev.is_set()
+      for msg in msgs:
+        if isinstance(msg, ml.MAVLink_bad_data):
+          glog.info(f'Bad mavlink >> {type(msg)} {msg.reason}')
+          continue
+        self.recv_handler.handle(msg)
 
-  def stop(self):
-    self.ev.set()
+  @cmisc.logged_failsafe
+  def decode_thread(self):
+    while not self.tg.should_stop():
+      self.recv(self.conn, self.tg.ev)
 
-  def start(self):
-    [x.start() for x in self.group]
-
-  def join(self):
-    [x.join() for x in self.group]
+  def send(self, msg: bytes):
+    self.conn.send(msg)
 
 
 class TunnelHelper(cmisc.PatchedModel):
@@ -189,15 +233,18 @@ class TunnelHelper(cmisc.PatchedModel):
   dst: MavAddress
   seq_id: int = 0
 
+  @classmethod
+  def FromConf(cls, conf: Conf):
+    return cls(src=conf.src, dst=conf.dst)
+
   def get_mav(self, send=False):
-    msg =  MAVLink(file=io.BytesIO, srcSystem=self.src.sys, srcComponent=self.src.comp)
+    msg = MAVLink(file=io.BytesIO, srcSystem=self.src.sys, srcComponent=self.src.comp)
     if send:
       msg.seq = self.seq_id % 256
       self.seq_id += 1
     return msg
 
   def get_heartbeat(self):
-
     mav = self.get_mav(send=True)
     mav.file = io.BytesIO()
     mav.heartbeat_send(
@@ -230,83 +277,49 @@ class TunnelHelper(cmisc.PatchedModel):
       return False
     return True
 
-  def recv(self, conn: Connection, ev: threading.Event) -> bytearray:
-    mav = self.get_mav()
-    mav.robust_parsing = True
-    while not ev.is_set():
-      need = mav.bytes_needed()
-      if need > 0:
-        buf = conn.recv_fixed_size(need)
-      else:
-        buf = b''
-      glog.debug(f'Recv raw {buf}')
-      #('BEFORE PARSE >> ', mav.buf, mav.buf_index, buf, need, len(buf))
-      msgs: list[ardupilotmega.MAVLink_message] = mav.parse_buffer(buf)
-      #print('AFTER parse', mav.buf, mav.buf_index, msgs)
-      if msgs is None: continue
 
-      content = bytearray()
-      for msg in msgs:
-        glog.info(f'Recv mavlink >> {type(msg)}')
-        if isinstance(msg ,ml.MAVLink_bad_data):
-          continue
-        if self.is_good_msg(msg):
-          content.extend(msg.payload[:msg.payload_length])
-      if content: return content
-
-
-class TunnelDataBase(cmisc.PatchedModel):
+class TunnelDataBase(cmisc.ContextModel):
   conf: Conf
-  f_enc: Connection
   th: TunnelHelper = None
+  ep: MavlinkEndpoint
   tg: ThreadGroup = cmisc.pyd_f(ThreadGroup)
-
-  @contextlib.contextmanager
-  def enter(self):
-    with self.tg.enter():
-      yield self
 
   def __post_init__(self):
     super().__post_init__()
-    self.th = TunnelHelper(src=self.conf.src, dst=self.conf.dst)
-
-    self.tg.add(threading.Thread(target=self.decode_thread))
+    self.th = TunnelHelper.FromConf(self.conf)
     self.tg.add(threading.Thread(target=self.heartbeat_thread))
+    self.ep.recv_handler.add_handler(
+        ml.MAVLink_tunnel_message, self.process_msg, filter=self.th.is_good_msg
+    )
 
-  def decode_thread(self):
-    while not self.tg.should_stop():
-      content = self.th.recv(self.f_enc, self.tg.ev)
-      if content is None:
-        break
-      glog.info(f'outputting buf {content}')
-      self.handle_decoded_msg(content)
+    self.ctx_push(self.tg.enter())
+    self.ctx_push(self.ep)
+
+  def process_msg(self, msg):
+    self.handle_decoded_msg(bytes(msg.payload[:msg.payload_length]))
 
   def heartbeat_thread(self):
     while not self.tg.should_stop():
       glog.info('Sending heartbeat')
-      self.f_enc.send(self.th.get_heartbeat())
+      self.ep.send(self.th.get_heartbeat())
       time.sleep(1)
 
   def handle_plain_buf(self, buf):
     assert len(buf) <= kTunnelPayloadMaxSize, len(buf)
-    self.f_enc.send(self.th.buf2mav(buf))
+    self.ep.send(self.th.buf2mav(buf))
 
   def handle_decoded_msg(self, content):
     assert 0
 
 
 class PyMsgTunnelData(TunnelDataBase):
-  handlers: dict[typing.Type, list] = cmisc.pyd_f(lambda: cmisc.defaultdict(list))
+  hm: HandlersManager = cmisc.pyd_f(HandlersManager)
   p2p: Proto2Pydantic = g_p2p
 
   def __post_init__(self):
     super().__post_init__()
     if not self.p2p.is_built:
       raise ValueError('p2p should be built')
-
-  def add_handler(self, typ, cb):
-    self.handlers[typ].append(cb)
-
 
   def decode_msg(self, buf):
     idx, = struct.unpack('<H', buf[:2])
@@ -316,16 +329,10 @@ class PyMsgTunnelData(TunnelDataBase):
 
   def handle_decoded_msg(self, content):
     msg = self.decode_msg(content)
-    handlers = self.handlers[type(msg)]
-    if not handlers:
-      glog.info(f'Message of type {type(msg)} has no handlers - nop')
-
-    for handler in handlers:
-      handler(msg)
+    self.hm.handle(msg)
 
   def push_msgs(self, msgs: list[pydantic.BaseModel]):
     [self.push_msg(x) for x in msgs]
-
 
   def encode_msg(self, msg):
     a = self.p2p.to_proto(msg)
@@ -337,7 +344,7 @@ class PyMsgTunnelData(TunnelDataBase):
 
   def push_msg(self, msg: pydantic.BaseModel):
 
-    buf =self.encode_msg(msg)
+    buf = self.encode_msg(msg)
     res = self.decode_msg(buf)
     self.handle_plain_buf(buf)
 

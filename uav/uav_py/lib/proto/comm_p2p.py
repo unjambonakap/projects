@@ -19,6 +19,7 @@ class SiyiJoyData(BaseModel):
     zoom: float = Field(default=0.0)
     photo_count: int = Field(default=0)
     record_count: int = Field(default=0)
+    center: int = Field(default=0)
 
 
 class SiyiRawReq(BaseModel):
